@@ -228,6 +228,8 @@
             
             <div class="markdown-body">
               <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是之前学习JavaScript时写的笔记，方便自己日后翻阅。</p>
+<a id="more"></a>
+
 <h1 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h1><p>arguments对象中存储了传递到函数里的所有实参。</p>
 <p>prompt</p>
 <p>prompt() 方法用于显示可提示用户进行输入的对话框</p>
@@ -379,14 +381,14 @@ fun();</code></pre>
 <h3 id="2-根据标签名获取"><a href="#2-根据标签名获取" class="headerlink" title="2.根据标签名获取"></a>2.根据标签名获取</h3><p><strong>getElementsByTagName(TagName) //返回的是 获取的元素对象的集合 以伪数组的形式存储的（没有数组方法）</strong></p>
 <p><strong>得到的对象是动态的</strong></p>
 <p><strong>element.getElementsByTagName()</strong> <strong>可以获取这个元素中的某些标签</strong></p>
-<p><strong>例：var nav = document.get**</strong>ElementById(id)**</p>
+<p><strong>例：var nav = document.getElementById(id)</strong></p>
 <p><strong>nav. getElementsByTagName(Tagname)</strong></p>
-<h3 id="3-通过HTML5新增方法获取"><a href="#3-通过HTML5新增方法获取" class="headerlink" title="3.通过HTML5新增方法获取"></a>3.通过HTML5新增方法获取</h3><p><strong>document.getElementsByClassName(‘**</strong>类名’); //根据类名返回元素对象集合**</p>
-<p><strong>document.querySelector(‘**</strong>选择器‘); //根据指定选择器返回**<strong>第一个**</strong>元素对象**</p>
+<h3 id="3-通过HTML5新增方法获取"><a href="#3-通过HTML5新增方法获取" class="headerlink" title="3.通过HTML5新增方法获取"></a>3.通过HTML5新增方法获取</h3><p><strong>document.getElementsByClassName(‘类名’); // 根据类名返回元素对象集合</strong></p>
+<p><strong>document.querySelector(‘选择器‘); // 根据指定选择器返回</strong>第一个<strong>元素对象</strong></p>
 <p><strong>里面的选择器要加符号 id：#、 class：.</strong></p>
-<p><strong>document.querySelectorAll(); //**</strong>返回指定选择器的所有元素对象集合**</p>
-<h3 id="4-获取特殊元素"><a href="#4-获取特殊元素" class="headerlink" title="4.获取特殊元素"></a>4.获取特殊元素</h3><p><strong>document.body //**</strong>获取body标签，返回body对象**</p>
-<p><strong>document.documentElement //**</strong>返回html对象**</p>
+<p><strong>document.querySelectorAll(); // 返回指定选择器的所有元素对象集合</strong></p>
+<h3 id="4-获取特殊元素"><a href="#4-获取特殊元素" class="headerlink" title="4.获取特殊元素"></a>4.获取特殊元素</h3><p><strong>document.body // 获取body标签，返回body对象</strong></p>
+<p><strong>document.documentElement // 返回html对象</strong></p>
 <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件是由三部分组成 事件源 事件类型 事件处理程序</p>
 <ol>
 <li><p> 事件源：事件被触发的对象</p>
@@ -859,7 +861,7 @@ fun();</code></pre>
 <p>对象是由<strong>属性</strong>和<strong>方法</strong>组成的：</p>
 <p>属性：事物的<strong>特征</strong>，在对象中用<strong>属性</strong>来表示</p>
 <p>方法：事物的<strong>行为</strong>，在对象中用<strong>方法</strong>来表示</p>
-<p>类：class ES6新增了类的概念 类抽象了对象的公共部分，它<strong>泛指</strong>某一大类（class）<strong>对象**</strong>特指<strong>某一个，通过</strong>类**实例化一个具体对象</p>
+<p>类：class ES6新增了类的概念 类抽象了对象的公共部分，它<strong>泛指</strong>某一大类（class）<strong>对象</strong>特指某一个，通过<strong>类</strong>实例化一个具体对象</p>
 <p>面向对象的思维特点：</p>
 <ol>
 <li><p>抽取（抽象）对象共用的属性和行为组织（封装）成一个<strong>类</strong>（模板）</p>
@@ -869,7 +871,7 @@ fun();</code></pre>
 </ol>
 <h3 id="创建类"><a href="#创建类" class="headerlink" title="创建类"></a>创建类</h3><p>语法：class name{ //class body} 创建实例： var xx = new name（）；</p>
 <p><strong>注意：类必须使用new实例化对象</strong></p>
-<h3 id="类constructor构造函数"><a href="#类constructor构造函数" class="headerlink" title="类constructor构造函数"></a>类constructor构造函数</h3><p><strong>constructor**</strong>（）<strong>方法是类的构造函数（默认方法），</strong>用于传递参数，返回实例对象<strong>，通过new命令生成对象实例时，自动调用该方法。如果没有显示定义，类内部会自动给我们创建一个</strong>constructor（）**</p>
+<h3 id="类constructor构造函数"><a href="#类constructor构造函数" class="headerlink" title="类constructor构造函数"></a>类constructor构造函数</h3><p><strong>constructor（）</strong>方法是类的构造函数（默认方法），<strong>用于传递参数，返回实例对象</strong>，通过new命令生成对象实例时，自动调用该方法。如果没有显示定义，类内部会自动给我们创建一个<strong>constructor（）</strong></p>
 <p>注意</p>
 <ol>
 <li><p>通过class关键字创建类，<strong>类名我们还是习惯性定义首字母大写</strong></p>
@@ -1178,9 +1180,9 @@ fun();</code></pre>
 <p><strong>+</strong>     <strong>相对于&gt;=1 可以出现1次或者很多次</strong></p>
 <p><strong>?</strong>     <strong>相当于1 || 0</strong></p>
 <p><strong>{n}</strong>     <strong>就是重复n次</strong></p>
-<p><strong>{n**</strong>，}    大于等于n次**</p>
-<p><strong>{n**</strong>，m}   大于等于n次并且小于等于m次**<strong>（中间不要有空格）</strong></p>
-<p> <img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/jsimage032.png" srcset="/img/loading.gif"></p>
+<p><strong>{n，}    大于等于n次</strong></p>
+<p><strong>{n，m}   大于等于n次并且小于等于m次（中间不要有空格）</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/jsimage032.png" srcset="/img/loading.gif"></p>
 <p><strong>括号总结</strong></p>
 <p><strong>大括号</strong> 量词符，里面表示重复次数</p>
 <p><strong>中括号</strong> 字符集合。匹配方括号中的任意字符。</p>
@@ -1191,7 +1193,7 @@ fun();</code></pre>
 <p>/^(abc){2}$/ 匹配的是abcabc</p>
 <p><strong>预定义类</strong></p>
 <p>预定义类指的是<strong>某些常见模式的简写方式</strong></p>
-<p> <img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/jsimage033.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/jsimage033.png" srcset="/img/loading.gif"></p>
 <p>小写要，大写不要</p>
 <p><strong>|</strong> <strong>表示或者</strong> 例：/^red | green $/ 匹配red或者green字符串</p>
 <p><strong>替换</strong></p>
@@ -1204,9 +1206,9 @@ fun();</code></pre>
 <p><strong>正则表达式参数</strong></p>
 <p>/表达式/[switch]</p>
 <p>switch（也称为修饰符）按照什么样的模式来匹配。有三种值：</p>
-<p><strong>g**</strong>：全局匹配**</p>
-<p><strong>i**</strong>：忽略大小写**</p>
-<p><strong>gi**</strong>：全局匹配 + 忽略大小写**</p>
+<p><strong>g：全局匹配</strong></p>
+<p><strong>i：忽略大小写</strong></p>
+<p><strong>gi：全局匹配 + 忽略大小写</strong></p>
 <h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><h2 id="let变量"><a href="#let变量" class="headerlink" title="let变量"></a>let变量</h2><p>let声明的变量会与当前块级作用域绑定，不被其他块级作用域访问。</p>
 <p>特点：</p>
 <ol>
@@ -1391,6 +1393,20 @@ s.clear() <span class="hljs-comment">// 清除set结构中的所有值</span></c
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Note/">Note</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Javascript/">Javascript</a>
+                    
+                  </div>
                 
               </div>
               

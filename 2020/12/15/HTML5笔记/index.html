@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Chaomao Chen">
+  <meta name="keywords" content="">
+  <title>HTML5笔记 - 阿猫的学习日记</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐱","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Chaom</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HTML5笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-15 20:48" pubdate>
+        2020年12月15日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      62
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HTML5笔记</h1>
+            
+            <div class="markdown-body">
+              <h1 id="语义化标签"><a href="#语义化标签" class="headerlink" title="语义化标签"></a>语义化标签</h1><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/9f8352f5b5b1520bf42cad8dbc5c2ebb.png" srcset="/img/loading.gif"></p>
+<h1 id="多媒体标签"><a href="#多媒体标签" class="headerlink" title="多媒体标签"></a>多媒体标签</h1><h2 id="lt-audio-gt-音频标签"><a href="#lt-audio-gt-音频标签" class="headerlink" title="&lt;audio&gt;音频标签"></a>&lt;audio&gt;音频标签</h2><p>支持格式</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/273f885407d856d683348e4e7736486b.png" srcset="/img/loading.gif"></p>
+<p>可以放多个不同格式资源在标签中，用source加载</p>
+<p>&lt;source src=”路劲” type=”声明”/&gt;</p>
+<p>常见属性：</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/fb7778f79a495252cfc25bf099fb87fa.png" srcset="/img/loading.gif"></p>
+<h2 id="lt-video-gt-视频标签"><a href="#lt-video-gt-视频标签" class="headerlink" title="&lt;video&gt;视频标签"></a>&lt;video&gt;视频标签</h2><p>支持格式</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/b52661c227025070a1658813470ea6df.png" srcset="/img/loading.gif"></p>
+<p>常见属性</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/4c4747d335f9bea6e45ee3dcd64478a6.png" srcset="/img/loading.gif"></p>
+<h2 id="新增input表单"><a href="#新增input表单" class="headerlink" title="新增input表单"></a>新增input表单</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/4f17f03037bb6d7fb2881ddd33376305.png" srcset="/img/loading.gif"></p>
+<h2 id="表单属性"><a href="#表单属性" class="headerlink" title="表单属性"></a>表单属性</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/0f93bb646ce64bc05cc47268a6db1975.png" srcset="/img/loading.gif"></p>
+<h1 id="CSS3选择器"><a href="#CSS3选择器" class="headerlink" title="CSS3选择器"></a>CSS3选择器</h1><h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/985017c2d1e0ae1c1db2768061efb7bc.png" srcset="/img/loading.gif"></p>
+<h2 id="结构伪类选择器"><a href="#结构伪类选择器" class="headerlink" title="结构伪类选择器"></a>结构伪类选择器</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/5d664e5ce4ccdcf9c339924c703c98a5.png" srcset="/img/loading.gif"></p>
+<p>注：n可以是关键词 even 是偶数 odd是基数，也可以是公式（从0开始算起）</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/1096dfcab8e490e5043d030fa6c52b61.png" srcset="/img/loading.gif"></p>
+<p>但是第0个元素或者超出了元素的个数会被忽略</p>
+<p>nth-child（n）选择父元素里面的第n个孩子，他不管里面的孩子是否同一种类型；</p>
+<p>如果div里有p和span标签，想选择其中的span标签，则用of-type 选择指定类型的元素</p>
+<p>例：div span:nth-of-type(n)</p>
+<h2 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/1e272e7bae034f3a7a668ed2653003ce.png" srcset="/img/loading.gif"></p>
+<p>注意：1.before和after必须要有content属性</p>
+<p>2.before在里面的内容的前面，after在里面的内容的后面</p>
+<p>3.before和after创建一个元素，但是行内元素（inline）</p>
+<p>4.在dom在看不到创建的元素，所以叫伪元素</p>
+<p>5.伪元素和标签选择器一样，权重为1</p>
+<h1 id="2D转换"><a href="#2D转换" class="headerlink" title="2D转换"></a>2D转换</h1><p>转换（transform）是css3中具有颠覆性的特征之一，可以实现元素的位移、旋转、缩放等效果。</p>
+<p>二维坐标系</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/a03d02a8c95e6a8518973bc5fe0d9d32.png" srcset="/img/loading.gif"></p>
+<h2 id="移动（translate）"><a href="#移动（translate）" class="headerlink" title="移动（translate）"></a>移动（translate）</h2><p>语法：transform：translate(x,y); 或者分开写 transform: translateX(n);</p>
+<p>transform: translateY(n);</p>
+<p>重点：1.translate最大的优点：不会影响其他元素的位置</p>
+<p>2.可以用%。%的长度取决于盒子自身的宽度或高度</p>
+<p>3.对行内标签没有效果</p>
+<h2 id="旋转（rotate）"><a href="#旋转（rotate）" class="headerlink" title="旋转（rotate）"></a>旋转（rotate）</h2><p>语法：transform：rotate( num deg)</p>
+<p>重点：1.角度为正时，顺时针；负时，为逆时针</p>
+<p>2.默认旋转的中心点是元素的中心点</p>
+<h2 id="中心点（transform-origin）"><a href="#中心点（transform-origin）" class="headerlink" title="中心点（transform-origin）"></a>中心点（transform-origin）</h2><p>语法：transform-origin：x y</p>
+<p>重点：1.注意两个参数要用空格隔开</p>
+<p>2.x y默认50%</p>
+<p>3.x y可以设置数值或者方位名词（top bottom left right center）</p>
+<h2 id="缩放（scale）"><a href="#缩放（scale）" class="headerlink" title="缩放（scale）"></a>缩放（scale）</h2><p>语法：transform:scale(x, y)</p>
+<p>优势：可以设置转换中心点缩放，默认以中心点缩放，而且不影响其他盒子</p>
+<h2 id="2D转换综合写法"><a href="#2D转换综合写法" class="headerlink" title="2D转换综合写法"></a>2D转换综合写法</h2><p>1.同时使用多个转换，其格式为：transform：translate() rotate() scale()..等等</p>
+<p>2.其顺序会影响转换的效果。（先旋转会改变坐标轴方向）所以一般把位移放在最前面。</p>
+<h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><p>动画（animation）是css3中具有颠覆性的特征之一，可通过设置多个节点来精确控制一个或一组动画，常用来实现复杂的动画效果。</p>
+<p>制作动画分两步：1.先定义动画 2.调用动画</p>
+<h2 id="用keynames定义动画（类似定义类选择器）"><a href="#用keynames定义动画（类似定义类选择器）" class="headerlink" title="用keynames定义动画（类似定义类选择器）"></a>用keynames定义动画（类似定义类选择器）</h2><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> 动画名称 &#123;
+	0% &#123;
+		<span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+	&#125;
+	100% &#123;
+		<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+	&#125;
+&#125;</code></pre>
+
+<p>1.可以做多个状态变化 keyframe（关键帧）</p>
+<p>2.里面的百分比要用整数</p>
+<h2 id="动画序列"><a href="#动画序列" class="headerlink" title="动画序列"></a>动画序列</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/9f9b6bf598ca2486bd48a0f08ebf9e2a.png" srcset="/img/loading.gif"></p>
+<p><strong>动画属性</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/e628dfa8e2e7084fb1b4fa34c1472626.png" srcset="/img/loading.gif"></p>
+<h2 id="动画简写属性"><a href="#动画简写属性" class="headerlink" title="动画简写属性"></a>动画简写属性</h2><p>animation：动画名称 持续时间 运动速度 何时开始 播放次数 是否反方向<br>动画起始或者结束的状态</p>
+<p>注意：</p>
+<ol>
+<li><p>简写属性里面不包括animation-play-state</p>
+</li>
+<li><p>同一个元素添加多个动画效果时，一个animation属性，用逗号（<strong>，</strong>）隔开。</p>
+</li>
+</ol>
+<h2 id="速度曲线细节（animation-timing-function）"><a href="#速度曲线细节（animation-timing-function）" class="headerlink" title="速度曲线细节（animation-timing-function）"></a>速度曲线细节（animation-timing-function）</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/9d4d9052c822821941c4f4839370efc9.png" srcset="/img/loading.gif"></p>
+<h1 id="3D转换"><a href="#3D转换" class="headerlink" title="3D转换"></a>3D转换</h1><h2 id="三维坐标系"><a href="#三维坐标系" class="headerlink" title="三维坐标系"></a>三维坐标系</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/d71f70b9d442b726ea7c671c380c629a.png" srcset="/img/loading.gif"></p>
+<h2 id="移动（translate3d）"><a href="#移动（translate3d）" class="headerlink" title="移动（translate3d）"></a>移动（translate3d）</h2><p>跟2D移动差不多，多了一个z轴。z轴移动一般用px单位。translate3d中的xyz值不能省略，没有就写0。</p>
+<h2 id="透视（perspective）"><a href="#透视（perspective）" class="headerlink" title="透视（perspective）"></a>透视（perspective）</h2><p>透视我们也称之为视距：视距就是人的眼睛到屏幕的距离。想要网页产生3D效果需要透视。</p>
+<p>注意：</p>
+<p>1.距离透视点越近的在电脑平面成像越大，越远就越小。</p>
+<p><strong>2.透视写在被观察元素的父盒子上面的</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/707b8f847530e84d2423e73b515c0b66.png" srcset="/img/loading.gif"></p>
+<p>d：视距，人眼睛到屏幕距离。</p>
+<p>z：z轴，物体距离屏幕的距离。z轴越大，看到的物体越大</p>
+<h2 id="3D旋转-rotate3d"><a href="#3D旋转-rotate3d" class="headerlink" title="3D旋转(rotate3d)"></a>3D旋转(rotate3d)</h2><p>可以指定x,y,z轴，让元素旋转。</p>
+<p>语法：transform：rotateX( num deg); transform：rotateY( num deg);<br>transform：rotateZ( num deg);</p>
+<p>transform: rotate3d(x, y, z, deg)；:<br>沿着自定义旋转deg为角度。xyz是表示旋转的矢量(1,<br>-1)，是表示你是否希望沿着该轴旋转，最后一个表示旋转角度。</p>
+<p><strong>左手准则</strong>：左手拇指指向x，y轴的正方向，其余手指的弯曲方向就是该元素沿着x，y轴旋转的方向</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/9c23210ed743abf45d045a9a54566b8b.png" srcset="/img/loading.gif"></p>
+<h2 id="3D呈现（transform-style）"><a href="#3D呈现（transform-style）" class="headerlink" title="3D呈现（transform-style）"></a>3D呈现（transform-style）</h2><p>作用：控制子元素是否开启三维立体环境。</p>
+<p>参数：flat——子元素不开启3d立体空间，默认的。 preserve-3d——子元素开启立体空间</p>
+<p>注意：代码写给父级，但影响的是子元素。</p>
+<h1 id="浏览器私有前缀"><a href="#浏览器私有前缀" class="headerlink" title="浏览器私有前缀"></a>浏览器私有前缀</h1><p>浏览器私有前缀是为了兼容老版本的写法，比较新版本的浏览器无须添加</p>
+<p>-moz-：代表firebox浏览器私有属性</p>
+<p>-ms-：代表ie浏览器私有属性</p>
+<p>-webkit-：代表safari-chrome私有属性</p>
+<p>-o-：代表Opera私有属性</p>
+<h1 id="移动布局基础"><a href="#移动布局基础" class="headerlink" title="移动布局基础"></a>移动布局基础</h1><p>国内主流的浏览器内核一般为webkit，所以兼容移动端的浏览器，考虑webkit的兼容就可以了。</p>
+<p>调试方法：**1.**Chrome DevTool（谷歌浏览器）的模拟手机调试</p>
+<p>2.搭建本地web服务器，用手机访问服务器</p>
+<p>3.用外网的服务器，直接IP或域名访问</p>
+<h2 id="视口（viewport）"><a href="#视口（viewport）" class="headerlink" title="视口（viewport）"></a>视口（viewport）</h2><p>就是浏览器显示页面内容的屏幕区域。视口可以分为布局视口、视觉视口和理想视口。</p>
+<ul>
+<li>布局视口（layout viewport）</li>
+</ul>
+<p>一般移动设备的浏览器都默认设置了一个布局视口，用于解决早期的PC端页面在手机上显示的问题</p>
+<p>ios，android基本都将这个视口分辨率设置为980px，所以PC上的网页大多都能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页。大小即整个网页大小</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/adf94f2f01a6c4c496d30ebe549ebf2c.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/648f4161ad36b78219c0c9e9204413ef.jpeg" srcset="/img/loading.gif"></p>
+<ul>
+<li>视觉视口（visual viewport）</li>
+</ul>
+<p>字面意思，它是用户正在看到的网站的区域。大小即手机屏幕大小。</p>
+<ul>
+<li><strong>理想视口</strong>（ideal viewport）</li>
+</ul>
+<p>为了使网站在移动端最理想的浏览器和阅读宽度而设定</p>
+<p>需要手动添写<strong>meta视口标签</strong>通知浏览器操作</p>
+<p>meta视口标签的主要目的：布局视口的宽度应该与理想视口的宽度一致，设备有多宽，我们布局的视口就多宽。</p>
+<p><strong>meta视口标签</strong></p>
+<p>标准viewport设置：&lt;meta name=”viewport” content=”width=device-width,<br>user-scalable=no, initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0”&gt;</p>
+<p>上例：宽度等于设备宽度，不允许用户缩放，不缩放。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/825eab8d102239b4d7b746314bc800a9.png" srcset="/img/loading.gif"></p>
+<h2 id="二倍图"><a href="#二倍图" class="headerlink" title="二倍图"></a>二倍图</h2><h3 id="物理像素和物理像素比"><a href="#物理像素和物理像素比" class="headerlink" title="物理像素和物理像素比"></a>物理像素和物理像素比</h3><ol>
+<li><p>物理像素点指的是屏幕显示的最小颗粒，是物理真实存在的。这是厂商在出厂时就设置好了，比如6\7\8<br> 是750*1334</p>
+</li>
+<li><p> 开发的时候1px不是一定等于一个物理像素的。PC端页面，1个px等于1个物理像素的，但手机上不同</p>
+</li>
+<li><p> 一个px的能显示的物理像素点的个数，称为物理像素比或屏幕像素比。</p>
+</li>
+</ol>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/a744f84e28ff58de7abaff6f7b1f91bc.png" srcset="/img/loading.gif"></p>
+<p>原因：Retina（视网膜屏幕）是一种显示技术，可以将把更多的物理像素点压缩至一块屏幕里，从而达到更高的分辨率，并提高屏幕显示的细腻程度。</p>
+<h2 id="多倍图"><a href="#多倍图" class="headerlink" title="多倍图"></a>多倍图</h2><p>对于图片，在Retina屏中打开，按照物理像素比放大，会造成图片模糊</p>
+<p>在标准的viewport设置中，使用倍图来提高图片质量。通常用二倍图，也有三倍、四倍。按实际开发需求</p>
+<p>方法：二倍图放在宽高为一倍的盒子内。</p>
+<h3 id="背景缩放（background-size：背景图片宽度-背景图片高度）"><a href="#背景缩放（background-size：背景图片宽度-背景图片高度）" class="headerlink" title="背景缩放（background-size：背景图片宽度 背景图片高度）"></a>背景缩放（background-size：背景图片宽度 背景图片高度）</h3><p>background-size属性规定背景图像的尺寸</p>
+<p>只写一个参数，为宽度，高度等比例缩放。</p>
+<p>单位：长度|百分比|cover|contain</p>
+<p>cover：把背景图片等比例拉伸 完全覆盖盒子 可能有部分背景图片显示不全</p>
+<p>contain：把背景图片等比例拉伸<br>当宽度或者高度到达边界，则停止缩放。所以可能有部分空白。</p>
+<p>背景图片二倍图缩放方法：运用background-size</p>
+<h3 id="多倍图切图（cutterman）"><a href="#多倍图切图（cutterman）" class="headerlink" title="多倍图切图（cutterman）"></a>多倍图切图（cutterman）</h3><p>ps中，选择图片，选择cutterman，选择ios/android，@3X：3倍图 @2X：2倍图<br>@1X：一倍图</p>
+<h2 id="二倍精灵图做法"><a href="#二倍精灵图做法" class="headerlink" title="二倍精灵图做法"></a>二倍精灵图做法</h2><ol>
+<li><p> 在firework里面把精灵图等比例缩放为原来的一半</p>
+</li>
+<li><p> 根据大小测量坐标</p>
+</li>
+<li><p> background-size：精灵图原来宽度的一半</p>
+</li>
+</ol>
+<h2 id="移动端开发选择"><a href="#移动端开发选择" class="headerlink" title="移动端开发选择"></a>移动端开发选择</h2><ol>
+<li><p> 单独制作移动端页面（主流）</p>
+</li>
+<li><p> 响应式页面兼容移动端：一个页面，兼容电脑和手机。（花费精力大，但未来应该会向这边靠拢）</p>
+</li>
+</ol>
+<p>移动端技术解决方案</p>
+<ol>
+<li><p> 注意属性是否加webkit私有前缀</p>
+</li>
+<li><p> CSS初始化 normalize.css</p>
+</li>
+</ol>
+<h2 id="CSS3盒子模型（box-sizing）"><a href="#CSS3盒子模型（box-sizing）" class="headerlink" title="CSS3盒子模型（box-sizing）"></a>CSS3盒子模型（box-sizing）</h2><p>传统模式宽度计算：盒子的宽度 = CSS中设置的width + border + padding</p>
+<p>CSS盒子模型：盒子宽度 =<br>CSS中设置的宽度width里面包含了border和padding，即padding和border不会撑大盒子。</p>
+<p>CSS3盒子模型：box-sizing：border-box</p>
+<p>传统盒子模型：box-sizing：content-box</p>
+<h3 id="特殊样式"><a href="#特殊样式" class="headerlink" title="特殊样式"></a>特殊样式</h3><p>点击高亮清除：-webkit-tap-highlight-color：transparent；</p>
+<p>去除按钮和输入框自定义样式：-webkit-appearance：none；</p>
+<p>禁用长按页面时的弹出菜单：-webkit-touch-callout：none；</p>
+<h2 id="移动端常见布局"><a href="#移动端常见布局" class="headerlink" title="移动端常见布局"></a>移动端常见布局</h2><ol>
+<li>单独制作移动端页面</li>
+</ol>
+<p><strong>流式布局（百分比布局） flex弹性布局 less+rem+媒体查询布局 混合布局</strong></p>
+<ol start="2">
+<li>响应式页面兼容移动端</li>
+</ol>
+<p><strong>媒体查询 bootstarp</strong></p>
+<h3 id="流式布局（百分比布局）"><a href="#流式布局（百分比布局）" class="headerlink" title="流式布局（百分比布局）"></a>流式布局（百分比布局）</h3><p>通过盒子的宽度设置成百分比来根据屏幕的宽度来进行伸缩，不受固定像素的限制，内容向两侧填充。</p>
+<p>为了保护元素不被无限缩放，引入最大最小宽高。</p>
+<p><strong>max-width 最大宽度 （max-height 最小宽度）</strong></p>
+<p><strong>min-width 最小宽度 (min-height 最小高度)</strong></p>
+<p><strong>图片格式</strong></p>
+<p>DPG：京东独有的图片压缩技术，节省加载时间。压缩后与webp的清晰度对比没有差距</p>
+<p>webp：谷歌开发的一种皆在加快图片加载速度的图片格式，图片压缩体积大约只有JPEG的2/3</p>
+<h3 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h3><p>传统布局：兼容性好、布局繁琐、局限性</p>
+<p>flex弹性布局：操作简单，布局简单、PC端浏览器支持情况较差</p>
+<p>含义：flex是flexible<br>Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活性，任何一个容器都可以指定为flex布局。</p>
+<p>采用flex布局的元素，称为Flex容器（flex<br>container），简称“容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex<br>item），简称“项目”。</p>
+<p><strong>注意：当我们父盒子设为flex布局以后，子元素的float、clear和vertical-align属性将失效</strong></p>
+<p><strong>父项常见属性</strong></p>
+<p><strong>flex-direction</strong>：设置主轴的方向（横向、纵向）</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/fc963efa7b7904a3cabbe5564b7fb173.png" srcset="/img/loading.gif"></p>
+<p><strong>justify-content</strong>：设置<strong>主轴</strong>上的元素的子元素排列方式</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/a29503bde9861e5171627d0837fca7a4.jpeg" srcset="/img/loading.gif"></p>
+<p><strong>flex-wrap</strong>：设置子元素是否换行（flex默认不换行，如果元素过多，会挤压盒子缩小宽高放在一行内）</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/71f1c1854696dacabd9f7c3862434318.png" srcset="/img/loading.gif"></p>
+<p><strong>align-items</strong>：设置<strong>侧轴</strong>上的子元素排列方式<strong>（单行）（stretch拉伸不要给子元素高度，否则无效果）</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/54aabc147ca6b7d38714c85d55b2fa0b.png" srcset="/img/loading.gif"></p>
+<p>align-content：设置侧轴上的子元素的排列方式<strong>（多行）（对单行无效果）</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/b9007880a294849fb06450e90a2c0405.jpeg" srcset="/img/loading.gif"></p>
+<p>使用情景</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/47e0d1794205a8231d4911dd5ec0d754.png" srcset="/img/loading.gif"></p>
+<p>flex-flow：复合属性，相当于同时设置了flex-direction和flex-wrap</p>
+<h4 id="子项常见属性"><a href="#子项常见属性" class="headerlink" title="子项常见属性"></a>子项常见属性</h4><p><strong>flex属性</strong></p>
+<p>flex属性定义子项目分配剩余空间，用flex来表示占多少份数</p>
+<p>语法：flex：number （默认是0）</p>
+<p><strong>align-self</strong> 控制子项自己在侧轴上的排列方式</p>
+<p>align-self属性允许单个项目与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+<p><strong>order</strong><br>属性定义项目的排列顺序，数值越小，排列越靠前，默认为0。（在主轴上排列的前后）</p>
+<p><strong>背景线性渐变</strong></p>
+<p>background：-webkit-linear-gradient（起始方向，颜色1，颜色2,。。。）；</p>
+<p>背景渐变必须添加私有前缀</p>
+<p>起始方向可以是方位名词（top，left，bottom，right）如果省略默认就是top</p>
+<h3 id="rem适配布局"><a href="#rem适配布局" class="headerlink" title="rem适配布局"></a>rem适配布局</h3><p><strong>rem基础</strong></p>
+<p>rem（root em）是一个相对单位，类似于em，em是<strong>父元素</strong>字体大小</p>
+<p>不同的是rem的基准是相对于<strong>html元素</strong>的字体大小</p>
+<p>比如，根元素（html）设置font-size=12px；非根元素设置width：2rem；则换成px表示就是24px。</p>
+<p>rem的优点：可以通过修改html里面的文字大小来改变页面中元素的大小可以整体控制，而与em相比，因为父元素很多，所有不好控制。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>rem布局是为了适应某个特殊时期发明的布局方式，不建议使用。现在的移动端布局依旧使用百分比布局+flex布局较好。</p>
+<h2 id="媒体查询（Media-Query）"><a href="#媒体查询（Media-Query）" class="headerlink" title="媒体查询（Media Query）"></a>媒体查询（Media Query）</h2><p>媒体查询是CSS3新语法</p>
+<p>特点：</p>
+<p>1.使用 @media 查询，可以针对不同的媒体类型定义不同的样式</p>
+<p><strong>2.@media 可以针对不同的屏幕尺寸设置不同的样式</strong></p>
+<p>3.当你重置浏览器大小的过程中，页面也会根据浏览器的宽度和高度重新渲染页面</p>
+<p>4.目前针对很多苹果手机、Android手机，平板等设备都用得到多媒体查询</p>
+<p>语法：</p>
+<pre><code class="hljs css"><span class="hljs-keyword">@media</span> 媒体类型 关键字 (媒体特性) &#123;
+	<span class="hljs-selector-tag">CSS-Code</span>;  
+&#125;
+<span class="hljs-comment">/* 用@media开头注意@符号 */</span></code></pre>
+
+<h3 id="媒体类型"><a href="#媒体类型" class="headerlink" title="媒体类型"></a>媒体类型</h3><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/3948858191f2a9e22f37ed306aae9c26.png" srcset="/img/loading.gif"></p>
+<p><strong>关键字</strong>：将媒体类型或多个媒体特性连接到一起做为媒体查询的条件</p>
+<p>and：可以将多个媒体特性连接到一起，相当于“且”的意思</p>
+<p>not：排除某个媒体类型，相当于“非”的意思，可以省略</p>
+<p>only：指定某个特定的媒体类型，可以省略</p>
+<h3 id="媒体特性"><a href="#媒体特性" class="headerlink" title="媒体特性"></a>媒体特性</h3><p>每种媒体类型都具体各自不同的特性，根据不同媒体类型的媒体特性设置不同的展示风格。暂且了解三个</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/92d59a8372e506312b6f0a58e6bb95df.png" srcset="/img/loading.gif"></p>
+<p>媒体查询为了代码更简洁，我们按从小到大的顺序写。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/2dfb83167f1a54ed1f8d0b15f2d620c9.png" srcset="/img/loading.gif"></p>
+<h2 id="引入资源"><a href="#引入资源" class="headerlink" title="引入资源"></a>引入资源</h2><p>当样式比较繁多的时候，我们可以针对不同的媒体使用不同的stylesheets（样式表）。</p>
+<p>原理，就是直接在link中判断设备的尺寸，然后引用不同的css文件。</p>
+<p>语法：&lt;link rel=”stylesheet” media = ”mediatype and|not|only (media feature)”<br>href = ”mystylesheet.css”&gt;</p>
+<h1 id="less基础"><a href="#less基础" class="headerlink" title="less基础"></a>less基础</h1><h2 id="维护CSS的弊端"><a href="#维护CSS的弊端" class="headerlink" title="维护CSS的弊端"></a>维护CSS的弊端</h2><p>CSS是一门非程序式语言，没有变量，函数，SCOPE（作用域）等概念</p>
+<p>1.CSS需要书写大量看似没有逻辑的代码，CSS冗余度是比较高的</p>
+<p>2.不方便维护及扩展，不利于复用</p>
+<p>3.CSS没有很好的计算能力</p>
+<h2 id="什么是Less"><a href="#什么是Less" class="headerlink" title="什么是Less"></a>什么是Less</h2><p>Less（leaner Style Sheets的缩写）是一门CSS扩展语言，也成为CSS预处理器</p>
+<p>作为CSS的一种形式的扩展，它并没有减少CSS的功能，而是在现有的CSS语法上，为CSS加入程序语言的特性。</p>
+<p>它在CSS的语法基础之上，引入了变量，Mixin（混入），运算以及函数等功能，大大简化了CSS的编写，并且降低了CSS的维护成本。</p>
+<p>常见的CSS预处理器：Sass、Less、Stylus</p>
+<p>一句话：<strong>Less是一名门CSS预处理语言，它扩展了CSS的动态特性</strong></p>
+<h2 id="Less变量"><a href="#Less变量" class="headerlink" title="Less变量"></a>Less变量</h2><p>创建.less文件，在文件中编写less变量和样式。</p>
+<p>语法： @变量名：值；</p>
+<p><strong>命名规范</strong>：1.必须要@为前缀 2.不能包含特殊字符 3.不能以数字开头 4.大小写敏感</p>
+<h2 id="Less编译"><a href="#Less编译" class="headerlink" title="Less编译"></a>Less编译</h2><p>需要将less文件编译生成css文件，html页面才能使用。</p>
+<p>工具：vscode插件：eazy less。保存less文件即可生成对应的css文件。</p>
+<h2 id="Less嵌套"><a href="#Less嵌套" class="headerlink" title="Less嵌套"></a>Less嵌套</h2><p>CSS选择器嵌套 <strong>Less嵌套写法</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/36376a0470ba4078c0f5e1a28dfad046.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/0db62e55f99112c7bb1c01f5308132e0.png" srcset="/img/loading.gif"></p>
+<p>对于交集|伪类|伪元素选择器，如果直接写在里面，编译的时候就好在父元素和交集|伪类|伪元素选择器之间加入空格从而无效化。我们需要把交集|伪类|伪元素选择器写在里面并在前面加入**&amp;符号**，这样它就被解析为父元素自身或父元素的伪类。</p>
+<p>CSS伪类写法  <strong>Less写法</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/30529968b2f54a0083bb51735bb8ffed.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/52728fced9c6f698e122056b9f874149.png" srcset="/img/loading.gif"></p>
+<h2 id="Less运算"><a href="#Less运算" class="headerlink" title="Less运算"></a>Less运算</h2><p>任何数字、颜色或者变量都可以参与运算。Less提供了四则算术运算。</p>
+<p>注意：1.<strong>运算符左右两侧必须加空格隔开</strong></p>
+<p>2.两个数参与运算，如果只有一个数有单位，那么最后以这个单位为准</p>
+<p>3.两个数参与运算，如果两个数都有单位，最后的结果以第一个单位为准</p>
+<h1 id="rem适配方案"><a href="#rem适配方案" class="headerlink" title="rem适配方案"></a>rem适配方案</h1><ol>
+<li><p> 让一些不能等比自适应的元素，达到当设备尺寸发生改变时，等比例适配当前设备。</p>
+</li>
+<li><p> 使用媒体查询根据不同设备按比例设置html的字体大小，然后页面元素使用rem做尺寸单位，当html字体大小变化元素尺寸也会发生变化，从而达到等比缩放的适配。</p>
+</li>
+</ol>
+<p>适配方案技术使用（市场主流）</p>
+<p>方案一：less + 媒体查询 + rem</p>
+<p>方案二：flexible + rem</p>
+<p><strong>方案一</strong></p>
+<p><strong>设计稿常见宽度（基本以750为准）</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/79c256b6cffaae1773bfe53b816118ba.png" srcset="/img/loading.gif"></p>
+<p><strong>动态设置html标签font-size大小</strong></p>
+<p>假设我们把整个屏幕划分为15等份，那么字体大小=屏幕宽度/等份</p>
+<p><strong>元素大小取值方法</strong></p>
+<ol>
+<li><p> 屏幕宽度/划分份数 就是html font-size的大小</p>
+</li>
+<li><p> 最后公式：页面元素的rem值 = 页面元素值（px）/（屏幕宽度/划分的份数）</p>
+</li>
+<li><p> 或者：页面元素的rem值 = 页面元素值（px）/ html font-size字体大小</p>
+</li>
+</ol>
+<p><strong>方案二</strong></p>
+<p>flexible.js：手机淘宝团队出的简洁高效移动端适配库</p>
+<p>原理：把当前设备划分为10等份，确定好当前设备的html文字大小就可以了。</p>
+<h1 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h1><h2 id="响应式开发原理"><a href="#响应式开发原理" class="headerlink" title="响应式开发原理"></a>响应式开发原理</h2><p>就是使用媒体查询针对不同宽度的设备进行布局和样式的设置，从而适配不同的设备的目的。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/6882c60739864f421c001d9f775280f7.png" srcset="/img/loading.gif"></p>
+<h2 id="响应式布局容器"><a href="#响应式布局容器" class="headerlink" title="响应式布局容器"></a>响应式布局容器</h2><p>响应式布局需要一个父级的布局容器，来配合子级元素来实现变化效果。</p>
+<p>原理就是在不同屏幕下，通过媒体查询来改变这个布局容器的大小，再改变里面子元素的排列方式和大小，从而实现不同屏幕下，看到不同的页面布局和样式变化。</p>
+<h1 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h1><p>Bootstrap是基于HTML、CSS和JAVASCRIPT的，它简洁灵活，使得WEB开发更便捷</p>
+<p>优点：1.标准化得html +css编码规范</p>
+<p>2.提供了一套简洁、直观、强悍的组件</p>
+<p>3.不断更新迭代</p>
+<p>4.提高开发效率</p>
+<h2 id="Bootstrap使用"><a href="#Bootstrap使用" class="headerlink" title="Bootstrap使用"></a>Bootstrap使用</h2><p>使用样式：创建文件夹结构——创建html骨架结构——引入相关样式文件——书写内容</p>
+<p>书写内容：1.直接拿Bootstrap预先定义好的样式来使用</p>
+<p>2.修改Bootstrap原来的样式，注意权重问题</p>
+<p>3.<strong>要清楚它定义了哪些样式，以及这些样式能实现什么样的效果</strong></p>
+<h2 id="布局容器"><a href="#布局容器" class="headerlink" title="布局容器"></a>布局容器</h2><p>Bootstrap需要为页面内容和栅格系统包裹一个.contain容器，Bootstrap预先定义好了这个类，叫container。它提供了两个作此用处的类</p>
+<ol>
+<li> <strong>container类</strong></li>
+</ol>
+<p>响应式布局容器 固定宽度 大屏（&gt;=1200px）宽度定为1170px<br>中屏（&gt;=992px）宽度定为970px</p>
+<p>小屏（&gt;=768px）宽度定为750px 超小屏（100%）</p>
+<ol start="2">
+<li><strong>container-fluid类</strong></li>
+</ol>
+<p>流式布局容器 百分百宽度</p>
+<p>占据全部视口（viewport）的容器</p>
+<p>适合于单独做移动端开发</p>
+<h2 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h2><p>栅格系统（grid systems）指页面布局划分为等宽的列，然后通过列数的定义来模块化页面布局。</p>
+<p>Bootstrap提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统自动分为最多<strong>12列</strong>。</p>
+<p>Bootstrap里面container宽度是固定的，但是不同屏幕下，container的宽度不同，我们再把container划分为12等份。</p>
+<h3 id="选项参数"><a href="#选项参数" class="headerlink" title="选项参数"></a>选项参数</h3><p>栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，你的内容就可以放入这些创建的布局中。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/ca325f85393e1c4cf308e740feef9cc0.png" srcset="/img/loading.gif"></p>
+<p>注意：1.行（row）必须放到container布局容器里面</p>
+<p>2.我们实现列的平均划分需要给列添加类前缀</p>
+<p>3.列（column）大于12，多余的“列（column）”所在的元素将被作为一个整体另起一行排列。列小于12则填不满一行。</p>
+<p>4.每一列默认有左右15像素的padding</p>
+<p>5.可以同时为一列指定多个设备的类名，以便划分不同份数 例如class=“col-md-4<br>col-sm-6”</p>
+<h3 id="列嵌套"><a href="#列嵌套" class="headerlink" title="列嵌套"></a>列嵌套</h3><p>栅格系统内置的栅格系统将内容再次嵌套。简单理解就是一列再分成若干小列。可以通过添加一个新的.row元素和一系列.col-sm-*元素到已经存在的.col-sm-*元素内</p>
+<p>列嵌套最好加一个行row，这样可以取消父元素的padding值</p>
+<h3 id="列偏移"><a href="#列偏移" class="headerlink" title="列偏移"></a>列偏移</h3><p>使用.col-md-offset-*类可以将列向右侧偏移。这些类实际是通过使用*选择器为当前元素增加了左侧的边距。</p>
+<p>偏移的份数 就是 12 – 两个盒子的份数</p>
+<p>如果只有一个盒子，那么就偏移 = 12 – 盒子份数/2</p>
+<h3 id="列排序"><a href="#列排序" class="headerlink" title="列排序"></a>列排序</h3><p>通过使用.col-md-push-*（向右推） 和.col-md-pull-*（向左拉）来改变顺序<br>（靠position：relative实现）</p>
+<p>按x轴方向运动</p>
+<h2 id="响应式工具"><a href="#响应式工具" class="headerlink" title="响应式工具"></a>响应式工具</h2><p>为了加快对移动设备友好的页面开发工作，利用媒体查询功能，并使用这些工具类可以方便的针对不同设备展示或隐藏页面内容。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/html5/42b357c3e404a4993516d90980e8fc49.png" srcset="/img/loading.gif"></p>
+<p>与之相反的是visible-xs visible-sm visible-md visible-lg 在什么屏幕下显示。</p>
+<h1 id="移动端技术选型"><a href="#移动端技术选型" class="headerlink" title="移动端技术选型"></a>移动端技术选型</h1><p>流式布局（百分比布局）</p>
+<p><strong>flex弹性布局（推荐）</strong></p>
+<p><strong>rem适配布局（不推荐）</strong></p>
+<p>响应式布局</p>
+<p>建议：选一种为主要技术选型，其他技术作为辅助，混合开发</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Note/">Note</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/HTML/">HTML</a>
+                    
+                      <a class="hover-with-bg" href="/tags/HTML5/">HTML5</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/05/JS%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">Javascript笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

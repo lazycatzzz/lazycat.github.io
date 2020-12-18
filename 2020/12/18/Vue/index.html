@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.2k 字
+      9.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      119
+      123
        分钟
     </span>
   
@@ -227,235 +227,170 @@
             <h1 style="display: none">Vue笔记</h1>
             
             <div class="markdown-body">
-              <h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a><strong>Vue</strong></h1><h2 id="Vue模板语法"><a href="#Vue模板语法" class="headerlink" title="Vue模板语法"></a><strong>Vue模板语法</strong></h2><h3 id="差值表达式"><a href="#差值表达式" class="headerlink" title="差值表达式"></a><strong>差值表达式</strong></h3>{{}} 里面填充数据
-
-### **指令**
-
-指令的本质就是自定义属性，指令的格式：以v-开始（比如：v-cloak）
-
-#### **v-cloak指令用法**
-
-插值表达式存在的问题：“闪动”（显示双大括号内容）
-
-方法：使用v-cloak指令
-
-解决该问题原理：先隐藏，在内存中替换好值之后再显示最终的值
-
-#### **数据绑定指令**
-
-**v-text填充纯文本**
-
-语法：\<span v-text=”msg”\>\</span\> = \<span\>msg\</span\>
-
-没有闪动问题
-
-相比于插值表达式更加简洁
-
-**v-html填充html片段**
-
-语法：\<span v-html=”msg”\>\</span\>
-
-存在安全问题，容易受到XSS攻击，**不要用在用户提交内容上**
-
-本网站内部数据可以使用，来自第三方的数据不可以用
-
-**v-pre填充原始信息**
-
-显示原始信息，跳过编译过程（分析编译过程）
-
-## **数据响应式**
-
-理解响应式：
-
-1.  html5中的响应式（屏幕尺寸的变化导致样式的变化）
-
-2.  数据的响应式（数据的变化导致页面内容的变化）
-
-什么是数据绑定
-
-数据绑定：将数据填充到标签中
-
-v-once只编译一次
-
-显示内容之后不再具有响应式功能
-
-## **双向数据绑定**
-
-### **概念**
-
-1.  当数据发生变化的时候，视图也就发生变化
-
-2.  当视图发生变化的时候，数据也会跟着同步变化
-
-**实现方法**：**v-model**
-
-语法：\<input type='text' v-model='uname'/\>
-
-**使用场景**：v-model是一个指令，限制在
-**\<input\>、\<select\>、\<textarea\>**、**components（组件）** 中使用
-
-## **MVVM设计思想**
-
-1.  M（model）数据层
-
-Vue 中 数据层 都放在 data 里面
-
-2. V（view）视图
-
-Vue 中 view 即 我们的HTML页面
-
-3. VM（View-Model）控制器 将数据和视图层建立联系
-
-vm 即 Vue 的实例 就是 vm
-
-![](https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/56a457505411b792673bdad131664539.png)
-
-## **事件绑定**
-
-1.  **如何处理函数**
-
-v-on指令：通过**v-on**指令来绑定事件
-
-语法：\<input type=‘button'
-v-on:click='num++'/\>v-on简写形式：用**\@**来代替v-on
-
-语法：\<input type=‘button' \@click='num++'/\>
-
-2. **事件函数的调用方式**
-
-- 直接绑定函数名称
-
-语法：\<button v-on:click='say'\>Hello\</button\>
-
-- 调用函数（传参的时候用）
-
-语法：\<button v-on:click='say()'\>Say hi\</button\>
-
-3. **事件函数参数传递**
-
-普通函数和事件对象
-
-\<button v-on:click='say("hi",\$event)'\>Say hi\</button\>
-
-\$event：传递事件对象
-
-**注意：**
-
-1.  如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数
-
-2.  如果事件绑定函数调用，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称必须事\$event
-
-**事件修饰符**
-
--   **.stop**阻止冒泡
-
-语法：\<a v-on:click.stop="handle"\>跳转\</a\>
-
--   **.prevent**阻止默认行为
-
-语法：\<a v-on:click.prevent="handle"\>跳转\</a\>
-
-**注意：**事件修饰符可以串联使用，而它的顺序很重要，不同的顺序可能有不同的效果
-
-**按键修饰符**
-
--   **.enter** 回车键，当按了回车键，触发事件
-
-语法：\<input v-on:keyup.enter='submit'\>
-
--   **.esc** 退出键，当按了删除或退格键，触发事件
-
-语法：\<input v-on:keyup.delete='handle'\>
-
-**自定义按键修饰符**
-
-全局config.keyCodes对象
-
-语法：Vue.config.keyCodes.按键名 = 键值
-
-## **属性绑定**
-
-1.  **如何处理动态处理属性**
-
--   v-bind指令用法
-
-语法：\<a v-bind:href='url'\>跳转\</a\>
-
--   缩写形式 用 **:** 来代替**v-bind**
-
-语法：\<a :href='url'\>跳转\</a\>
-
-2. **v-model的底层实现原理分析**
-
-\<input v-bind:value=”msg” v-on:input=”msg=\$event.target.value”\>
-
-oninput: 用户输入时触发事件
-
-## **样式绑定**
-
-1.  **class样式处理**
-
-**对象语法** 通过布尔值来控制具体类是否添加
-
-语法：\<div v-bind:class="{ active: isActive }"\>\</div\>
-
-**数组语法** 在Vue实例将类名对应data中的属性，然后将属性名添加到标签中
-
-语法：\<div v-bind:class="[activeClass, errorClass]"\>\</div\>
-
-**注意：**
-
-- 对象绑定和数值绑定可以结合使用 例：[ activeClass, { test: istest } ]
-
-- class绑定的值可以简化操作
-  将数值赋值为data中的属性，通过数值方法就可以对类进行修改
-
-- 默认的class会保留，绑定的class会加到后面
-
-2. **style样式处理**
-
-**对象语法** 在data中将样式字符串赋给属性名，再将属性名绑定到相应的样式属性中
-
-语法：\<div v-bind:style="{ color: activeColor, fontSize: fontSize }"\>\</div\>
-
-activeColor: ‘blue’
-
-**数组语法** 在data中编写好样式代码并赋予属性名，然后传到标签中
-
-语法：\<div v-bind:style="[baseStyles, overridingStyles]"\>\</div\>
-
-baseStyles:{
-
-​	width:’200px’,
-
-​	backgroundColor:’blue’// -符号去掉，用驼峰法命名
-
-}
-
-## **分支循环结构**
-
-### **分支结构**
-
--   v-if
-
--   v-else
-
--   v-else-if
-
--   v-show
-
-### **v-if与v-show的区别**
-
--   v-if控制元素是否渲染到页面
-
--   v-show控制元素是否显示（已经渲染到了页面）
-
-### **循环结构**
-
--   v-for遍历数组
-
-语法：
-
+              <h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a><strong>Vue</strong></h1><h2 id="Vue模板语法"><a href="#Vue模板语法" class="headerlink" title="Vue模板语法"></a><strong>Vue模板语法</strong></h2><h3 id="差值表达式"><a href="#差值表达式" class="headerlink" title="差值表达式"></a><strong>差值表达式</strong></h3><p><strong>双大括号</strong>里面填充数据</p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a><strong>指令</strong></h3><p>指令的本质就是自定义属性，指令的格式：以v-开始（比如：v-cloak）</p>
+<h4 id="v-cloak指令用法"><a href="#v-cloak指令用法" class="headerlink" title="v-cloak指令用法"></a><strong>v-cloak指令用法</strong></h4><p>插值表达式存在的问题：“闪动”（显示双大括号内容）</p>
+<p>方法：使用v-cloak指令</p>
+<p>解决该问题原理：先隐藏，在内存中替换好值之后再显示最终的值</p>
+<h4 id="数据绑定指令"><a href="#数据绑定指令" class="headerlink" title="数据绑定指令"></a><strong>数据绑定指令</strong></h4><p><strong>v-text填充纯文本</strong></p>
+<p>语法：&lt;span v-text=”msg”&gt;&lt;/span&gt; = &lt;span&gt;msg&lt;/span&gt;</p>
+<p>没有闪动问题</p>
+<p>相比于插值表达式更加简洁</p>
+<p><strong>v-html填充html片段</strong></p>
+<p>语法：&lt;span v-html=”msg”&gt;&lt;/span&gt;</p>
+<p>存在安全问题，容易受到XSS攻击，<strong>不要用在用户提交内容上</strong></p>
+<p>本网站内部数据可以使用，来自第三方的数据不可以用</p>
+<p><strong>v-pre填充原始信息</strong></p>
+<p>显示原始信息，跳过编译过程（分析编译过程）</p>
+<h2 id="数据响应式"><a href="#数据响应式" class="headerlink" title="数据响应式"></a><strong>数据响应式</strong></h2><p>理解响应式：</p>
+<ol>
+<li><p> html5中的响应式（屏幕尺寸的变化导致样式的变化）</p>
+</li>
+<li><p> 数据的响应式（数据的变化导致页面内容的变化）</p>
+</li>
+</ol>
+<p>什么是数据绑定</p>
+<p>数据绑定：将数据填充到标签中</p>
+<p>v-once只编译一次</p>
+<p>显示内容之后不再具有响应式功能</p>
+<h2 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a><strong>双向数据绑定</strong></h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a><strong>概念</strong></h3><ol>
+<li><p> 当数据发生变化的时候，视图也就发生变化</p>
+</li>
+<li><p> 当视图发生变化的时候，数据也会跟着同步变化</p>
+</li>
+</ol>
+<p><strong>实现方法</strong>：<strong>v-model</strong></p>
+<p>语法：&lt;input type=’text’ v-model=’uname’/&gt;</p>
+<p><strong>使用场景</strong>：v-model是一个指令，限制在<br><strong>&lt;input&gt;、&lt;select&gt;、&lt;textarea&gt;**、</strong>components（组件）** 中使用</p>
+<h2 id="MVVM设计思想"><a href="#MVVM设计思想" class="headerlink" title="MVVM设计思想"></a><strong>MVVM设计思想</strong></h2><ol>
+<li> M（model）数据层</li>
+</ol>
+<p>Vue 中 数据层 都放在 data 里面</p>
+<ol start="2">
+<li>V（view）视图</li>
+</ol>
+<p>Vue 中 view 即 我们的HTML页面</p>
+<ol start="3">
+<li>VM（View-Model）控制器 将数据和视图层建立联系</li>
+</ol>
+<p>vm 即 Vue 的实例 就是 vm</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/56a457505411b792673bdad131664539.png" srcset="/img/loading.gif"></p>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a><strong>事件绑定</strong></h2><ol>
+<li> <strong>如何处理函数</strong></li>
+</ol>
+<p>v-on指令：通过<strong>v-on</strong>指令来绑定事件</p>
+<p>语法：&lt;input type=‘button’<br>v-on:click=’num++’/&gt;v-on简写形式：用**@**来代替v-on</p>
+<p>语法：&lt;input type=‘button’ @click=’num++’/&gt;</p>
+<ol start="2">
+<li><strong>事件函数的调用方式</strong></li>
+</ol>
+<ul>
+<li>直接绑定函数名称</li>
+</ul>
+<p>语法：&lt;button v-on:click=’say’&gt;Hello&lt;/button&gt;</p>
+<ul>
+<li>调用函数（传参的时候用）</li>
+</ul>
+<p>语法：&lt;button v-on:click=’say()’&gt;Say hi&lt;/button&gt;</p>
+<ol start="3">
+<li><strong>事件函数参数传递</strong></li>
+</ol>
+<p>普通函数和事件对象</p>
+<p>&lt;button v-on:click=’say(“hi”,$event)’&gt;Say hi&lt;/button&gt;</p>
+<p>$event：传递事件对象</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li><p> 如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数</p>
+</li>
+<li><p> 如果事件绑定函数调用，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称必须事$event</p>
+</li>
+</ol>
+<p><strong>事件修饰符</strong></p>
+<ul>
+<li>  <strong>.stop</strong>阻止冒泡</li>
+</ul>
+<p>语法：&lt;a v-on:click.stop=”handle”&gt;跳转&lt;/a&gt;</p>
+<ul>
+<li>  <strong>.prevent</strong>阻止默认行为</li>
+</ul>
+<p>语法：&lt;a v-on:click.prevent=”handle”&gt;跳转&lt;/a&gt;</p>
+<p><strong>注意：</strong>事件修饰符可以串联使用，而它的顺序很重要，不同的顺序可能有不同的效果</p>
+<p><strong>按键修饰符</strong></p>
+<ul>
+<li>  <strong>.enter</strong> 回车键，当按了回车键，触发事件</li>
+</ul>
+<p>语法：&lt;input v-on:keyup.enter=’submit’&gt;</p>
+<ul>
+<li>  <strong>.esc</strong> 退出键，当按了删除或退格键，触发事件</li>
+</ul>
+<p>语法：&lt;input v-on:keyup.delete=’handle’&gt;</p>
+<p><strong>自定义按键修饰符</strong></p>
+<p>全局config.keyCodes对象</p>
+<p>语法：Vue.config.keyCodes.按键名 = 键值</p>
+<h2 id="属性绑定"><a href="#属性绑定" class="headerlink" title="属性绑定"></a><strong>属性绑定</strong></h2><ol>
+<li> <strong>如何处理动态处理属性</strong></li>
+</ol>
+<ul>
+<li>  v-bind指令用法</li>
+</ul>
+<p>语法：&lt;a v-bind:href=’url’&gt;跳转&lt;/a&gt;</p>
+<ul>
+<li>  缩写形式 用 <strong>:</strong> 来代替<strong>v-bind</strong></li>
+</ul>
+<p>语法：&lt;a :href=’url’&gt;跳转&lt;/a&gt;</p>
+<ol start="2">
+<li><strong>v-model的底层实现原理分析</strong></li>
+</ol>
+<p>&lt;input v-bind:value=”msg” v-on:input=”msg=$event.target.value”&gt;</p>
+<p>oninput: 用户输入时触发事件</p>
+<h2 id="样式绑定"><a href="#样式绑定" class="headerlink" title="样式绑定"></a><strong>样式绑定</strong></h2><ol>
+<li> <strong>class样式处理</strong></li>
+</ol>
+<p><strong>对象语法</strong> 通过布尔值来控制具体类是否添加</p>
+<p>语法：&lt;div v-bind:class=”{ active: isActive }”&gt;&lt;/div&gt;</p>
+<p><strong>数组语法</strong> 在Vue实例将类名对应data中的属性，然后将属性名添加到标签中</p>
+<p>语法：&lt;div v-bind:class=”[activeClass, errorClass]”&gt;&lt;/div&gt;</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><p>对象绑定和数值绑定可以结合使用 例：[ activeClass, { test: istest } ]</p>
+</li>
+<li><p>class绑定的值可以简化操作<br>将数值赋值为data中的属性，通过数值方法就可以对类进行修改</p>
+</li>
+<li><p>默认的class会保留，绑定的class会加到后面</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>style样式处理</strong></li>
+</ol>
+<p><strong>对象语法</strong> 在data中将样式字符串赋给属性名，再将属性名绑定到相应的样式属性中</p>
+<p>语法：&lt;div v-bind:style=”{ color: activeColor, fontSize: fontSize }”&gt;&lt;/div&gt;</p>
+<p>activeColor: ‘blue’</p>
+<p><strong>数组语法</strong> 在data中编写好样式代码并赋予属性名，然后传到标签中</p>
+<p>语法：&lt;div v-bind:style=”[baseStyles, overridingStyles]”&gt;&lt;/div&gt;</p>
+<p>baseStyles:{</p>
+<p>​    width:’200px’,</p>
+<p>​    backgroundColor:’blue’// -符号去掉，用驼峰法命名</p>
+<p>}</p>
+<h2 id="分支循环结构"><a href="#分支循环结构" class="headerlink" title="分支循环结构"></a><strong>分支循环结构</strong></h2><h3 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a><strong>分支结构</strong></h3><ul>
+<li><p>  v-if</p>
+</li>
+<li><p>  v-else</p>
+</li>
+<li><p>  v-else-if</p>
+</li>
+<li><p>  v-show</p>
+</li>
+</ul>
+<h3 id="v-if与v-show的区别"><a href="#v-if与v-show的区别" class="headerlink" title="v-if与v-show的区别"></a><strong>v-if与v-show的区别</strong></h3><ul>
+<li><p>  v-if控制元素是否渲染到页面</p>
+</li>
+<li><p>  v-show控制元素是否显示（已经渲染到了页面）</p>
+</li>
+</ul>
+<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a><strong>循环结构</strong></h3><ul>
+<li>  v-for遍历数组</li>
+</ul>
+<p>语法：</p>
 
 
 \<li v-for='item in list'\>{{item}}\</li\> 遍历元素

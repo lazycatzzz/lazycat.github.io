@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      123
+      125
        分钟
     </span>
   
@@ -391,19 +391,15 @@
 <li>  v-for遍历数组</li>
 </ul>
 <p>语法：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&#x27;item in list&#x27;</span>&gt;</span>&#123;&#123;item&#125;&#125;\<span class="hljs-tag">&lt;/<span class="hljs-name">li\</span>&gt;</span> <span class="hljs-comment">&lt;!-- 遍历元素--&gt;</span>
 
-
-\<li v-for='item in list'\>{{item}}\</li\> 遍历元素
-
-\<li v-for='(item,index) in list'\>{{item}} + '---' +{{index}}\</li\> 遍历元素和索引
-
-
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&#x27;(item,index) in list&#x27;</span>&gt;</span>&#123;&#123;item&#125;&#125; + &#x27;---&#x27; +&#123;&#123;index&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span> <span class="hljs-comment">&lt;!--遍历元素和索引--&gt;</span></code></pre>
 
 <ul>
 <li>  <strong>key的作用：帮助Vue区分不同的元素，从而提高性能</strong></li>
 </ul>
 <p>语法：</p>
-\<li :key='item.id' v-for='(item,index) in list'\>{{item}} + '---'{{index}}\</li\>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&#x27;item.id&#x27;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&#x27;(item,index) in list&#x27;</span>&gt;</span>&#123;&#123;item&#125;&#125; + &#x27;---&#x27;&#123;&#123;index&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></code></pre>
 
 <ul>
 <li>  v-for遍历对象</li>
@@ -560,7 +556,7 @@
 <ul>
 <li>  <strong>过滤器的使用</strong></li>
 </ul>
-<div\>{{date \| format(‘yyyy-MM-dd')}}\</div\>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#123;date | format(‘yyyy-MM-dd&#x27;)&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a><strong>生命周期</strong></h2><h3 id="主要阶段"><a href="#主要阶段" class="headerlink" title="主要阶段"></a><strong>主要阶段</strong></h3><ul>
 <li>  挂载（初始化相关属性）</li>

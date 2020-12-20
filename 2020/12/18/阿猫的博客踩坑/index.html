@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/wallhaven-nmy7o1.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      384 字
+      401 字
     </span>
   
 
@@ -230,8 +230,9 @@
               <h1 id="阿猫的博客踩坑"><a href="#阿猫的博客踩坑" class="headerlink" title="阿猫的博客踩坑"></a>阿猫的博客踩坑</h1><h2 id="CNAME文件"><a href="#CNAME文件" class="headerlink" title="CNAME文件"></a>CNAME文件</h2><p>为了让github能记住我们的域名，我们要在setting中将我们的域名save在<strong>GitHub Pages</strong>的<strong>custom domain</strong>中。这实际上在本地的public文件夹中创建了一个<strong>CNAME文件</strong>。但是我们使用hexo上传文章都要清一次缓存，将pubilc文件删除，再新建，这时候CNAME文件就没了（再到Setting里设置一次）。</p>
 <p>为了解决这个问题，我们在source文件夹中创建一个CNAME文件<strong>（就叫CNAME，不要加任何后缀！）</strong>里面放我们的域名，这样，每次更新的时候，也能保存我们的域名。</p>
 <h2 id="Hexo的双大括号"><a href="#Hexo的双大括号" class="headerlink" title="Hexo的双大括号"></a>Hexo的双大括号</h2><p>一次提交文件，发现Vue笔记一直提交不上去，报“Nunjucks Error”的错误。百度了一下，发现原因。</p>
-<p>因为hexo的文章是使用Nunjucks渲染的，它会将大括号识别为自己的语法。然后我写的笔记中有一些模板语法，所以就报错了。解决方法是在报错地方的前后加** **。不过我更直接，把模板语法放进了代码块。</p>
-<pre><code class="hljs html">&#123;&#123;&#125;&#125;</code></pre>
+<p>因为hexo的文章是使用Nunjucks渲染的，它会将大括号识别为自己的语法。然后我写的笔记中有一些模板语法，所以就报错了。解决方法是在报错地方的前后加不编译(在代码块里）。不过我更直接，把模板语法放进了代码块。</p>
+<pre><code class="hljs html">不编译：&#123;% raw %&#125;&#123;% endraw %&#125;
+&#123;&#123;&#125;&#125;</code></pre>
 
 <h2 id="typora的图片上传失败"><a href="#typora的图片上传失败" class="headerlink" title="typora的图片上传失败"></a>typora的图片上传失败</h2><p>一次，我上传图片时，发现老是上传失败。报fail fetch的错误。做不到原因，明明前一秒还可以，这会就不行了。原因是：<strong>typora上传图片的端口跟图床picgo监听的端口不一致</strong>导致的，picgo也是莫名其妙给我换了个端口号，只要把他们改为一致的就可以了。</p>
 

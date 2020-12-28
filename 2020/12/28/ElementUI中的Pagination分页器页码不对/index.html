@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Chaomao Chen">
   <meta name="keywords" content="">
-  <title>置底 - 阿猫的学习日记</title>
+  <title>ElementUI中的Pagination分页器页码不对 - 阿猫的学习日记</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="置底">
+            <span class="h2" id="subtitle" title="ElementUI中的Pagination分页器页码不对">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-18 20:44" pubdate>
-        2020年11月18日 晚上
+      <time datetime="2020-12-28 21:15" pubdate>
+        2020年12月28日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      162 字
+      878 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -224,23 +224,84 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">置底</h1>
+            <h1 style="display: none">ElementUI中的Pagination分页器页码不对</h1>
             
             <div class="markdown-body">
-              <p>笔记是早期在电脑用word文档写的，后来用插件把它转成md上传到博客。可能转换的时候有点小瑕疵然后我又没留意到去改（有序列表错误，无意义的换行），代码块也可能有拼写错误。如果发现了，可以告诉我叫我修改。</p>
-<p>后期的一些技术总结，问题探讨都会用md并且很规范的去写（避免错误），可以放心。</p>
-<p>另外放一下我的联系方式：</p>
+              <p>ElementUI很方便，我们页面上需要用到的很多功能，它都提供了组件。不过，最近开发中用到它的分页器，有点小问题。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>简述：<strong>浏览器回退到上一个页面，页码对不上</strong></p>
+<p>当我们在某一页，通过筛选条件使数据重新获取，分页器重新获取数据（当前页重置为1，total值减少了）。但是如果通过浏览器回退事件回到上一页（上一页的页码大于目前的总页数），数据没错，但是页码不是当前的页码。</p>
+<p>如图所示</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110232.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110332.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110523.png" srcset="/img/loading.gif"></p>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>简述：<strong>当前页比总页数先更新，回退的当前页大于当前总页数，Pagination自动对数据进行处理</strong></p>
+<p>以下属性在下面经常提到，说说它们的作用</p>
 <ul>
-<li>微信: ccm873125046</li>
-<li>QQ: 873125046</li>
-<li>邮箱: <a href="mailto:&#56;&#x37;&#51;&#x31;&#50;&#x35;&#x30;&#52;&#54;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#56;&#x37;&#51;&#x31;&#50;&#x35;&#x30;&#52;&#54;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>(这个比较会去看)</li>
+<li><p><strong>interCurrentPage</strong>：分页器内部控制当前页的属性，当前页的显示依赖它</p>
+</li>
+<li><p><strong>pageCount</strong>：分页器内部的总页数</p>
+</li>
+<li><p><strong>currentPage</strong>：外部传当前页值给el-pagination的属性</p>
+</li>
 </ul>
+<p>通过vue的devtools我们可以发现，传给Pagination的值没有错，但是内部的interCurrentPage出错了。意思是说我们已经把值传给了组件，但是由于某些原因，组件内部的interCurrentPage的值不对。原因是，浏览器回退时，<strong>currentPage的值传给了Pagination，但此时Pagination的pageCount（总页数）还未改变，这个值大于Pagination的总页数，Pagination组件将它判断为错误值，于是组件自动帮你处理数据，将interCurrentPage设置为页数最大值。</strong>如果你还进行了.sync双向绑定，还会导致interCurrentPage的值反向赋给你绑定的值currentPage。而改变完了interCurrentPage值，它才去更新pageCount…。就是这样的一个先后关系——<strong>先更新interCurrentPage再更新pageCount</strong>，导致了我们的页码错误。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110801.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110912.png" srcset="/img/loading.gif"></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>简述：<strong>需要时重新渲染组件</strong></p>
+<p>我无法去手动修改内部封装好的参数，既然它的这种更新顺序是定好的，那我们只能重新渲染组件，来达到我们的目的。首先我们创建一个变量存储总页数pageCount</p>
+<pre><code class="hljs javascript">data () &#123;
+    <span class="hljs-keyword">return</span> &#123;
+        pageCount: <span class="hljs-number">0</span>,
+        refresh: <span class="hljs-literal">true</span> <span class="hljs-comment">// 控制重新渲染</span>
+    &#125;
+&#125;</code></pre>
+
+<p>通过接口获取pageCount的值，并用watch监听它的变化，但数据更新时，如果总页数发生了改变，我们就设置refresh的值重新渲染分页组件。</p>
+<pre><code class="hljs javascript">watch: &#123;
+    pageCount () &#123;
+        <span class="hljs-built_in">this</span>.refresh = <span class="hljs-literal">false</span>
+        <span class="hljs-built_in">this</span>.$nextTick(<span class="hljs-function">() =&gt;</span> &#123;
+            <span class="hljs-built_in">this</span>.refresh = <span class="hljs-literal">true</span>
+        &#125;)
+    &#125;
+&#125;</code></pre>
+
+<p>组件上v-if绑定refresh实现重新渲染。</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">el-pagination</span></span>
+<span class="hljs-tag">  <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;refresh&quot;</span></span>
+<span class="hljs-tag">  @<span class="hljs-attr">current-change</span>=<span class="hljs-string">&quot;currentChange&quot;</span></span>
+<span class="hljs-tag">  <span class="hljs-attr">layout</span>=<span class="hljs-string">&quot;prev, pager, next&quot;</span></span>
+<span class="hljs-tag">  <span class="hljs-attr">:page-size</span>=<span class="hljs-string">&quot;pageSize&quot;</span></span>
+<span class="hljs-tag">  <span class="hljs-attr">:current-page</span>=<span class="hljs-string">&quot;currentPage&quot;</span></span>
+<span class="hljs-tag">  <span class="hljs-attr">:total</span>=<span class="hljs-string">&quot;total&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">el-pagination</span>&gt;</span></code></pre>
+
+<p>最后效果就是没问题</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210113908.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20201210114018.png" srcset="/img/loading.gif"></p>
+<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>刚开始也用了其他的方法，看看能不能除了重新渲染解决这个问题。网上都说加.sync但依然没有用，用watch监听currentPage的值，也是外部同步了，内部没有，就很奇怪，为什么值没有传进去。于是上github上看了源码，捋了一下发现其实值传进去了，但是被处理了。同时也注意到总页数是computed属性，当前页是watch监听的，也不知道是不是这两者的区别导致了更新的前后关系。最后还是按重新渲染的思路写了一下（期间用过forceUpdate，好像没起效？）所以组件直接用很方便，不过有时候不能达到自己的需求。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Problem/">Problem</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/elementUI/">elementUI</a>
+                    
+                  </div>
                 
               </div>
               
@@ -251,15 +312,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/12/05/JS%E7%AC%94%E8%AE%B0/">
+                      <a href="/2020/12/28/vue%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E2%80%94%E2%80%94%E5%93%8D%E5%BA%94%E5%BC%8F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Javascript笔记</span>
+                        <span class="hidden-mobile">vue——理解响应式的初步尝试</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2020/12/18/%E9%98%BF%E7%8C%AB%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91/">
+                        <span class="hidden-mobile">阿猫的博客踩坑</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

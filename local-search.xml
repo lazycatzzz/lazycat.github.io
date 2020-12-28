@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>vue——理解响应式的初步尝试</title>
+    <link href="/2020/12/28/vue%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E2%80%94%E2%80%94%E5%93%8D%E5%BA%94%E5%BC%8F/"/>
+    <url>/2020/12/28/vue%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E2%80%94%E2%80%94%E5%93%8D%E5%BA%94%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在实习做项目，用vue来开发。很多时候遇到一些响应式的问题，为了在遇到问题时更好的分析问题，我开始上vue官网去翻文档，刚好在Vue Mastery看到一个教学视频，里面非常通俗易懂的讲解了vue的响应式原理，顿时茅塞顿开，写个博客记录一下。</p><h2 id="什么是响应式？"><a href="#什么是响应式？" class="headerlink" title="什么是响应式？"></a>什么是响应式？</h2><p>根据Vue官网的说法，响应式是Vue最独特的特性之一，是其非侵入性的响应式系统。数据模型仅仅是普通的 JavaScript 对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单直接。</p><h2 id="为什么要响应式？"><a href="#为什么要响应式？" class="headerlink" title="为什么要响应式？"></a>为什么要响应式？</h2><p>在传统的开发模式里，我们如果想修改页面上的某个数据，需要繁琐的操作——请求数据、获取数据、获取dom元素、修改dom元素、更新视图，而且数据的更新也要自己手动重新赋值。看代码</p><pre><code class="hljs js"><span class="hljs-keyword">let</span> price = <span class="hljs-number">10</span><span class="hljs-keyword">let</span> count = <span class="hljs-number">2</span><span class="hljs-keyword">let</span> total = price * count</code></pre><p>我们用node来运行js文件，改变price的值，看看total是否跟着改变。</p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201216163045.png"></p><p>我们可以看到即使改变了price的值，total并没有发生改变。因为我们只对total进行了一次赋值。</p><p>现在我们希望有个函数，能够在数据发生变化时，重新执行赋值。Vue的响应式就是实现这一点，它通过将数据与其有关系的元素产生依赖，在数据发生改变时，同时影响所有依赖该数据的其他元素。</p><h2 id="怎么实现响应式？"><a href="#怎么实现响应式？" class="headerlink" title="怎么实现响应式？"></a>怎么实现响应式？</h2><p>Vue实现响应式主要有两点，一是<strong>Object.defineProperty</strong>，二是<strong>发布订阅者模式</strong>。将两者结合起来就是我们想要的响应式。下面我根据我所学的内容打个简单版的响应式。</p><p>首先我们初始化数据，建立一个观察者watcher，用来观察我们的数据，vue中的watcher很复杂，我们现在只是想实现响应式，所以先不纠结watcher的写法，我们用简单的方式实现它。</p><pre><code class="hljs fortran">let <span class="hljs-keyword">data</span> = &#123; price: <span class="hljs-number">10</span>, <span class="hljs-built_in">count</span>: <span class="hljs-number">2</span> &#125;let <span class="hljs-keyword">target</span>, total, salePrice<span class="hljs-function"><span class="hljs-keyword">function</span></span> watcher(myFun) &#123;<span class="hljs-keyword">target</span> = myFun<span class="hljs-keyword">target</span>()<span class="hljs-keyword">target</span> = null&#125;</code></pre><p>然后我们需要一个类，它叫<strong>Dep</strong>，它是用来记录数据的依赖以及响应数据的修改。</p><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;  <span class="hljs-title">constructor</span> (<span class="hljs-params"></span>) &#123;    <span class="hljs-built_in">this</span>.subscriber = [] <span class="hljs-comment">// 依赖仓库</span>  &#125;  <span class="hljs-function"><span class="hljs-title">depend</span>(<span class="hljs-params"></span>)</span> &#123; <span class="hljs-comment">// 存储相关依赖</span>    <span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">target &amp;&amp; !<span class="hljs-built_in">this</span>.subscriber.includes(target)</span>)</span> &#123;      <span class="hljs-built_in">this</span>.subscriber.push(target)    &#125;  &#125;  <span class="hljs-function"><span class="hljs-title">notify</span>(<span class="hljs-params"></span>)</span> &#123; <span class="hljs-comment">// 响应相关依赖</span>    <span class="hljs-built_in">this</span>.subscriber.forEach(<span class="hljs-function"><span class="hljs-params">run</span> =&gt;</span> run()) <span class="hljs-comment">// 执行每一个函数</span>  &#125;&#125;</code></pre><p>我们用<strong>dep.depend()来记录数据的依赖</strong>，当数据发生改变时，我们执行<strong>dep.notify()，执行subscriber仓库中的所有依赖</strong>，这样所有与依赖数据有关的元素都会得到更新。</p><p>接着我们用Object.defineProperty将Dep中的方法绑定在get、set方法中，达到这样的需求——当获取到数据时，就能执行dep.depend()来收集依赖，当数据赋值时，就能执行dep.notify()执行所有的依赖。</p><pre><code class="hljs js"><span class="hljs-built_in">Object</span>.keys(data).forEach(<span class="hljs-function">(<span class="hljs-params">key</span>)=&gt;</span>&#123;  <span class="hljs-keyword">let</span> interValue = data[key]  <span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()  <span class="hljs-built_in">Object</span>.defineProperty(data, key, &#123;    get () &#123;      dep.depend() <span class="hljs-comment">// 记录依赖当前数据的函数</span>      <span class="hljs-keyword">return</span> interValue    &#125;,    set (val) &#123;      interValue = val      dep.notify() <span class="hljs-comment">// 重新执行那些函数</span>    &#125;  &#125;)&#125;)</code></pre><p>接着，用watcher观察数据，然后运行程序看一下是否是响应式的。</p><pre><code class="hljs js">watcher(<span class="hljs-function">()=&gt;</span>&#123; total = data.price * data.count &#125;)watcher(<span class="hljs-function">()=&gt;</span>&#123; salePrice = data.price * <span class="hljs-number">0.9</span> &#125;)</code></pre><p>运行node .load fileName.js</p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201216170139.png"></p><p>我们可以看到，当我们改变price的值为20时，我们不需要手动的去执行赋值函数，代码自动的就帮我们更新代码，这就是数据响应式。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这是在理解Vue路上的一次小尝试，而Vue3.0将使用proxy来实现响应式（为了能监听到对象的增删，数组的变化），所以可能这个就会是过去式的东西的，但是现在学会这些，是为了以后更好的理解新东西。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Note</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ElementUI中的Pagination分页器页码不对</title>
+    <link href="/2020/12/28/ElementUI%E4%B8%AD%E7%9A%84Pagination%E5%88%86%E9%A1%B5%E5%99%A8%E9%A1%B5%E7%A0%81%E4%B8%8D%E5%AF%B9/"/>
+    <url>/2020/12/28/ElementUI%E4%B8%AD%E7%9A%84Pagination%E5%88%86%E9%A1%B5%E5%99%A8%E9%A1%B5%E7%A0%81%E4%B8%8D%E5%AF%B9/</url>
+    
+    <content type="html"><![CDATA[<p>ElementUI很方便，我们页面上需要用到的很多功能，它都提供了组件。不过，最近开发中用到它的分页器，有点小问题。</p><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>简述：<strong>浏览器回退到上一个页面，页码对不上</strong></p><p>当我们在某一页，通过筛选条件使数据重新获取，分页器重新获取数据（当前页重置为1，total值减少了）。但是如果通过浏览器回退事件回到上一页（上一页的页码大于目前的总页数），数据没错，但是页码不是当前的页码。</p><p>如图所示</p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110232.png"></p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110332.png"></p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110523.png"></p><h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>简述：<strong>当前页比总页数先更新，回退的当前页大于当前总页数，Pagination自动对数据进行处理</strong></p><p>以下属性在下面经常提到，说说它们的作用</p><ul><li><p><strong>interCurrentPage</strong>：分页器内部控制当前页的属性，当前页的显示依赖它</p></li><li><p><strong>pageCount</strong>：分页器内部的总页数</p></li><li><p><strong>currentPage</strong>：外部传当前页值给el-pagination的属性</p></li></ul><p>通过vue的devtools我们可以发现，传给Pagination的值没有错，但是内部的interCurrentPage出错了。意思是说我们已经把值传给了组件，但是由于某些原因，组件内部的interCurrentPage的值不对。原因是，浏览器回退时，<strong>currentPage的值传给了Pagination，但此时Pagination的pageCount（总页数）还未改变，这个值大于Pagination的总页数，Pagination组件将它判断为错误值，于是组件自动帮你处理数据，将interCurrentPage设置为页数最大值。</strong>如果你还进行了.sync双向绑定，还会导致interCurrentPage的值反向赋给你绑定的值currentPage。而改变完了interCurrentPage值，它才去更新pageCount…。就是这样的一个先后关系——<strong>先更新interCurrentPage再更新pageCount</strong>，导致了我们的页码错误。</p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110801.png"></p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210110912.png"></p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>简述：<strong>需要时重新渲染组件</strong></p><p>我无法去手动修改内部封装好的参数，既然它的这种更新顺序是定好的，那我们只能重新渲染组件，来达到我们的目的。首先我们创建一个变量存储总页数pageCount</p><pre><code class="hljs javascript">data () &#123;    <span class="hljs-keyword">return</span> &#123;        pageCount: <span class="hljs-number">0</span>,        refresh: <span class="hljs-literal">true</span> <span class="hljs-comment">// 控制重新渲染</span>    &#125;&#125;</code></pre><p>通过接口获取pageCount的值，并用watch监听它的变化，但数据更新时，如果总页数发生了改变，我们就设置refresh的值重新渲染分页组件。</p><pre><code class="hljs javascript">watch: &#123;    pageCount () &#123;        <span class="hljs-built_in">this</span>.refresh = <span class="hljs-literal">false</span>        <span class="hljs-built_in">this</span>.$nextTick(<span class="hljs-function">() =&gt;</span> &#123;            <span class="hljs-built_in">this</span>.refresh = <span class="hljs-literal">true</span>        &#125;)    &#125;&#125;</code></pre><p>组件上v-if绑定refresh实现重新渲染。</p><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">el-pagination</span></span><span class="hljs-tag">  <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;refresh&quot;</span></span><span class="hljs-tag">  @<span class="hljs-attr">current-change</span>=<span class="hljs-string">&quot;currentChange&quot;</span></span><span class="hljs-tag">  <span class="hljs-attr">layout</span>=<span class="hljs-string">&quot;prev, pager, next&quot;</span></span><span class="hljs-tag">  <span class="hljs-attr">:page-size</span>=<span class="hljs-string">&quot;pageSize&quot;</span></span><span class="hljs-tag">  <span class="hljs-attr">:current-page</span>=<span class="hljs-string">&quot;currentPage&quot;</span></span><span class="hljs-tag">  <span class="hljs-attr">:total</span>=<span class="hljs-string">&quot;total&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">el-pagination</span>&gt;</span></code></pre><p>最后效果就是没问题</p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20201210113908.png"></p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20201210114018.png"></p><h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>刚开始也用了其他的方法，看看能不能除了重新渲染解决这个问题。网上都说加.sync但依然没有用，用watch监听currentPage的值，也是外部同步了，内部没有，就很奇怪，为什么值没有传进去。于是上github上看了源码，捋了一下发现其实值传进去了，但是被处理了。同时也注意到总页数是computed属性，当前页是watch监听的，也不知道是不是这两者的区别导致了更新的前后关系。最后还是按重新渲染的思路写了一下（期间用过forceUpdate，好像没起效？）所以组件直接用很方便，不过有时候不能达到自己的需求。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Problem</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+      <tag>elementUI</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>阿猫的博客踩坑</title>
     <link href="/2020/12/18/%E9%98%BF%E7%8C%AB%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91/"/>
     <url>/2020/12/18/%E9%98%BF%E7%8C%AB%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91/</url>
@@ -243,7 +295,7 @@
     <link href="/2020/11/18/hello-world/"/>
     <url>/2020/11/18/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>笔记是早期在电脑用word文档写的，后来用插件把它转成md上传到博客。可能转换的时候有点小瑕疵然后我又没留意到去改（有序列表错误，无意义的换行），代码块也可能有拼写错误。如果发现了，可以告诉我叫我修改。</p><p>后期的一些技术总结，问题探讨都会用md并且很规范的去写（避免错误），可以放心。</p><p>另外放一下我的联系方式：</p><ul><li>微信: ccm873125046</li><li>QQ: 873125046</li><li>邮箱: <a href="mailto:&#56;&#55;&#x33;&#49;&#x32;&#x35;&#x30;&#52;&#x36;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#109;">&#56;&#55;&#x33;&#49;&#x32;&#x35;&#x30;&#52;&#x36;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#109;</a>(这个比较会去看)</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>笔记是早期在电脑用word文档写的，后来用插件把它转成md上传到博客。可能转换的时候有点小瑕疵然后我又没留意到去改（有序列表错误，无意义的换行），代码块也可能有拼写错误。如果发现了，可以告诉我叫我修改。</p><p>后期的一些技术总结，问题探讨都会用md并且很规范的去写（避免错误），可以放心。</p><p>另外放一下我的联系方式：</p><ul><li>微信: ccm873125046</li><li>QQ: 873125046</li><li>邮箱: <a href="mailto:&#56;&#x37;&#51;&#x31;&#50;&#x35;&#x30;&#52;&#54;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;">&#56;&#x37;&#51;&#x31;&#50;&#x35;&#x30;&#52;&#54;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#109;</a>(这个比较会去看)</li></ul>]]></content>
     
     
     

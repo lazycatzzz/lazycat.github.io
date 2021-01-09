@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      985 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      10
        分钟
     </span>
   
@@ -249,9 +249,11 @@
  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;cube&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
 <p><strong>pc端</strong></p>
-<p>![](<a target="_blank" rel="noopener" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/GIF">https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/GIF</a> 2021-1-8 19-19-20.gif)</p>
+<iframe src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/GIF 2021-1-8 19-19-20.gif"></iframe>
+
 <p><strong>chrome模拟手机端</strong></p>
-<p>![image-20210108152739037](<a target="_blank" rel="noopener" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/GIF">https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/GIF</a> 2021-1-8 19-25-23.gif)</p>
+<iframe src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/GIF 2021-1-8 19-25-23.gif"></iframe>
+
 <p>其实道理想一下很简单，通俗地讲，移动端的屏幕，它没有眼睛，它身上没有鼠标让它感觉用户在页面上哪里移动。它只能通过用户的触碰来判断用户的点击位置，那如果盒子有悬停样式，你点击了，它是不是就会认为，你手指在这上方，所以它判断你手指点击了，并且还悬停在上面（直到你下一次点击）。</p>
 <p>说到底悬停只是鼠标的行为，移动设备根本没办法实现悬停，换句话来说，它们不需要悬停。那我们怎样通过 css 判断该设备是移动设备呢？</p>
 <h2 id="不错的办法——媒体查询中的any-hover"><a href="#不错的办法——媒体查询中的any-hover" class="headerlink" title="不错的办法——媒体查询中的any-hover"></a>不错的办法——媒体查询中的any-hover</h2><p>什么是any-hover? MDN上的描述是：<strong>CSS媒体特性</strong> 可以用来测试是否有任意可用的输入机制可以在元素上hover。简单的来说，它会帮你判断当前设备是否需要hover，是就显示样式，不是就不显示。</p>

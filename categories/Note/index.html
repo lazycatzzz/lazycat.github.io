@@ -171,13 +171,19 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 10 篇文章</p>
+  <p class="h4">共计 11 篇文章</p>
   <hr>
   
   
     
       
       <p class="h5">2021</p>
+    
+    <a href="/2021/01/20/this%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">this的深入理解</span>
+      <time style="float: right;">01-20</time>
+    </a>
+  
     
     <a href="/2021/01/05/Echarts%E7%9A%84%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Echarts的常用属性</span>
@@ -235,14 +241,20 @@
       <time style="float: right;">12-15</time>
     </a>
   
-    
-    <a href="/2020/12/05/JS%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Javascript笔记</span>
-      <time style="float: right;">12-05</time>
-    </a>
-  
 </div>
 
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/categories/Note/page/2/">2</a><a class="extend next" rel="next" href="/categories/Note/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

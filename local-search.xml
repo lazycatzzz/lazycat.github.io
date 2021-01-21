@@ -29,6 +29,31 @@
   
   
   <entry>
+    <title>JavaScript内存管理（一）——内存的存放</title>
+    <link href="/2021/01/16/JavaScript%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%9A%84%E5%AD%98%E6%94%BE/"/>
+    <url>/2021/01/16/JavaScript%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%9A%84%E5%AD%98%E6%94%BE/</url>
+    
+    <content type="html"><![CDATA[<p>内存是用来放东西的，我们创建的变量、对象、数组都存在里面。那么JavaScript是怎么存放数据的，内存又是怎么释放的，内存泄漏又是怎么一回事，这篇文章我们先主要探讨内存的存放。</p><h2 id="内存的生命周期"><a href="#内存的生命周期" class="headerlink" title="内存的生命周期"></a>内存的生命周期</h2><p>内存的一生，大致分为3个阶段</p><ol><li>分配你所需要的内存</li><li>使用内存，即对内存的读写</li><li>释放不再需要的内存</li></ol><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/memory-life-cycle.33fa7f96.png"></p><h2 id="内存中的堆栈和堆"><a href="#内存中的堆栈和堆" class="headerlink" title="内存中的堆栈和堆"></a>内存中的堆栈和堆</h2><p>在JavaScript里，我们通过两种数据结构来存储数据，一个是堆栈，一个是堆。它们分别用于不同的数据存储，协同来完成数据存储的工作。</p><h3 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h3><p>堆栈是 js 用于存储静态数据的数据结构，静态数据是引擎在编译的时候就知道大小的数据，包括 <strong>String，Number，Boolean，undefined，null 以及指向引用类型的地址</strong>。</p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/stack-memory-explained.png" alt="Memory stack Examples"></p><h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>js中用来存储对象和函数，根据需要动态分配内存空间。</p><table><thead><tr><th>堆栈</th><th>堆</th></tr></thead><tbody><tr><td>存放基本类型和引用</td><td>对象和函数</td></tr><tr><td>大小在编译时已知</td><td>在运行时才知道大小</td></tr><tr><td>分配固定数量的内存</td><td>没怎么限制</td></tr></tbody></table><h2 id="JavaScript内存分配"><a href="#JavaScript内存分配" class="headerlink" title="JavaScript内存分配"></a>JavaScript内存分配</h2><p>JavaScript在定义变量的时候就已经把内存分配好了，而如果把变量的值变化的话，它不会更改原始值，而是创建一个新值。</p><pre><code class="hljs js"><span class="hljs-keyword">var</span> num = <span class="hljs-number">123</span> <span class="hljs-comment">// 给数值变量分配内存</span><span class="hljs-keyword">var</span> str = <span class="hljs-string">&#x27;string&#x27;</span> <span class="hljs-comment">// 给字符串分配内存</span><span class="hljs-keyword">var</span> p = &#123; <span class="hljs-comment">// 给对象及其包含的值分配内存</span>  a: <span class="hljs-number">1</span>,  b: <span class="hljs-literal">null</span>&#125;<span class="hljs-keyword">var</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-comment">// 给数组及其包含的值分配内存（就像对象一样)</span>str = <span class="hljs-string">&#x27;newString&#x27;</span> <span class="hljs-comment">// 給新字符串分配内存</span><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">a</span>) </span>&#123;  <span class="hljs-keyword">return</span> a + <span class="hljs-number">2</span>&#125; <span class="hljs-comment">// 给函数（可调用的对象）分配内存</span><span class="hljs-comment">//函数表达式也能分配一个对象</span>someElement.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;  someELement.style.backgroundColor = <span class="hljs-string">&#x27;blur&#x27;</span>&#125;, <span class="hljs-literal">false</span>)</code></pre><p>有些函数调用结果就是分配对象内存</p><pre><code class="hljs js"><span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() <span class="hljs-comment">// 分配一个 Date 对象</span><span class="hljs-keyword">var</span> e = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>) <span class="hljs-comment">// 分配一个DOM元素</span></code></pre><p>有些方法分配新变量或者对象</p><pre><code class="hljs js"><span class="hljs-keyword">var</span> s = <span class="hljs-string">&#x27;string&#x27;</span><span class="hljs-keyword">var</span> s2 = s.substr(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// s2是新字符串</span><span class="hljs-comment">// 因为字符串是不变量</span><span class="hljs-comment">// JavaScript可能决定不分配内存</span><span class="hljs-comment">// 只是存储了[0-3]的范围</span><span class="hljs-keyword">var</span> a = [<span class="hljs-string">&#x27;abc&#x27;</span>, <span class="hljs-string">&#x27;bac&#x27;</span>]<span class="hljs-keyword">var</span> a2 = [<span class="hljs-string">&#x27;bca&#x27;</span>, <span class="hljs-string">&#x27;cba&#x27;</span>]<span class="hljs-keyword">var</span> a3 = a.concat(a2)<span class="hljs-comment">// 新数组有四个元素，是a 连接 a2 的结果</span></code></pre><p>有一点需要注意的是，所有变量首先指向堆栈。如果是非原始值，则堆栈包含堆中对象的引用。</p><p>堆的内存没有按特定的方式排序，所有在存储对象或函数时，会将它们的引用存储在堆栈中。我们可以把这个引用比喻为地址，通过它我们就可以在堆中找到自己需要的数据。</p><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/stack-heap-pointers.png" alt="Stack heap pointers explained"></p><h2 id="内存的使用"><a href="#内存的使用" class="headerlink" title="内存的使用"></a>内存的使用</h2><p>使用值的过程实际上是对分配内存进行读取与写入的操作。读取与写入可能是写入一个变量或者一个对象的属性值，甚至传递函数的参数。</p><h2 id="内存的释放"><a href="#内存的释放" class="headerlink" title="内存的释放"></a>内存的释放</h2><p>当内存不再被需要时，JavaScript就会将内存给清掉。高级语言解释器嵌入例如“垃圾回收器”，它的主要工作就是跟踪内存和分配使用，以便当分配的内存不再使用时，自动释放它。当然JavaScript引擎会帮我们完成这些工作，而我们要做的就是不给JS引擎添麻烦，也就是内存泄漏问题。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JavaScript通过堆栈和堆来存储数据，堆栈存放静态数据，堆存放需要动态分配内存的数据，但堆会返回一个引用存放在堆栈当中。内存的使用就是我们日常常见的读写，当内存不再需要时则把它们释放掉，那什么时候这个内存就是不需要的，又有如何判断这个内存是不被需要的，内存泄漏又是怎么发生的，这些内容实在是太多疑惑了，我决定分开来写，我将在下一篇文章继续探讨。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Note</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Javascript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>移动端悬停样式禁用——any-hover的使用</title>
     <link href="/2021/01/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%82%AC%E5%81%9C%E6%A0%B7%E5%BC%8F%E7%A6%81%E7%94%A8%E2%80%94%E2%80%94any-hover%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <url>/2021/01/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%82%AC%E5%81%9C%E6%A0%B7%E5%BC%8F%E7%A6%81%E7%94%A8%E2%80%94%E2%80%94any-hover%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
@@ -370,7 +395,7 @@
     <link href="/2020/11/18/hello-world/"/>
     <url>/2020/11/18/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>笔记是早期在电脑用word文档写的，后来用插件把它转成md上传到博客。可能转换的时候有点小瑕疵然后我又没留意到去改（有序列表错误，无意义的换行），代码块也可能有拼写错误。如果发现了，可以告诉我叫我修改。</p><p>后期的一些技术总结，问题探讨都会用md并且很规范的去写（避免错误），可以放心。</p><p>另外放一下我的联系方式：</p><ul><li>微信: ccm873125046</li><li>QQ: 873125046</li><li>邮箱: <a href="mailto:&#56;&#55;&#51;&#49;&#x32;&#53;&#x30;&#x34;&#54;&#64;&#x71;&#x71;&#46;&#99;&#111;&#x6d;">&#56;&#55;&#51;&#49;&#x32;&#53;&#x30;&#x34;&#54;&#64;&#x71;&#x71;&#46;&#99;&#111;&#x6d;</a>(这个比较会去看)</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>笔记是早期在电脑用word文档写的，后来用插件把它转成md上传到博客。可能转换的时候有点小瑕疵然后我又没留意到去改（有序列表错误，无意义的换行），代码块也可能有拼写错误。如果发现了，可以告诉我叫我修改。</p><p>后期的一些技术总结，问题探讨都会用md并且很规范的去写（避免错误），可以放心。</p><p>另外放一下我的联系方式：</p><ul><li>微信: ccm873125046</li><li>QQ: 873125046</li><li>邮箱: <a href="mailto:&#x38;&#x37;&#x33;&#49;&#x32;&#x35;&#x30;&#52;&#x36;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#x38;&#x37;&#x33;&#49;&#x32;&#x35;&#x30;&#52;&#x36;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>(这个比较会去看)</li></ul>]]></content>
     
     
     

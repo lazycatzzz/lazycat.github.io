@@ -241,11 +241,11 @@
 	name: <span class="hljs-string">&#x27;John&#x27;</span>,
 	age: <span class="hljs-number">22</span>,
 	hobbies: [<span class="hljs-string">&#x27;hiking&#x27;</span>, <span class="hljs-string">&#x27;reading&#x27;</span>]
-&#125; <span class="hljs-comment">// 新建一个对象，计数1</span>
+&#125; <span class="hljs-comment">// 新建一个对象，计数1，引用数组，数组对象+1</span>
 
 <span class="hljs-keyword">let</span> newPerson = person <span class="hljs-comment">// 对象 +1</span>
 
-<span class="hljs-keyword">let</span> hobbies = newPerson.hobbies <span class="hljs-comment">// 对象 +1</span>
+<span class="hljs-keyword">let</span> hobbies = newPerson.hobbies <span class="hljs-comment">// 数组 +1</span>
 
 person = <span class="hljs-literal">null</span> <span class="hljs-comment">// 对象 -1</span>
 
@@ -253,7 +253,7 @@ newPerson = <span class="hljs-literal">null</span> <span class="hljs-comment">//
 
 <img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/引用计数.gif" srcset="/img/loading.gif" />
 
-<p>可以看到，在最后我们只有hobbies还引用引用着对象的属性。虽然对象是零引用，可以被垃圾回收了。但是它的属性hobbies还被hobbies引用，所以海不能回收。</p>
+<p>可以看到，对象是零引用，可以被垃圾回收了。但是属性hobbies还被hobbies引用，所以数组对象还不能回收。</p>
 <h4 id="缺陷——循环引用"><a href="#缺陷——循环引用" class="headerlink" title="缺陷——循环引用"></a>缺陷——循环引用</h4><p>引用计数有一个缺陷，就是当如果两个对象互相引用时（循环），其引用计数值不为0，即使后面没有对这两个后面的引用。</p>
 <p>举个例子</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> son = &#123;

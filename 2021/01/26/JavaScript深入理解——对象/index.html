@@ -466,7 +466,7 @@ myObject.b = <span class="hljs-number">3</span>
 myObject.b <span class="hljs-comment">// undefined</span></code></pre>
 
 <p>在非严格模式下，创建属性 b 会静默失败。在严格模式下，将会抛出 TypeError 错误。</p>
-<h4 id="密封"><a href="#密封" class="headerlink" title="密封"></a>密封</h4><p>如果我们需要对象不能添加新属性，也不能重新配置或者删除任何现有属性。我们可以使用<strong>Object.seal(..)**。它会创建一个“密封”对象，这个方法实际上就是在一个现有对象上调用</strong>Object.preventExtensions(..)** 并把所有现有属性标记为 <strong>configurable:false</strong>。不过“密封”后我们依然可以修改属性的值</p>
+<h4 id="密封"><a href="#密封" class="headerlink" title="密封"></a>密封</h4><p>如果我们需要对象不能添加新属性，也不能重新配置或者删除任何现有属性。我们可以使用<strong>Object.seal(..)</strong> 。它会创建一个“密封”对象，这个方法实际上就是在一个现有对象上调用 <strong>Object.preventExtensions(..)</strong> 并把所有现有属性标记为 <strong>configurable:false</strong>。不过“密封”后我们依然可以修改属性的值</p>
 <h4 id="冻结"><a href="#冻结" class="headerlink" title="冻结"></a>冻结</h4><p>如果我们需要更高的不可变性，我们就需要 <strong>Object.freeze(..)</strong> 。这个方法实际上就是在一个现有对象上调用 <strong>Object.seal(..)</strong> 并且把所有属性都设置为 <strong>writable:false</strong>，这样我们就无法修改它。</p>
 <p>这个方法是我们可以应用在对象上的级别最高的不可变性。如果我们要求对属性中引用也是不可变，最好的方法就是遍历出那些引用，然后在这些对象上调用 <strong>Object.freeze(..)</strong> 。</p>
 <p>顺道提一下，在ES6中，新增了代理（Proxy）。用于创建一个对象的代理，从而实现基本操作的拦截和自定义。我们也可以运用代理的方法来实现我们需要的不可变性，这里就不详细展开说了。</p>

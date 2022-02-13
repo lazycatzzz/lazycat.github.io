@@ -236,7 +236,7 @@
 <blockquote>
 <p>NAT firewalls like to time out idle sessions to keep their state tables clean and their memory footprint low.<br><strong>NAT防火墙喜欢对空闲的会话进行超时处理，以确保它们状态表的干净和内存的低占用率。</strong><br>Some firewalls are nice, and let you idle for up to a day or so; some are gestapo and terminate your session after 5 minutes.<br><strong>一些防火墙比较友好，允许你的空闲会话时间为一天甚至超过一天；另一些却如盖世太保，5分钟空闲就终止你的会话。</strong></p>
 </blockquote>
-<p>也就是说，其实让 ssh 连接中断的并不是 ssh 连接本身，而是一些对空闲连接处理的缺省机制。</p>
+<p>也就是说，<strong>其实让 ssh 连接中断的并不是 ssh 连接本身，而是一些对空闲连接处理的缺省机制。</strong></p>
 <h2 id="让连接更持久"><a href="#让连接更持久" class="headerlink" title="让连接更持久"></a>让连接更持久</h2><p>为了让连接不被中断，我们要做的就是，让连接忙起来。方法的话主要两种</p>
 <ol>
 <li><p>修改服务端配置</p>

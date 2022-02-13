@@ -1,0 +1,1781 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Chaomao Chen">
+  <meta name="keywords" content="">
+  <title>Vue笔记 - 阿猫的学习日记</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐱","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Chaom</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/wallhaven-nmy7o1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vue笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-13 18:03" pubdate>
+        2022年2月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      125
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue笔记</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a><strong>Vue</strong></h1><h2 id="Vue模板语法"><a href="#Vue模板语法" class="headerlink" title="Vue模板语法"></a><strong>Vue模板语法</strong></h2><h3 id="差值表达式"><a href="#差值表达式" class="headerlink" title="差值表达式"></a><strong>差值表达式</strong></h3><p><strong>双大括号</strong>里面填充数据</p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a><strong>指令</strong></h3><p>指令的本质就是自定义属性，指令的格式：以v-开始（比如：v-cloak）</p>
+<h4 id="v-cloak指令用法"><a href="#v-cloak指令用法" class="headerlink" title="v-cloak指令用法"></a><strong>v-cloak指令用法</strong></h4><p>插值表达式存在的问题：“闪动”（显示双大括号内容）</p>
+<p>方法：使用v-cloak指令</p>
+<p>解决该问题原理：先隐藏，在内存中替换好值之后再显示最终的值</p>
+<h4 id="数据绑定指令"><a href="#数据绑定指令" class="headerlink" title="数据绑定指令"></a><strong>数据绑定指令</strong></h4><p><strong>v-text填充纯文本</strong></p>
+<p>语法：&lt;span v-text=”msg”&gt;&lt;/span&gt; = &lt;span&gt;msg&lt;/span&gt;</p>
+<p>没有闪动问题</p>
+<p>相比于插值表达式更加简洁</p>
+<p><strong>v-html填充html片段</strong></p>
+<p>语法：&lt;span v-html=”msg”&gt;&lt;/span&gt;</p>
+<p>存在安全问题，容易受到XSS攻击，<strong>不要用在用户提交内容上</strong></p>
+<p>本网站内部数据可以使用，来自第三方的数据不可以用</p>
+<p><strong>v-pre填充原始信息</strong></p>
+<p>显示原始信息，跳过编译过程（分析编译过程）</p>
+<h2 id="数据响应式"><a href="#数据响应式" class="headerlink" title="数据响应式"></a><strong>数据响应式</strong></h2><p>理解响应式：</p>
+<ol>
+<li><p> html5中的响应式（屏幕尺寸的变化导致样式的变化）</p>
+</li>
+<li><p> 数据的响应式（数据的变化导致页面内容的变化）</p>
+</li>
+</ol>
+<p>什么是数据绑定</p>
+<p>数据绑定：将数据填充到标签中</p>
+<p>v-once只编译一次</p>
+<p>显示内容之后不再具有响应式功能</p>
+<h2 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a><strong>双向数据绑定</strong></h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a><strong>概念</strong></h3><ol>
+<li><p> 当数据发生变化的时候，视图也就发生变化</p>
+</li>
+<li><p> 当视图发生变化的时候，数据也会跟着同步变化</p>
+</li>
+</ol>
+<p><strong>实现方法</strong>：<strong>v-model</strong></p>
+<p>语法：&lt;input type=’text’ v-model=’uname’/&gt;</p>
+<p><strong>使用场景</strong>：v-model是一个指令，限制在<br><strong>&lt;input&gt;、&lt;select&gt;、&lt;textarea&gt;**、</strong>components（组件）** 中使用</p>
+<h2 id="MVVM设计思想"><a href="#MVVM设计思想" class="headerlink" title="MVVM设计思想"></a><strong>MVVM设计思想</strong></h2><ol>
+<li> M（model）数据层</li>
+</ol>
+<p>Vue 中 数据层 都放在 data 里面</p>
+<ol start="2">
+<li>V（view）视图</li>
+</ol>
+<p>Vue 中 view 即 我们的HTML页面</p>
+<ol start="3">
+<li>VM（View-Model）控制器 将数据和视图层建立联系</li>
+</ol>
+<p>vm 即 Vue 的实例 就是 vm</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/56a457505411b792673bdad131664539.png" srcset="/img/loading.gif"></p>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a><strong>事件绑定</strong></h2><ol>
+<li> <strong>如何处理函数</strong></li>
+</ol>
+<p>v-on指令：通过<strong>v-on</strong>指令来绑定事件</p>
+<p>语法：&lt;input type=‘button’<br>v-on:click=’num++’/&gt;v-on简写形式：用**@**来代替v-on</p>
+<p>语法：&lt;input type=‘button’ @click=’num++’/&gt;</p>
+<ol start="2">
+<li><strong>事件函数的调用方式</strong></li>
+</ol>
+<ul>
+<li>直接绑定函数名称</li>
+</ul>
+<p>语法：&lt;button v-on:click=’say’&gt;Hello&lt;/button&gt;</p>
+<ul>
+<li>调用函数（传参的时候用）</li>
+</ul>
+<p>语法：&lt;button v-on:click=’say()’&gt;Say hi&lt;/button&gt;</p>
+<ol start="3">
+<li><strong>事件函数参数传递</strong></li>
+</ol>
+<p>普通函数和事件对象</p>
+<p>&lt;button v-on:click=’say(“hi”,$event)’&gt;Say hi&lt;/button&gt;</p>
+<p>$event：传递事件对象</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li><p> 如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数</p>
+</li>
+<li><p> 如果事件绑定函数调用，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称必须事$event</p>
+</li>
+</ol>
+<p><strong>事件修饰符</strong></p>
+<ul>
+<li>  <strong>.stop</strong>阻止冒泡</li>
+</ul>
+<p>语法：&lt;a v-on:click.stop=”handle”&gt;跳转&lt;/a&gt;</p>
+<ul>
+<li>  <strong>.prevent</strong>阻止默认行为</li>
+</ul>
+<p>语法：&lt;a v-on:click.prevent=”handle”&gt;跳转&lt;/a&gt;</p>
+<p><strong>注意：</strong>事件修饰符可以串联使用，而它的顺序很重要，不同的顺序可能有不同的效果</p>
+<p><strong>按键修饰符</strong></p>
+<ul>
+<li>  <strong>.enter</strong> 回车键，当按了回车键，触发事件</li>
+</ul>
+<p>语法：&lt;input v-on:keyup.enter=’submit’&gt;</p>
+<ul>
+<li>  <strong>.esc</strong> 退出键，当按了删除或退格键，触发事件</li>
+</ul>
+<p>语法：&lt;input v-on:keyup.delete=’handle’&gt;</p>
+<p><strong>自定义按键修饰符</strong></p>
+<p>全局config.keyCodes对象</p>
+<p>语法：Vue.config.keyCodes.按键名 = 键值</p>
+<h2 id="属性绑定"><a href="#属性绑定" class="headerlink" title="属性绑定"></a><strong>属性绑定</strong></h2><ol>
+<li> <strong>如何处理动态处理属性</strong></li>
+</ol>
+<ul>
+<li>  v-bind指令用法</li>
+</ul>
+<p>语法：&lt;a v-bind:href=’url’&gt;跳转&lt;/a&gt;</p>
+<ul>
+<li>  缩写形式 用 <strong>:</strong> 来代替<strong>v-bind</strong></li>
+</ul>
+<p>语法：&lt;a :href=’url’&gt;跳转&lt;/a&gt;</p>
+<ol start="2">
+<li><strong>v-model的底层实现原理分析</strong></li>
+</ol>
+<p>&lt;input v-bind:value=”msg” v-on:input=”msg=$event.target.value”&gt;</p>
+<p>oninput: 用户输入时触发事件</p>
+<h2 id="样式绑定"><a href="#样式绑定" class="headerlink" title="样式绑定"></a><strong>样式绑定</strong></h2><ol>
+<li> <strong>class样式处理</strong></li>
+</ol>
+<p><strong>对象语法</strong> 通过布尔值来控制具体类是否添加</p>
+<p>语法：&lt;div v-bind:class=”{ active: isActive }”&gt;&lt;/div&gt;</p>
+<p><strong>数组语法</strong> 在Vue实例将类名对应data中的属性，然后将属性名添加到标签中</p>
+<p>语法：&lt;div v-bind:class=”[activeClass, errorClass]”&gt;&lt;/div&gt;</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><p>对象绑定和数值绑定可以结合使用 例：[ activeClass, { test: istest } ]</p>
+</li>
+<li><p>class绑定的值可以简化操作<br>将数值赋值为data中的属性，通过数值方法就可以对类进行修改</p>
+</li>
+<li><p>默认的class会保留，绑定的class会加到后面</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>style样式处理</strong></li>
+</ol>
+<p><strong>对象语法</strong> 在data中将样式字符串赋给属性名，再将属性名绑定到相应的样式属性中</p>
+<p>语法：&lt;div v-bind:style=”{ color: activeColor, fontSize: fontSize }”&gt;&lt;/div&gt;</p>
+<p>activeColor: ‘blue’</p>
+<p><strong>数组语法</strong> 在data中编写好样式代码并赋予属性名，然后传到标签中</p>
+<p>语法：&lt;div v-bind:style=”[baseStyles, overridingStyles]”&gt;&lt;/div&gt;</p>
+<p>baseStyles:{</p>
+<p>​    width:’200px’,</p>
+<p>​    backgroundColor:’blue’// -符号去掉，用驼峰法命名</p>
+<p>}</p>
+<h2 id="分支循环结构"><a href="#分支循环结构" class="headerlink" title="分支循环结构"></a><strong>分支循环结构</strong></h2><h3 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a><strong>分支结构</strong></h3><ul>
+<li><p>  v-if</p>
+</li>
+<li><p>  v-else</p>
+</li>
+<li><p>  v-else-if</p>
+</li>
+<li><p>  v-show</p>
+</li>
+</ul>
+<h3 id="v-if与v-show的区别"><a href="#v-if与v-show的区别" class="headerlink" title="v-if与v-show的区别"></a><strong>v-if与v-show的区别</strong></h3><ul>
+<li><p>  v-if控制元素是否渲染到页面</p>
+</li>
+<li><p>  v-show控制元素是否显示（已经渲染到了页面）</p>
+</li>
+</ul>
+<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a><strong>循环结构</strong></h3><ul>
+<li>  v-for遍历数组</li>
+</ul>
+<p>语法：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&#x27;item in list&#x27;</span>&gt;</span>&#123;&#123;item&#125;&#125;\<span class="hljs-tag">&lt;/<span class="hljs-name">li\</span>&gt;</span> <span class="hljs-comment">&lt;!-- 遍历元素--&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&#x27;(item,index) in list&#x27;</span>&gt;</span>&#123;&#123;item&#125;&#125; + &#x27;---&#x27; +&#123;&#123;index&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span> <span class="hljs-comment">&lt;!--遍历元素和索引--&gt;</span></code></pre>
+
+<ul>
+<li>  <strong>key的作用：帮助Vue区分不同的元素，从而提高性能</strong></li>
+</ul>
+<p>语法：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&#x27;item.id&#x27;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&#x27;(item,index) in list&#x27;</span>&gt;</span>&#123;&#123;item&#125;&#125; + &#x27;---&#x27;&#123;&#123;index&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></code></pre>
+
+<ul>
+<li>  v-for遍历对象</li>
+</ul>
+<p>语法：&lt;div v-for=’(value, key, index) in object’&gt;&lt;/div&gt;</p>
+<p><strong>value：属性值</strong>  <strong>key：属性名</strong>  <strong>index：索引</strong></p>
+<ul>
+<li>  v-if和v-for结合使用</li>
+</ul>
+<p>语法：&lt;div v-if=’value==12’ v-for=’(value, key, index) in object’&gt;&lt;/div&gt;</p>
+<h2 id="Vue常用特性"><a href="#Vue常用特性" class="headerlink" title="Vue常用特性"></a><strong>Vue常用特性</strong></h2><h3 id="表单操作"><a href="#表单操作" class="headerlink" title="表单操作"></a><strong>表单操作</strong></h3><p><strong>通过v-model来实现，不同的表单元素，有不同的效果。input、textarea通过v-model来绑定其内容文本，而单选框、复选框、下拉框通过v-model来绑定其选中状态（通过元素属性value是否与v-model绑定的数据相等来判断）</strong></p>
+<p><strong>单选框如何实现单选？</strong></p>
+<p>1、 两个单选框需要同时通过v-model 双向绑定 一个值</p>
+<p>2、 每一个单选框必须要有value属性 且value 值不能一样</p>
+<p>3、 当某一个单选框选中的时候 v-model 会将当前的 value值 改变 data 中的 数据</p>
+<p><strong>复选框如何实现复选？</strong></p>
+<p>1、 复选框需要同时通过v-model 双向绑定 一个值 <strong>一个数组</strong></p>
+<p>2、 每一个复选框必须要有value属性 且value 值不能一样</p>
+<p>3、 当某一个单选框选中的时候 v-model 会将当前的 value值 改变 data 中的 数组</p>
+<p><strong>如何实现获取下拉框的选中状态</strong></p>
+<p>1、 需要给select 通过v-model 双向绑定 一个值</p>
+<p>2、 每一个option 必须要有value属性 且value 值不能一样</p>
+<p>3、 当某一个option选中的时候 v-model 会将当前的 value值 改变 data 中的 数据</p>
+<p>4、 当元素属性multiple为true，v-model绑定一个数组</p>
+<p><strong>如何获取文本域中的值</strong></p>
+<p>通过v-model 绑定一个值</p>
+<p><strong>表单域修饰符</strong></p>
+<p><strong>number：</strong>将输入内容转化为数值</p>
+<p><strong>注意点：</strong> 当开始输入非数字的字符串时，因为Vue无法将字符串转换成数值</p>
+<p>所以属性值将实时更新成相同的字符串。即使后面输入数字，也将被视作字符串。</p>
+<p><strong>trim：</strong>去掉开始和结尾空格</p>
+<p><strong>lazy：</strong>将input事件切换为change事件</p>
+<p><strong>input事件：每次输入时触发</strong>  <strong>change事件：失去焦点时触发</strong></p>
+<p>语法：&lt;input v-model.number=”age” type=”number”&gt;</p>
+<h3 id="自定义指令（directive）"><a href="#自定义指令（directive）" class="headerlink" title="自定义指令（directive）"></a><strong>自定义指令（directive）</strong></h3><ul>
+<li><p>  <strong>为何需要自定义指令？</strong> 内置指令不满足需求</p>
+</li>
+<li><p>  <strong>自定义全局指令的语法规则（获取元素焦点）</strong></p>
+</li>
+</ul>
+<p>Vue.directive(‘focus’ {</p>
+<p>inserted: function(el) {</p>
+<p>// 获取元素的焦点</p>
+<p>el.focus();</p>
+<p>}</p>
+<p>})</p>
+<ul>
+<li>  <strong>自定义指令用法</strong></li>
+</ul>
+<p>&lt;input type=”text” v-focus&gt;</p>
+<ul>
+<li>  <strong>带参数的自定义指令（改变元素背景色）</strong></li>
+</ul>
+<p>例：Vue.directive(‘color’, {</p>
+<p>inserted: function(el, binding) {</p>
+<p>el.style.backgroundColor = binding.value.color;</p>
+<p>}</p>
+<p>})</p>
+<ul>
+<li>  <strong>指令的用法</strong></li>
+</ul>
+<p>&lt;input type=”text” v-color=’{color:”orange”}’&gt;</p>
+<h3 id="局部指令（directives）"><a href="#局部指令（directives）" class="headerlink" title="局部指令（directives）"></a><strong>局部指令（directives）</strong></h3><p><strong>局部指令和全局指令有什么区别</strong></p>
+<ul>
+<li><p>  局部的指令只能在当前页面使用</p>
+</li>
+<li><p>  全局的指令能够在任何组件中使用</p>
+</li>
+</ul>
+<p><strong>如何自定义局部指令</strong></p>
+<p>添加在Vue实例中的指令，局部指令定义在 <strong>directives</strong> 里面</p>
+<h3 id="计算属性（computed）"><a href="#计算属性（computed）" class="headerlink" title="计算属性（computed）"></a><strong>计算属性（computed）</strong></h3><ul>
+<li>  <strong>计算属性的使用场景</strong></li>
+</ul>
+<p>模板中放入太多的逻辑会让模板过重且难以维护 使用计算属性可以让模板更加的简洁</p>
+<ul>
+<li>  <strong>computed中定义的 属性可以自定义吗？</strong></li>
+</ul>
+<p>可以</p>
+<ul>
+<li>  <strong>定义好的计算属性如何调用</strong></li>
+</ul>
+<ol>
+<li><p> 在插值语法中 直接写 自定义的属性名</p>
+</li>
+<li><p> 在方法中 直接this.自定义的属性名()</p>
+</li>
+</ol>
+<ul>
+<li>  <strong>计算属性的用法</strong></li>
+</ul>
+<p>computed: {</p>
+<p>reversedMessage: function () {</p>
+<p>return this.msg.split(‘’).reverse().join(‘’)</p>
+<p>}</p>
+<p>}</p>
+<ul>
+<li>  <strong>计算属性和方法的区别</strong></li>
+</ul>
+<p><strong>计算属性是基于它们的依赖进行缓存的，方法不存在缓存</strong></p>
+<p>意思就是，计算属性计算了第一次，之后的结果将直接引用第一次的结果</p>
+<p>方法会计算每一次</p>
+<h3 id="侦听器（watch）"><a href="#侦听器（watch）" class="headerlink" title="侦听器（watch）"></a><strong>侦听器（watch）</strong></h3><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/0e0df8d5350955ac09568d99affbee3b.png" srcset="/img/loading.gif"></p>
+<p><strong>侦听器的应用场景：</strong>数据变化时执行异步或者开销较大的操作</p>
+<p><strong>侦听器的用法</strong></p>
+<p>watch: {</p>
+<p>firstName: function(val){</p>
+<p>// val表示变化之后的值</p>
+<p>this.fullName = val + this.lastName;</p>
+<p>},</p>
+<p>lastName: function(val) {</p>
+<p>this.fullName = this.firstName + val;</p>
+<p>}</p>
+<p>}</p>
+<h3 id="过滤器（filter）"><a href="#过滤器（filter）" class="headerlink" title="过滤器（filter）"></a><strong>过滤器（filter）</strong></h3><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/87995d9aa70ea2630737d1e9f8a3f109.png" srcset="/img/loading.gif"></p>
+<p>应用场景：格式化数据，比如将字符串格式化为首字母大写，将日期格式化为指定的格式等</p>
+<ul>
+<li>  <strong>如何定义一个过滤器</strong></li>
+</ul>
+<p>Vue.filter 或者 filters</p>
+<ul>
+<li>  <strong>如何定义全局和局部过滤器</strong></li>
+</ul>
+<p>Vue.filter 全局</p>
+<p>Filters 局部</p>
+<ul>
+<li>  <strong>全局自定义过滤器</strong></li>
+</ul>
+<p>例：Vue.filter(‘过滤器名称’, function(value){</p>
+<p>// 过滤器业务逻辑</p>
+<p>})</p>
+<ul>
+<li>  <strong>过滤器的使用</strong></li>
+</ul>
+<p>例：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#123;msg | upper&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#123;msg | upper | lower&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-bind:id</span>=<span class="hljs-string">“id</span> | <span class="hljs-attr">formatId</span>&quot;&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<ul>
+<li>  <strong>局部过滤器</strong></li>
+</ul>
+<p>例：filters:{</p>
+<p>capitalize: function(){}</p>
+<p>}</p>
+<ul>
+<li>  <strong>带参数的过滤器</strong></li>
+</ul>
+<p>Vue.filter(‘format’, function(value, arg1){</p>
+<p>// value就是过滤器传递过来的参数</p>
+<p>})</p>
+<ul>
+<li>  <strong>过滤器的使用</strong></li>
+</ul>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#123;date | format(‘yyyy-MM-dd&#x27;)&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a><strong>生命周期</strong></h2><h3 id="主要阶段"><a href="#主要阶段" class="headerlink" title="主要阶段"></a><strong>主要阶段</strong></h3><ul>
+<li>  挂载（初始化相关属性）</li>
+</ul>
+<p>① beforeCreate</p>
+<p>② created</p>
+<p>③ beforeMount</p>
+<p>④ mounted</p>
+<ul>
+<li>  更新（元素或组件的变更操作）</li>
+</ul>
+<p>① beforeUpdate</p>
+<p>② updated</p>
+<ul>
+<li>  销毁（销毁相关属性）</li>
+</ul>
+<p>① beforeDestroy</p>
+<p>② destroyed</p>
+<h2 id="Vue数组处理"><a href="#Vue数组处理" class="headerlink" title="Vue数组处理"></a><strong>Vue数组处理</strong></h2><ul>
+<li>  <strong>变异方法和替换数组有什么区别</strong></li>
+</ul>
+<p>变异的方法能够实现数据更新视图自动更新</p>
+<p>替换数组 不会修改原始数据 导致 数据改变 视图不一定更新</p>
+<ul>
+<li>  <strong>变异方法和替换数组有哪些</strong></li>
+</ul>
+<p><strong>变异方法</strong></p>
+<p>push pop shift unshift splice sort reverse</p>
+<p><strong>替换数组</strong></p>
+<p>filter concat slice</p>
+<p><strong>数组响应式变化</strong></p>
+<p>在实例外用索引修改的数据不是响应式，页面没有更新</p>
+<p><strong>修改响应式数据</strong></p>
+<ul>
+<li><p>  Vue.set(vm.items, indexOfItem, newValue)</p>
+</li>
+<li><p>  vm.$set(vm.items, indexOfItem, newValue)</p>
+</li>
+</ul>
+<p>① 参数一表示要处理的数组名称</p>
+<p>② 参数二表示要处理的数组的索引</p>
+<p>③ 参数三表示要处理的数组的值</p>
+<h2 id="组件化开发"><a href="#组件化开发" class="headerlink" title="组件化开发"></a><strong>组件化开发</strong></h2><h3 id="组件化开发思想"><a href="#组件化开发思想" class="headerlink" title="组件化开发思想"></a><strong>组件化开发思想</strong></h3><p>体现：标准、分治、重用、组合</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/a68852a8001097ea79c85cf5165b1d9a.png" srcset="/img/loading.gif"></p>
+<p>组件化规范: <strong>Web Components</strong></p>
+<ul>
+<li><p>  我们希望尽可能多的重用代码</p>
+</li>
+<li><p>  自定义组件的方式不太容易（html、css和js）</p>
+</li>
+<li><p>  多次使用组件可能导致冲突</p>
+</li>
+</ul>
+<p>官网：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components">https://developer.mozilla.org/zh-CN/docs/Web/Web_Components</a></p>
+<p><strong>Web Components 通过创建封装好功能的定制元素解决上述问题</strong></p>
+<h3 id="组件注册"><a href="#组件注册" class="headerlink" title="组件注册"></a><strong>组件注册</strong></h3><p>组件是<strong>可复用的 Vue 实例</strong>，所以它们与 new Vue 接收相同的选项，例如<br><strong>data、computed、watch、methods</strong> 以及<strong>生命周期钩子</strong>等。仅有的例外是像 el<br>这样根实例特有的选项。</p>
+<p><strong>全局组件注册语法：</strong>Vue.component(组件名称，{</p>
+<p>data: 组件数据,</p>
+<p>template: 组件模板内容</p>
+<p>}</p>
+<p>例：</p>
+<pre><code class="hljs js"><span class="hljs-comment">//	定义一个名为button-counter的新组件</span>
+vue.component (<span class="hljs-string">&#x27;button-counter&#x27;</span>, &#123;
+	data: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">return</span> &#123;
+		count: o
+	&#125;,
+	template: <span class="hljs-string">&#x27;&lt;button v-on:click=&quot;count++&quot;&gt;点击了&#123;&#123; count &#125;&#125;次.&lt;/button&gt;&#x27;</span>
+&#125;)</code></pre>
+
+<p><strong>注意：</strong></p>
+<ol>
+<li><p>一个<strong>组件的 data<br> 选项必须是一个函数</strong>，因此每个实例可以维护一份被返回对象的独立的拷贝（闭包）</p>
+</li>
+<li><p> <strong>组件模板内容必须是单个根元素</strong></p>
+</li>
+<li><p> <strong>组件模板内容可以是模板字符串</strong>，模板字符串需要浏览器提供支持（ES6语法）</p>
+</li>
+</ol>
+<h3 id="组件用法"><a href="#组件用法" class="headerlink" title="组件用法"></a><strong>组件用法</strong></h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button-counter</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button-counter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<h3 id="组件重用"><a href="#组件重用" class="headerlink" title="组件重用"></a><strong>组件重用</strong></h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button-counter</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button-counter</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button-counter</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button-counter</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button-counter</span>&gt;</span><span class="hljs-tag">&lt;/ <span class="hljs-attr">button-counter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<h3 id="组件命名方式"><a href="#组件命名方式" class="headerlink" title="组件命名方式"></a><strong>组件命名方式</strong></h3><ul>
+<li><p>  短横线方式 Vue.component(‘my-component’, { /* … */ })</p>
+</li>
+<li><p>  驼峰方式 Vue.component(‘MyComponent’, { /* … */ })</p>
+</li>
+</ul>
+<p><strong>注意：</strong>如果使用驼峰式命名组件，那么在使用组件的时候，只能在字符串模板中用驼峰的方式使用组件，但是在普通的标签模板中，必须使用短横线的方式使用组件</p>
+<h3 id="局部组件注册"><a href="#局部组件注册" class="headerlink" title="局部组件注册"></a><strong>局部组件注册</strong></h3><p><strong>只能在注册它的父组件中使用</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> componentA = &#123; <span class="hljs-comment">/* ... */</span> &#125;
+<span class="hljs-keyword">var</span> componentB = &#123; <span class="hljs-comment">/* ... */</span> &#125;
+<span class="hljs-keyword">var</span> componentc = &#123; <span class="hljs-comment">/* ... */</span> &#125;
+<span class="hljs-keyword">new</span> vue (&#123;
+	el: <span class="hljs-string">&#x27;#app&#x27;</span>
+	components: &#123;
+		<span class="hljs-string">&#x27;component-a&#x27;</span>: componentA,
+		<span class="hljs-string">&#x27;component-b&#x27;</span>: componentB,
+		<span class="hljs-string">&#x27;component-c&#x27;</span>: componentc,
+	&#125;
+&#125;)</code></pre>
+
+
+
+<h2 id="Vue调试工具"><a href="#Vue调试工具" class="headerlink" title="Vue调试工具"></a><strong>Vue调试工具</strong></h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/626f01495085b857ae5866e6b018dc18.png" srcset="/img/loading.gif"></p>
+<h2 id="组件间数据交互"><a href="#组件间数据交互" class="headerlink" title="组件间数据交互"></a><strong>组件间数据交互</strong></h2><h3 id="父组件向子组件传值"><a href="#父组件向子组件传值" class="headerlink" title="父组件向子组件传值"></a><strong>父组件向子组件传值</strong></h3><ol>
+<li> 组件内部通过props接收传递过来的值</li>
+</ol>
+<pre><code class="hljs js">Vue.component (<span class="hljs-string">&#x27;menu-item&#x27;</span>, &#123;
+	props: [<span class="hljs-string">&#x27;title&#x27;</span>],
+	template: <span class="hljs-string">&#x27;&lt;div&gt;&#123;&#123; title &#125;&#125;&lt;/div&gt;&#x27;</span>
+&#125;)</code></pre>
+
+<ol start="2">
+<li>父组件通过属性将值传递给子组件</li>
+</ol>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">menu-item</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;来自父组件的数据&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">menu-item</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">menu-item</span> <span class="hljs-attr">:title</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">menu-item</span>&gt;</span></code></pre>
+
+<p><strong>props属性名规则</strong></p>
+<ul>
+<li><p>  在props中使用驼峰形式，</p>
+</li>
+<li><p>  标签中需要使用短横线的形式，字符串形式的模板中没有这个限制</p>
+</li>
+</ul>
+<pre><code class="hljs js">Vue.component (<span class="hljs-string">&#x27;menu-item&#x27;</span>, &#123;
+<span class="hljs-comment">// 在Javascript中是驼峰式的</span>
+	props: [<span class="hljs-string">&#x27;menuritle&#x27;</span>],
+	template: <span class="hljs-string">&#x27;&lt;div&gt;&#123;&#123; menuTitle &#125;&#125;&lt;/div&gt;&#x27;</span>
+&#125;)
+<span class="hljs-comment">// 在html中是短横线方式的</span>
+<span class="hljs-comment">// &lt;menu-item menu-title=&quot;nihao&quot;&gt;&lt;/menu-item&gt;</span></code></pre>
+
+<p>原因：html标签对大小写不敏感</p>
+<p><strong>props属性值类型</strong></p>
+<ul>
+<li><p>  可以传递静态值</p>
+</li>
+<li><p>  也可以传递动态值</p>
+</li>
+<li><p>  动态值可以是 字符串String 数字Number 布尔值Boolean 数组Array</p>
+</li>
+</ul>
+<p>对象Object</p>
+<p>props传递数据原则：单向数据流（不允许子组件直接向父组件传递数据）</p>
+<h3 id="子组件向父组件传值"><a href="#子组件向父组件传值" class="headerlink" title="子组件向父组件传值"></a><strong>子组件向父组件传值</strong></h3><ul>
+<li><p>  子组件用**$emit()**触发事件</p>
+</li>
+<li><p>  $emit() 第一个参数为 <strong>自定义的事件名称</strong> 第二个参数为<strong>需要传递的数据</strong></p>
+</li>
+<li><p>  父组件通过事件监听监听子组件传递过来的数据</p>
+</li>
+</ul>
+<p>例：</p>
+<ul>
+<li>  <strong>子组件通过自定义事件向父组件传递信息</strong></li>
+</ul>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:</span> <span class="hljs-attr">click</span>=<span class="hljs-string">&#x27;$emit(&quot;enlarge-text&quot;)&#x27;</span>&gt;</span>扩大字体<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+
+<ul>
+<li>  <strong>父组件监听子组件的事件</strong></li>
+</ul>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">menu-item</span> <span class="hljs-attr">v-on:enlarge-text</span>=<span class="hljs-string">&#x27; fontsize += 0.1&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">menu-item</span>&gt;</span></code></pre>
+
+<ul>
+<li>  <strong>子组件通过自定义事件向父组件传递信息</strong></li>
+</ul>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&#x27;$emit (&quot;enlarge-text&quot;，0.1)&#x27;</span>&gt;</span>扩大字体<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+
+<ul>
+<li>  <strong>父组件监听子组件的事件</strong></li>
+</ul>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">menu-item</span> <span class="hljs-attr">v-on:enlarge-text</span>=<span class="hljs-string">&#x27;fontsize += $event&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">menu-item</span>&gt;</span></code></pre>
+
+<h3 id="非父子组件间传值"><a href="#非父子组件间传值" class="headerlink" title="非父子组件间传值"></a><strong>非父子组件间传值</strong></h3><p><strong>兄弟之间通讯</strong></p>
+<p>兄弟之间传递数据需要借助于事件中心，通过事件中心传递数据</p>
+<p>提供事件中心 <strong>var hub = new Vue()</strong></p>
+<ul>
+<li><p>  传递数据方，通过一个事件触发<strong>hub.$emit(方法名，传递的数据)</strong></p>
+</li>
+<li><p>  接收数据方，通过mounted(){} 钩子中 触发**hub.$on()**方法名</p>
+</li>
+<li><p>  销毁事件 通过**hub.$off()**方法名销毁之后无法进行传递数据</p>
+</li>
+</ul>
+<p>例：</p>
+<ol>
+<li><p>单独的事件中心管理组件间的通信</p>
+<p>var eventHub = new Vue()</p>
+</li>
+<li><p>监听事件和销毁事件</p>
+<p> eventHub.$on(‘add-todo’, addTodo)</p>
+<p> eventHub.$off(‘add-todo’)</p>
+</li>
+<li><p>触发事件</p>
+<p> eventHub.$emit(‘add-todo’, id)</p>
+</li>
+</ol>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/7d7708605d6fb3cba9735c4c36391e0c.png" srcset="/img/loading.gif"></p>
+<h3 id="组件插槽"><a href="#组件插槽" class="headerlink" title="组件插槽"></a><strong>组件插槽</strong></h3><ul>
+<li>  <strong>插槽的作用</strong></li>
+</ul>
+<p>组件的最大特性就是复用性，而用好插槽能大大提高组件的可复用能力</p>
+<ul>
+<li>  <strong>插槽的使用</strong></li>
+</ul>
+<ol>
+<li><p> 提供一个插槽的位置</p>
+</li>
+<li><p> 插槽的内容</p>
+</li>
+</ol>
+<p><strong>父组件向子组件传递内容</strong></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/97ffe2707451739b160d572d343d302a.png" srcset="/img/loading.gif"></p>
+<p><strong>插槽位置</strong></p>
+<pre><code class="hljs js">Vue.component (<span class="hljs-string">&#x27;alert-box&#x27;</span>, &#123;
+	termplate:<span class="hljs-string">`</span>
+<span class="hljs-string">		&lt;div class=&quot;demo-alert-box&quot;&gt;</span>
+<span class="hljs-string">			&lt;strong&gt;Error!&lt;/ strong&gt;</span>
+<span class="hljs-string">			&lt;slot&gt;&lt;/slot&gt;</span>
+<span class="hljs-string">		&lt;/div&gt;</span>
+<span class="hljs-string">	`</span>
+&#125;)</code></pre>
+
+<p><strong>插槽内容</strong></p>
+<p>&lt;alert-box&gt;Something bad happened.&lt;/alert-box&gt;</p>
+<p><strong>具名插槽用法</strong></p>
+<ul>
+<li><p>  <strong>具名插槽和匿名插槽的区别：</strong>具名插槽有名字，匿名插槽没有名字</p>
+</li>
+<li><p>  具名插槽用法</p>
+</li>
+</ul>
+<ol>
+<li><p> 使用 &lt;slot&gt; 中的 “name” 属性绑定元素</p>
+</li>
+<li><p>通过slot属性来指定, 这个slot的值必须和下面slot组件得name值对应上<br> 如果没有匹配到 则放到匿名的插槽中</p>
+</li>
+</ol>
+<p>template标签：应用在需要将多条标签放到插槽中，用template包裹</p>
+<p><strong>插槽定义</strong></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;header&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot; footer&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<p><strong>插槽内容</strong></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">base-layout</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">hl</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;header&quot;</span>&gt;</span>标题内容<span class="hljs-tag">&lt;/<span class="hljs-name">hl</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>主要内容1<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>主要内容2<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;</span>底部内容<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">base-layout</span>&gt;</span></code></pre>
+
+<h3 id="作用域插槽"><a href="#作用域插槽" class="headerlink" title="作用域插槽"></a><strong>作用域插槽</strong></h3><p>应用场景：<strong>父组件对子组件的内容进行加工处理</strong></p>
+<p>作用域插槽的使用</p>
+<p>子组件模板中,&lt;slot&gt;元素上有一个类似props传递数据给组件的写法msg=”xxx</p>
+<p>插槽可以提供一个默认内容，如果如果父组件没有为这个插槽提供了内容，会显示默认的内容。<br>如果父组件为这个插槽提供了内容，则默认的内容会被替换掉</p>
+<p>例：</p>
+<p><strong>插槽定义</strong></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>= <span class="hljs-string">&quot;item in list&quot;</span> <span class="hljs-attr">v-bind:</span> <span class="hljs-attr">key</span>= <span class="hljs-string">&quot;item.id&quot;</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">v-bind:item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>
+			&#123;item.name&#125; &#125;
+		<span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
+
+<p><strong>插槽内容</strong></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">fruit-list</span> <span class="hljs-attr">v-bind</span> <span class="hljs-attr">:</span> <span class="hljs-attr">list</span>= <span class="hljs-string">&quot;list&quot;</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">slot-scope</span>=<span class="hljs-string">&quot;slotProps&quot;</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">strong</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;slotProps.item.current&quot;</span>&gt;</span>
+			&#123;&#123; slotProps.item.text &#125;&#125;
+		<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">fruit-list</span>&gt;</span></code></pre>
+
+<h2 id="Vue前后端交互"><a href="#Vue前后端交互" class="headerlink" title="Vue前后端交互"></a><strong>Vue前后端交互</strong></h2><h3 id="前后端交互模式"><a href="#前后端交互模式" class="headerlink" title="前后端交互模式"></a><strong>前后端交互模式</strong></h3><p><strong>接口调用方式</strong></p>
+<ul>
+<li><p>  原生Ajax</p>
+</li>
+<li><p>  基于jQuery的Ajax 在Vue中基本派不上用场</p>
+</li>
+<li><p>  fetch Ajax的升级版，标准</p>
+</li>
+<li><p>  axios 第三方库</p>
+</li>
+</ul>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/35a92b3c38cc2d8504b7479ed0aa6241.png" srcset="/img/loading.gif"></p>
+<h3 id="URL地址格式"><a href="#URL地址格式" class="headerlink" title="URL地址格式"></a><strong>URL地址格式</strong></h3><h4 id="传统形式的URL"><a href="#传统形式的URL" class="headerlink" title="传统形式的URL"></a><strong>传统形式的URL</strong></h4><p>格式：schema://host:post/path?query#fragment</p>
+<ol>
+<li><p> schema：协议。例如http、https、ftp等</p>
+</li>
+<li><p> host：域名或者IP地址</p>
+</li>
+<li><p> port：端口，http默认端口80，可以省略</p>
+</li>
+<li><p> path：路径，例如/abc/a/b/c</p>
+</li>
+<li><p> query：查询参数，例如uname=lisi&amp;age=12</p>
+</li>
+<li><p> frament：锚点（哈希Hash），用于定位页面的某个位置</p>
+</li>
+</ol>
+<h4 id="Restful形式的URL"><a href="#Restful形式的URL" class="headerlink" title="Restful形式的URL"></a><strong>Restful形式的URL</strong></h4><p>HTTP请求方式：GET（查询）POST（添加）PUT（修改） DELETE（删除）</p>
+<h2 id="Promise用法"><a href="#Promise用法" class="headerlink" title="Promise用法"></a><strong>Promise用法</strong></h2><h3 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a><strong>异步调用</strong></h3><ul>
+<li><p>  JS中常见的异步调用：定时任务，Ajax，事件函数</p>
+</li>
+<li><p>  多次异步调用的依赖分析</p>
+</li>
+</ul>
+<p>多次异步调用的结果顺序不确定，异步调用结果如果存在依赖需要嵌套</p>
+<h3 id="Promise概述"><a href="#Promise概述" class="headerlink" title="Promise概述"></a><strong>Promise概述</strong></h3><p>Promise使异步编程的一种解决方案，从语法上讲，Promise是一个对象，从它可以获取异步操作的消息。</p>
+<h3 id="使用Promise主要有以下好处："><a href="#使用Promise主要有以下好处：" class="headerlink" title="使用Promise主要有以下好处："></a><strong>使用Promise主要有以下好处：</strong></h3><ul>
+<li><p>  可以避免多层异步调用嵌套问题（回调地狱）</p>
+</li>
+<li><p>  Promise对象提供了简洁的API，使得控制异步操作更加容易</p>
+</li>
+</ul>
+<h3 id="Promise基本用法"><a href="#Promise基本用法" class="headerlink" title="Promise基本用法"></a><strong>Promise基本用法</strong></h3><ul>
+<li><p>  实例化<strong>Promise</strong>对象，构造函数中传递函数，该函数中用于处理异步任务</p>
+</li>
+<li><p>  <strong>resolve</strong>和<strong>reject</strong>两个参数用于处理成功和失败两种情况，并通过**.then**获取结果</p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span> (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>)</span>&#123;
+<span class="hljs-comment">// 成功时调用resolve()</span>
+<span class="hljs-comment">// 失败时调用reject ()</span>
+&#125;);
+p.then ( funciton (ret) &#123;
+<span class="hljs-comment">// 从resolve得到正常结果</span>
+), <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">ret</span>)</span>&#123;
+<span class="hljs-comment">// 从reject得到错误信息</span>
+&#125;);</code></pre>
+
+<h3 id="基于Promise处理Ajax请求"><a href="#基于Promise处理Ajax请求" class="headerlink" title="基于Promise处理Ajax请求"></a><strong>基于Promise处理Ajax请求</strong></h3><ol>
+<li> <strong>处理原生Ajax</strong></li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">queryData</span>(<span class="hljs-params">ur1</span>) </span>&#123;
+<span class="hljs-comment">// 1.1创建一个promise实例</span>
+	<span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reso1ve，reject</span>)</span>&#123;
+		<span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+		xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+			<span class="hljs-keyword">if</span>(xhr.readystate != <span class="hljs-number">4</span>) <span class="hljs-keyword">return</span>;
+			<span class="hljs-function"><span class="hljs-title">if</span>(<span class="hljs-params">xhr.readystate == <span class="hljs-number">4</span> &amp;&amp;xhr.status == <span class="hljs-number">200</span></span>)</span> &#123;
+				<span class="hljs-comment">// 1.2处理正常的情况</span>
+				resolve(xhr.responserext);
+			&#125;e1se&#123;
+				<span class="hljs-comment">// 1.3处理异常情况</span>
+				reject(<span class="hljs-string">&#x27;服务器错误&quot;);</span>
+<span class="hljs-string">			&#125;</span>
+<span class="hljs-string">		&#125;;</span>
+<span class="hljs-string">		xhr.open(&#x27;</span>get<span class="hljs-string">&#x27;, ur1);</span>
+<span class="hljs-string">		xhr.send(nu11);</span>
+<span class="hljs-string">	&#125;);</span>
+<span class="hljs-string">	return p;</span>
+<span class="hljs-string">&#125;</span></code></pre>
+
+<ol start="2">
+<li><strong>发送多次Ajax请求</strong></li>
+</ol>
+<pre><code class="hljs js">#注意:这里需要开启一个服务
+#在then方法中，你也可以直接return数据而不是Promise对象，在后面的then中就可以接收到数据了
+queryData(<span class="hljs-string">&#x27;http://localhost:3000/data&#x27;</span>)
+	.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+	conso1e.log(data)
+	#1.4想要继续链式编程下去需要return
+	<span class="hljs-keyword">return</span> queryData(<span class="hljs-string">&#x27;http://localhost:3000/data1&#x27;</span>);
+	&#125;)
+	.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(data);
+	<span class="hljs-keyword">return</span> queryData(<span class="hljs-string">&#x27;http://localhost:3000/data2&#x27;</span>);
+	&#125;)
+	.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(data)
+	&#125;);</code></pre>
+
+<p><strong>then参数中的函数返回值（了解一下）</strong></p>
+<ol>
+<li><p> 返回Promise实例对象：返回的该实例对象会调用下一个then</p>
+</li>
+<li><p> 返回普通值：返回的普通值会直接传递给下一个then，通过then参数中函数的参数接收该值</p>
+</li>
+</ol>
+<h3 id="Promise常用的API"><a href="#Promise常用的API" class="headerlink" title="Promise常用的API"></a><strong>Promise常用的API</strong></h3><ol>
+<li> <strong>实例方法</strong></li>
+</ol>
+<ul>
+<li><p>  <strong>.then()</strong> 得到异步任务的正确结果</p>
+</li>
+<li><p>  <strong>.catch()</strong> 获取异常信息</p>
+</li>
+<li><p>  <strong>.finally()</strong> 成功与否都会执行（尚且不是正式标准）</p>
+</li>
+</ul>
+<pre><code class="hljs js">foo()
+	.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+		<span class="hljs-built_in">console</span>.log(data)
+	&#125;)
+	.catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+		<span class="hljs-built_in">console</span>.log(data)
+	&#125;)
+	.final1y(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">&#123;</span></span>
+<span class="hljs-function"><span class="hljs-params">		<span class="hljs-built_in">console</span>.log( <span class="hljs-string">&#x27;finished&#x27;</span></span></span>
+<span class="hljs-function"><span class="hljs-params">	&#125;</span>)</span>;
+--------------------------------------------
+两种写法是等效的
+foo()
+	.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+		#得到异步任务正确的结果
+		<span class="hljs-built_in">console</span>.log(data)
+	&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+		#获取异常信息
+		<span class="hljs-built_in">console</span>.log(data)
+	&#125;)
+	#成功与否都会执行（不是正式标准)
+	.fina1ly(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">&#123;</span></span>
+<span class="hljs-function"><span class="hljs-params">		<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;finished&#x27;</span>)</span></span>
+<span class="hljs-function"><span class="hljs-params">	&#125;</span>)</span>;</code></pre>
+
+<ol start="2">
+<li><strong>对象方法</strong></li>
+</ol>
+<ul>
+<li><p><strong>Promise.all()</strong><br>  方法接受一个数组作参数，数组中的对象（p1、p2、p3）均为promise实例（如果不是一个promise，该项会被用<br>  Promise.resolve<br>  转换为一个promise)。它的状态由这三个promise实例决定。如果参数中 promise<br>  有一个失败（rejected），此实例回调失败（reject），失败的原因是第一个失败<br>  promise 的结果。</p>
+</li>
+<li><p><strong>Promise.race()</strong> 方法同样接受一个数组作参数。当p1, p2,<br>  p3中有一个实例的状态发生改变（变为 fulfilled或 rejected<br>  ），p的状态就跟着改变。并把第一个改变状态的promise的返回值，传给p的回调函数<strong>（有返回值了马上返回）</strong></p>
+</li>
+</ul>
+<h2 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a><strong>fetch</strong></h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a><strong>概述</strong></h3><p><strong>基本特性：</strong></p>
+<ol>
+<li>更加简单的数据获取方式，功能更强大、更灵活，可以看做是xhr的升级版，基于Promise实现</li>
+</ol>
+<p><strong>2. fetch不是ajax的进一步封装，而是原生js，没有使用XMLHttpRequest对象</strong></p>
+<pre><code class="hljs js"><span class="hljs-comment">/*</span>
+<span class="hljs-comment">	Fetch API基本用法</span>
+<span class="hljs-comment">	fetch(ur1).then(</span>
+<span class="hljs-comment">	第一个参数请求的路径Fetch会返回promise所以我们可以使用then拿到请求成功的结果</span>
+<span class="hljs-comment">*/</span>
+fetch(<span class="hljs-string">&#x27; http://localhost: 3000/fdata&#x27;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+	<span class="hljs-comment">// text()方法属于fetchAPI的一部分，它返回一个Promise实例对象，用于获取后台返回的数据</span>
+	<span class="hljs-keyword">return</span> data.text();
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+<span class="hljs-comment">// 在这个then里面我们能拿到最终的数据</span>
+	<span class="hljs-built_in">console</span>.log(data) ;
+&#125;)</code></pre>
+
+<h3 id="fetch请求参数（fetch-url-options-then-）"><a href="#fetch请求参数（fetch-url-options-then-）" class="headerlink" title="fetch请求参数（fetch(url, options).then(）)"></a><strong>fetch请求参数（fetch(url, options).then(）)</strong></h3><p>HTTP协议，它给我们提供了很多的方法，如POST，GET，DELETE，UPDATE，PATCH和PUT</p>
+<ul>
+<li><p>  默认的是 GET 请求</p>
+</li>
+<li><p>  需要在 options 对象中 指定对应的 method method:请求使用的方法</p>
+</li>
+<li><p>  post 和 普通 请求的时候 需要在options 中 设置 请求头 headers 和 body</p>
+</li>
+</ul>
+<p>传统URL get请求</p>
+<pre><code class="hljs js">#1.1 GET参数传递–传统URL通过ur1 ? 的形式传参
+	fetch(<span class="hljs-string">&#x27;http://localhost:3000/books?id-123&#x27;</span>，&#123;
+		# get请求可以省略不写默认的是GET
+		method: <span class="hljs-string">&#x27;get&#x27;</span>
+	&#125;)
+	.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+		# 它返回一个promise实例对象，用于获取后台返回的数据
+		<span class="hljs-keyword">return</span> data.text();
+	&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+		# 在这个then里面我们能拿到最终的数据
+		<span class="hljs-built_in">console</span>.log(data)
+	&#125;);</code></pre>
+
+<p>restful形式URL get请求</p>
+<pre><code class="hljs js">#1.2—GET参数传递restful形式的uRL通过/的形式传递参数即id = 456和id后台的配置有关
+fetch(<span class="hljs-string">&#x27;http://loca1host:3000/books/456&#x27;</span>，&#123;
+	#get请求可以省略不写默认的是GET
+	method: <span class="hljs-string">&#x27;get&#x27;</span>
+	&#125;)
+	.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+		<span class="hljs-keyword">return</span> data.text();
+	&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+		<span class="hljs-built_in">console</span>.log(data)
+  &#125;)</code></pre>
+
+<p>delete请求</p>
+<pre><code class="hljs js">#2.1DELETE请求方式参数传递 删除id是id=789
+fetch(<span class="hljs-string">&#x27;http://loca1host:3000/books/789&#x27;</span>，&#123;
+	method: <span class="hljs-string">&#x27;delete&#x27;</span>
+&#125;)
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> data.text();
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+	<span class="hljs-built_in">console</span>.log(data)
+&#125;);</code></pre>
+
+<p>POST请求，请求头为urlencoded</p>
+<pre><code class="hljs js">#3 POST请求传参
+fetch(<span class="hljs-string">&#x27;http://localhost:3000/books&#x27;</span>, &#123;
+	method:<span class="hljs-string">&#x27; post &quot;，</span>
+<span class="hljs-string"># 3.1 传递数据</span>
+<span class="hljs-string">	body: &#x27;</span>uname=lisi&amp;pwd=<span class="hljs-number">123</span><span class="hljs-string">&#x27;，</span>
+<span class="hljs-string"># 3.2 设置请求头</span>
+<span class="hljs-string">	headers: &#123;</span>
+<span class="hljs-string">		&#x27;</span>Content-Type<span class="hljs-string">&#x27;: &#x27;</span>app1ication/x-www-form-urlencoded<span class="hljs-string">&#x27;</span>
+<span class="hljs-string">	&#125;</span>
+<span class="hljs-string">&#125;)</span>
+<span class="hljs-string">.then(function(data) &#123;</span>
+<span class="hljs-string">	return data.text();</span>
+<span class="hljs-string">&#125;).then(function(data) &#123;</span>
+<span class="hljs-string">	console.log(data)</span>
+<span class="hljs-string">&#125;);</span></code></pre>
+
+<p>POST请求，请求头为JSON</p>
+<pre><code class="hljs js">#POST请求传参
+fetch(<span class="hljs-string">&#x27;http://localhost: 3000/books&#x27;</span>， &#123;
+	method: <span class="hljs-string">&#x27;post&#x27;</span>,
+	body: <span class="hljs-built_in">JSON</span>.stringify(&#123;
+	uname:<span class="hljs-string">&#x27;张三&#x27;</span>，
+	pwd: <span class="hljs-string">&#x27;456&#x27;</span>
+  &#125;),
+	headers: &#123;
+		<span class="hljs-string">&#x27;content-rype&#x27;</span> : <span class="hljs-string">&quot;application/json&#x27;</span>
+<span class="hljs-string">	&#125;</span>
+<span class="hljs-string">&#125;)</span>
+<span class="hljs-string">.then(function(data) &#123;</span>
+<span class="hljs-string">	return data.text();</span>
+<span class="hljs-string">&#125;).then(function(data) &#123;</span>
+<span class="hljs-string">	console.log(data)</span>
+<span class="hljs-string">&#125;);</span></code></pre>
+
+<p>PUT请求</p>
+<pre><code class="hljs js">#PUT请求传参 修改id是<span class="hljs-number">123</span>的
+fetch(<span class="hljs-string">&#x27;http://localhost:3000/books/123&#x27;</span>，&#123;
+	method: <span class="hljs-string">&#x27;put&#x27;</span>,
+	body: <span class="hljs-built_in">JSON</span>.stringify(&#123;
+	uname:<span class="hljs-string">&#x27;张三&#x27;</span>,
+	pwd: <span class="hljs-string">&#x27;789&#x27;</span>
+	&#125;),
+	headers: &#123;
+		<span class="hljs-string">&#x27;content-rype&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
+	&#125;
+&#125;)
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> data.text();
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
+	<span class="hljs-built_in">console</span>.log(data)
+&#125;);</code></pre>
+
+<h3 id="fetch响应结果"><a href="#fetch响应结果" class="headerlink" title="fetch响应结果"></a><strong>fetch响应结果</strong></h3><p>用fetch来获取数据，如果响应正常返回，我们首先看到的是一个response对象，其中包括返回的一堆原始字节，这些字节需要在收到后，需要我们通过调用方法将其转换为相应格式的数据，比如<br>JSON ， BLOB 或者TEXT 等等</p>
+<h3 id="响应数据格式："><a href="#响应数据格式：" class="headerlink" title="响应数据格式："></a><strong>响应数据格式：</strong></h3><p>text()：将返回体处理成字符串类型</p>
+<p>json()：返回结果和JSON.parse(responseText)一样</p>
+<pre><code class="hljs js">fetch(<span class="hljs-string">&#x27;http://localhost:3000/json&#x27;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+	<span class="hljs-comment">//return data.json(); // 将获取到的数据使用json转换对象</span>
+	<span class="hljs-keyword">return</span> data.text(); <span class="hljs-comment">// 将获取到的数据转换成字符串</span>
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+	<span class="hljs-comment">// console.log(data.uname)</span>
+	<span class="hljs-comment">// console.log(typeof data)</span>
+	<span class="hljs-keyword">var</span> obj = <span class="hljs-built_in">JSON</span>.parse(data);
+	<span class="hljs-built_in">console</span>.log(obj.uname, obj.age, obj.gender)
+&#125;)</code></pre>
+
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a><strong>axios</strong></h2><h3 id="axios基本特性"><a href="#axios基本特性" class="headerlink" title="axios基本特性"></a><strong>axios基本特性</strong></h3><p>axios是一个基于Promise用于浏览器和node.js的HTTP客户端。</p>
+<ul>
+<li><p>  支持浏览器和node.js</p>
+</li>
+<li><p>  支持promise</p>
+</li>
+<li><p>  能拦截请求和响应</p>
+</li>
+<li><p>  自动转换JSON数据</p>
+</li>
+<li><p>  能转换请求和响应数据</p>
+</li>
+</ul>
+<h3 id="axios基础用法"><a href="#axios基础用法" class="headerlink" title="axios基础用法"></a><strong>axios基础用法</strong></h3><ul>
+<li><p>  get和 delete请求传递参数</p>
+</li>
+<li><p>  通过传统的url 以 ? 的形式传递参数</p>
+</li>
+<li><p>  restful 形式传递参数</p>
+</li>
+<li><p>  通过params 形式传递参数</p>
+</li>
+<li><p>  post 和 put 请求传递参数</p>
+</li>
+<li><p>  通过选项传递参数（默认传递json格式）</p>
+</li>
+<li><p>  通过 <strong>URLSearchParams</strong> 传递参数（传递urlencoded格式）</p>
+</li>
+</ul>
+<p>例：</p>
+<pre><code class="hljs js">#1.友送get请求
+axios.get(<span class="hljs-string">&#x27; http://localhost:3000/adata &#x27;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	#拿到ret是一个对象 所有的对象都存在ret的data属性里面
+	<span class="hljs-comment">// 注意data属性是固定的用法，用于获取后台的实际数据</span>
+	<span class="hljs-comment">// console.log(ret.data)</span>
+	<span class="hljs-built_in">console</span>.log(ret)
+&#125;)
+# 2. get请求传递参数
+# 2.1通过传统的ur1以?的形式传递参数
+axios.get(<span class="hljs-string">&#x27;http://localhost:3000/axios?id=123&#x27;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret.data)
+&#125;)
+# 2.2restful形式传递参数
+axios.get(<span class="hljs-string">&#x27; http: / /loca1host:3000/axios/123&#x27;</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret.data)
+&#125;)
+# 2.3通过params形式传递参数
+axios.get(<span class="hljs-string">&#x27; http://localhost: 3000/axios&#x27;</span>, &#123;
+	params: &#123;
+		id: <span class="hljs-number">789</span>
+	&#125;
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret.data)
+&#125;)
+#3axios delete请求传参 传参的形式和get请求一样
+axios.delete(<span class="hljs-string">&#x27;http://localhost:3000/axios&#x27;</span>, &#123;
+	params: &#123;
+		id: <span class="hljs-number">111</span>
+	&#125;
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret.data)
+&#125;)
+#4 axios的post请求
+#4.1通过选项传递参数
+axios.post(<span class="hljs-string">&#x27;http://localhost:3000/axios&#x27;</span>, &#123;
+	uname: <span class="hljs-string">&#x27;lisi&#x27;</span>,
+	pwd: <span class="hljs-number">123</span>
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret.data)
+&#125;)
+#4.2通过URLSearchParams传递参数
+<span class="hljs-keyword">var</span> params = <span class="hljs-keyword">new</span> uRLSearchParams();
+params.append(<span class="hljs-string">&#x27;uname&#x27;</span>, <span class="hljs-string">&#x27;zhangsan &#x27;</span> );
+params.append( <span class="hljs-string">&#x27;pwd&#x27;</span>, <span class="hljs-string">&#x27;111&#x27;</span>);
+axios.post(<span class="hljs-string">&#x27;http://1ocalhost:3000/axios&#x27;</span>, params).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret.data)
+&#125;)
+#5axios put请求传参和post请求一样
+axios.put(<span class="hljs-string">&#x27; http://localhost:3000/axios/123&#x27;</span>, &#123;
+	uname: <span class="hljs-string">&#x27;lisi&#x27;</span>,
+	pwd: <span class="hljs-number">123</span>
+	params: &#123;
+		id: <span class="hljs-number">789</span>
+	&#125;
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span><span class="hljs-number">.1</span>og(ret.data)
+&#125;
+#3 axios delete请求传参 传参的形式和get请求一样
+axios.delete(<span class="hljs-string">&#x27;http://localhost:3000/axios&#x27;</span>, &#123;
+	params: &#123;
+		id: <span class="hljs-number">111</span>
+	&#125;
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>)</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret.data)
+&#125;)</code></pre>
+
+<h3 id="axios的响应结果"><a href="#axios的响应结果" class="headerlink" title="axios的响应结果"></a><strong>axios的响应结果</strong></h3><p>响应结果的主要属性：</p>
+<ul>
+<li><p>  data：实际响应回来的数据</p>
+</li>
+<li><p>  headers：响应头信息</p>
+</li>
+<li><p>  status：响应状态码</p>
+</li>
+<li><p>  statusText：响应状态信息</p>
+</li>
+</ul>
+<h3 id="axios的全局配置"><a href="#axios的全局配置" class="headerlink" title="axios的全局配置"></a><strong>axios的全局配置</strong></h3><ul>
+<li>  配置公共的请求头</li>
+</ul>
+<p>例：axios.defaults.baseURL = ‘<a target="_blank" rel="noopener" href="https://api.example.com&/#39;">https://api.example.com&#39;</a>;</p>
+<ul>
+<li>  配置 超时时间</li>
+</ul>
+<p>例：axios.defaults.timeout = 2500;</p>
+<ul>
+<li>  配置公共的请求头</li>
+</ul>
+<p>例：axios.defaults.headers.common[‘Authorization’] = AUTH_TOKEN;</p>
+<ul>
+<li>  配置公共的 post 的 Content-Type</li>
+</ul>
+<p>例：axios.defaults.headers.post[‘Content-Type’] =<br>‘application/x-www-form-urlencoded’;</p>
+<h3 id="axios拦截器"><a href="#axios拦截器" class="headerlink" title="axios拦截器"></a><strong>axios拦截器</strong></h3><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/e223e4df10dce9e57c341f1008084767.png" srcset="/img/loading.gif"></p>
+<h4 id="请求拦截器"><a href="#请求拦截器" class="headerlink" title="请求拦截器"></a><strong>请求拦截器</strong></h4><p>作用：在请求发送前进行一些操作</p>
+<p>例如：在每个请求体里加上token，统一做了处理如果以后要改也非常容易</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 添加一个请求拦截器</span>
+axios.interceptors.request.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">config</span>)</span>&#123;
+<span class="hljs-comment">// 在请求发出之前进行一些信息设置</span>
+	<span class="hljs-keyword">return</span> config;
+&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>&#123;
+	<span class="hljs-comment">// 处理响应的错误信息</span>
+&#125;);</code></pre>
+
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/20088a1ea3d8e59f2fa154153287d4ce.png" srcset="/img/loading.gif"></p>
+<h4 id="响应拦截器"><a href="#响应拦截器" class="headerlink" title="响应拦截器"></a><strong>响应拦截器</strong></h4><p>作用：在接收到响应后进行一些操作</p>
+<p>例如：在服务器返回登录状态失效，需要重新登录的时候，跳转到登录页</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 添加一个响应拦截器</span>
+axios.interceptors.response.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>)</span>&#123;
+	<span class="hljs-comment">// 在这里对返回的数据进行处理</span>
+	<span class="hljs-keyword">return</span> res;
+&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>&#123;
+	<span class="hljs-comment">// 处理响应的错误信息</span>
+&#125;)</code></pre>
+
+<h3 id="async和await"><a href="#async和await" class="headerlink" title="async和await"></a><strong>async和await</strong></h3><ul>
+<li><p>  async作为一个关键字放在函数前面</p>
+</li>
+<li><p>  任何一个async函数都会隐式返回一个promise</p>
+</li>
+<li><p>  await关键字只能在使用async定义的函数中使用</p>
+</li>
+<li><p>  await可以得到异步结果</p>
+</li>
+<li><p>  await后面可以直接跟一个Promise实例对象</p>
+</li>
+<li><p>  <strong>async/await让异步代码看起来、表现起来更像同步代码</strong></p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">queryData</span> (<span class="hljs-params">id</span>)</span>&#123;
+	<span class="hljs-keyword">const</span> ret = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">&#x27;/data&#x27;</span>) ;
+	<span class="hljs-keyword">return</span> ret;
+queryData.then(<span class="hljs-function"><span class="hljs-params">ret</span>=&gt;</span>&#123;
+	<span class="hljs-built_in">console</span>.log(ret)
+&#125;)</code></pre>
+
+<p><strong>async/await处理多个异步请求</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">queryData</span>(<span class="hljs-params">id</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">&#x27;/asyncl&#x27;</span> );
+	<span class="hljs-keyword">const</span> ret = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">&#x27;async2?info=&#x27;</span> + info.data);
+	<span class="hljs-keyword">return</span> ret;
+&#125;
+queryData.then(<span class="hljs-function"><span class="hljs-params">ret</span>=&gt;</span>&#123;
+	<span class="hljs-built_in">console</span>.log (ret)
+&#125;)</code></pre>
+
+<h2 id="Vue-router"><a href="#Vue-router" class="headerlink" title="Vue-router"></a><strong>Vue-router</strong></h2><h3 id="路由的基本概念与原理"><a href="#路由的基本概念与原理" class="headerlink" title="路由的基本概念与原理"></a><strong>路由的基本概念与原理</strong></h3><h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a><strong>路由</strong></h4><p>路由是一个比较广义和抽象的概念，<strong>路由的本质就是对应关系</strong>。</p>
+<p>路由分为前端路由和后端路由</p>
+<p>1).<strong>后端路由</strong>是由服务器端进行实现，并完成资源的分发</p>
+<p>2).<strong>前端路由</strong>是依靠hash值(锚链接)的变化进行实现</p>
+<h4 id="后端路由"><a href="#后端路由" class="headerlink" title="后端路由"></a><strong>后端路由</strong></h4><p>概念：根据不同的用户URL请求，返回不同的内容</p>
+<p>本质：URL请求地址与服务器资源之间的对应关系</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/92172d959139e9ab85f7e4d0bf2c1d8a.png" srcset="/img/loading.gif"></p>
+<h4 id="SPA（Single-Page-Application）"><a href="#SPA（Single-Page-Application）" class="headerlink" title="SPA（Single Page Application）"></a><strong>SPA（Single Page Application）</strong></h4><ul>
+<li><p>  后端渲染（存在性能问题）</p>
+</li>
+<li><p>  Ajax前端渲染（前端渲染提高性能，但是不支持浏览器的前进后退操作）</p>
+</li>
+<li><p>  <strong>SPA单页面应用程序：</strong>整个网站只有一个页面，内容变化通过Ajax局部更新实现、同时支持浏览器地址栏的前进和后退操作</p>
+</li>
+<li><p>  SPA实现原理之一：<strong>基于URL地址的hash</strong>（hash的变化会导致浏览器记录访问历史的变化、但是hash的变化不会触发新的URL请求）</p>
+</li>
+<li><p>  在实现SPA过程中，<strong>最核心的技术点就是前端路由</strong></p>
+</li>
+</ul>
+<h4 id="前端路由"><a href="#前端路由" class="headerlink" title="前端路由"></a><strong>前端路由</strong></h4><p>概念：根据不同的用户事件，显示不同的页面内容</p>
+<p>本质：用户事件与事件处理函数之间的对应关系</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/vue/0d2c5146ed7e6baf75b18d25a9206364.png" srcset="/img/loading.gif"></p>
+<p><strong>Vue Router</strong></p>
+<p>Vue Router是vue官方的路由管理器</p>
+<p>Vue Router的特性：</p>
+<table>
+<thead>
+<tr>
+<th>支持H5历史模式或者hash模式</th>
+<th>支持嵌套路由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>支持路由参数</td>
+<td>支持编程式路由</td>
+</tr>
+<tr>
+<td>支持命名路由</td>
+<td>支持路由导航守卫</td>
+</tr>
+<tr>
+<td>支持路由过渡动画特效</td>
+<td>支持路由懒加载</td>
+</tr>
+<tr>
+<td>支持路由滚动行为</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="基本使用步骤"><a href="#基本使用步骤" class="headerlink" title="基本使用步骤"></a><strong>基本使用步骤</strong></h3><ol>
+<li> 引入相关的库文件</li>
+</ol>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!--导入vue文件，为全局window对象挂载vue构造函数--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./lib/vue_2.5.22.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-comment">&lt;!--导入vue-router文件，为全局window对象挂载VueRouter构造函数--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./lib/vue-router_3.0.2.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<ol start="2">
+<li>添加路由链接</li>
+</ol>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!-- router-link是vue中提供的标签，默认会被渲染为a标签--&gt;</span>
+<span class="hljs-comment">&lt;!-- to属性默认会被渲染为href属性--&gt;</span>
+<span class="hljs-comment">&lt;!-- to属性的值默认会被渲染为#开头的hash 地址--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/user&quot;</span>&gt;</span>User<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot; /register&quot;</span>&gt;</span>Register<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>添加路由填充位</li>
+</ol>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!--路由填充位（也叫做路由占位符)--&gt;</span>
+<span class="hljs-comment">&lt;!--将来通过路由规则匹配到的组件，将会被渲染到router-view所在的位置--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span></code></pre>
+
+<ol start="4">
+<li>定义路由组件</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> User = &#123;
+	template: <span class="hljs-string">&#x27;&lt;div&gt;User&lt;/div&gt;&#x27;</span>
+&#125;
+<span class="hljs-keyword">var</span> Register = &#123;
+	template: <span class="hljs-string">&#x27;&lt;div&gt;Register&lt;/div&gt;&#x27;</span>
+&#125;</code></pre>
+
+<ol start="5">
+<li>配置路由规则并创建路由实例</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-comment">// 创建路由实例对象</span>
+<span class="hljs-keyword">var</span> router = <span class="hljs-keyword">new</span> VueRouter(&#123;
+	<span class="hljs-comment">// routes是路由规则数组</span>
+	routes: [
+		<span class="hljs-comment">// 每个路由规则都是一个配置对象，其中至少包含path和component两个属性:</span>
+		<span class="hljs-comment">// path表示当前路由规则匹配的hash地址</span>
+		<span class="hljs-comment">// component表示当前路由规则对应要展示的组件</span>
+    &#123;<span class="hljs-attr">path</span>: <span class="hljs-string">&#x27; /user&#x27;</span>, <span class="hljs-attr">component</span>: User&#125;,	
+		&#123;<span class="hljs-attr">path</span>: <span class="hljs-string">&#x27; /register&#x27;</span>, <span class="hljs-attr">component</span>: Register&#125;
+  ]
+&#125;)</code></pre>
+
+<ol start="6">
+<li>把路由挂载到Vue根实例中</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">new</span> Vue (&#123;
+	el: <span class="hljs-string">&#x27;#app&#x27;</span>,
+	<span class="hljs-comment">// 为了能够让路由规则生效，必须把路由对象挂载到vue实例对象上</span>
+	router
+&#125;);</code></pre>
+
+<h3 id="路由重定向"><a href="#路由重定向" class="headerlink" title="路由重定向"></a><strong>路由重定向</strong></h3><p>路由重定向指的是：用户在访问地址A的时候，强制用户跳转到地址C，从而展示特定的组件页面；</p>
+<p>通过路由规则的<strong>redirect</strong>属性，指定一个新的路由地址，可以很方便地设置路由地重定向</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> router = <span class="hljs-keyword">new</span> VueRouter(&#123;
+	routes: [
+		<span class="hljs-comment">//其中，path表示需要被重定向的原地址，redirect表示将要被重定向到的新地址</span>
+		&#123;<span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;/user&#x27;</span>&#125;,
+		&#123;<span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/user &#x27;</span> ,<span class="hljs-attr">component</span>: User&#125;,
+		&#123;<span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/register &#x27;</span>,<span class="hljs-attr">component</span>: Register&#125;
+  ]
+&#125;)</code></pre>
+
+<h3 id="vue-router嵌套路由"><a href="#vue-router嵌套路由" class="headerlink" title="vue-router嵌套路由"></a><strong>vue-router嵌套路由</strong></h3><h4 id="嵌套路由用法"><a href="#嵌套路由用法" class="headerlink" title="嵌套路由用法"></a><strong>嵌套路由用法</strong></h4><ol>
+<li> <strong>父路由组建模板</strong>：父级路由链接、父组件路由填充位</li>
+</ol>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/user&quot;</span>&gt;</span>User<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/register&quot;</span>&gt;</span>Register<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-comment">&lt;!-- 控制组件的显示位置 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<ol start="2">
+<li><strong>子级路由模板</strong>：子级路由链接、子级路由填充位</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> Register = &#123;
+	template: <span class="hljs-string">`&lt;div&gt;</span>
+<span class="hljs-string">		&lt;h1&gt;Register组件&lt;/h1&gt;</span>
+<span class="hljs-string">		&lt;hr/&gt;</span>
+<span class="hljs-string">		&lt;router-link to=&quot;/register/tab1&quot; &gt;Tabl&lt;/router-link&gt;</span>
+<span class="hljs-string">		&lt;router-link to=&quot; /registertab2&quot; &gt;Tab2&lt;/router-link&gt;</span>
+<span class="hljs-string">		&lt;!--子路由填充位置—-&gt;</span>
+<span class="hljs-string">		&lt;router-view/&gt;</span>
+<span class="hljs-string">	&lt;/div&gt;`</span>
+&#125;</code></pre>
+
+<ol start="3">
+<li><strong>嵌套路由配置</strong>：父级路由通过children属性配置子级路由</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> VueRouter(&#123;
+	routes : [
+		&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/user&#x27;</span>, <span class="hljs-attr">component</span>: User &#125;,
+    &#123;
+      path: <span class="hljs-string">&#x27;/register&#x27;</span>,
+			component: Register,
+			<span class="hljs-comment">//通过children属性，为/register 添加子路由规则</span>
+			children:[
+        &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/register/tab1&#x27;</span> , <span class="hljs-attr">component</span>: Tab1 &#125;,
+				&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/register/tab2&#x27;</span> , <span class="hljs-attr">component</span>: Tab2 &#125;
+      ]
+    &#125;
+  ]
+&#125;)</code></pre>
+
+<h3 id="vue-router动态路由匹配"><a href="#vue-router动态路由匹配" class="headerlink" title="vue-router动态路由匹配"></a><strong>vue-router动态路由匹配</strong></h3><h4 id="动态匹配路由的基本用法"><a href="#动态匹配路由的基本用法" class="headerlink" title="动态匹配路由的基本用法"></a><strong>动态匹配路由的基本用法</strong></h4><p>应用场景：通过动态路由参数的模式进行路由匹配</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> router = <span class="hljs-keyword">new</span> VueRouter(&#123;
+	routes: [
+	<span class="hljs-comment">//动态路径参数以冒号开头</span>
+	&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/user/:id&#x27;</span>, <span class="hljs-attr">component</span>: User &#125;
+&#125;)
+<span class="hljs-keyword">const</span> User = &#123;
+	<span class="hljs-comment">// 路由组件中通过$route.params获取路由参数</span>
+	template: <span class="hljs-string">&#x27;&lt;div&gt;User &#123;&#123; $route.params.id &#125;&#125;&lt;/div&gt;&#x27;</span>
+&#125;</code></pre>
+
+<h4 id="路由组件传递参数"><a href="#路由组件传递参数" class="headerlink" title="路由组件传递参数"></a><strong>路由组件传递参数</strong></h4><p>$route与对应路由形成高度耦合，不够灵活，所以可以使用props将组件和路由解耦</p>
+<ol>
+<li> <strong>props的值为布尔类型</strong></li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> router =<span class="hljs-keyword">new</span> VueRouter(&#123;
+	routes: [
+		<span class="hljs-comment">//如果props 被设置为true，route.params将会被设置为组件属性</span>
+    &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/user/:id&#x27;</span>, <span class="hljs-attr">component</span>: User, <span class="hljs-attr">props</span>: <span class="hljs-literal">true</span> &#125;
+	]
+&#125;)
+
+<span class="hljs-keyword">const</span> User = &#123;
+	props: [<span class="hljs-string">&#x27;id&#x27;</span>], <span class="hljs-comment">// 使用props接收路由参数</span>
+	template: <span class="hljs-string">&#x27;&lt;div&gt;用户ID: &#123;&#123; id &#125;&#125;&lt;/div&gt;&#x27;</span> <span class="hljs-comment">// 使用路由参数</span>
+&#125;</code></pre>
+
+<ol start="2">
+<li><strong>props的值为对象类型</strong></li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> vueRouter (&#123;
+	routes: [
+		<span class="hljs-comment">//如果props 是一个对象，它会被按原样设置为组件属性</span>
+ 		&#123;
+      path: <span class="hljs-string">&#x27;/user/:id&#x27;</span>, <span class="hljs-attr">component</span>: User,
+     	props: &#123; <span class="hljs-attr">uname</span>: <span class="hljs-string">&#x27;lisi&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">12</span>&#125;
+    &#125;
+ ]
+&#125;)
+<span class="hljs-keyword">const</span> User = &#123;
+	props:[<span class="hljs-string">&#x27;uname&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>],
+	template: <span class="hljs-string">&#x27;&lt;div&gt;用户信息:&#123;&#123; uname + &#x27;</span>---<span class="hljs-string">&#x27; + age&#125; &#125;&lt;/div&gt;&#x27;</span>
+&#125;</code></pre>
+
+
+
+<ol start="3">
+<li><strong>props的值为函数类型（本质是就是返回了一个对象，里面有params上定义的值）</strong></li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> router =<span class="hljs-keyword">new</span> VueRouter ( &#123;
+	routes: [
+		<span class="hljs-comment">// 如果props是一个函数，则这个函数接收route对象为自己的形参</span>
+		&#123;
+    	path: <span class="hljs-string">&#x27;/user/:id&#x27;</span>,
+			component: User,
+			props: <span class="hljs-function"><span class="hljs-params">route</span> =&gt;</span> (&#123; <span class="hljs-attr">uname</span>: <span class="hljs-string">&#x27;zs&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">id</span>: route.params.id &#125;)
+  	&#125;
+  ]
+&#125;)
+<span class="hljs-keyword">const</span> User = &#123;
+	props:[ <span class="hljs-string">&#x27;uname &#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span> , <span class="hljs-string">&#x27;id&#x27;</span>],
+	template: <span class="hljs-string">&#x27;&lt;div&gt;用户信息:&#123; uname + &#x27;</span>---<span class="hljs-string">&#x27; + age + &#x27;</span>---<span class="hljs-string">&#x27; + id&#125; &#125;&lt;/div&gt;&#x27;</span>
+&#125;</code></pre>
+
+<h3 id="vue-router编程式导航"><a href="#vue-router编程式导航" class="headerlink" title="vue-router编程式导航"></a><strong>vue-router编程式导航</strong></h3><h4 id="页面导航的两种方式"><a href="#页面导航的两种方式" class="headerlink" title="页面导航的两种方式"></a><strong>页面导航的两种方式</strong></h4><p><strong>声明式导航：</strong>通过<strong>点击链接</strong>实现导航的方式，叫做声明式导航</p>
+<p>例如：普通网页中的&lt;a&gt;&lt;/a&gt;链接或vue中的&lt;router-link&gt;&lt;/router-link&gt;</p>
+<p><strong>编程式导航：</strong>通过<strong>调用JavaScript</strong>形式的API实现导航的方式，叫做编程式导航</p>
+<p>例如：普通网页中的location.href</p>
+<h4 id="编程式导航基本用法"><a href="#编程式导航基本用法" class="headerlink" title="编程式导航基本用法"></a><strong>编程式导航基本用法</strong></h4><p>常用的编程式导航API如下：</p>
+<ul>
+<li><p>  <strong>this.$router.push(‘hash地址’)</strong></p>
+</li>
+<li><p>  <strong>this.$router.go(n)</strong></p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> user = &#123;
+	template: <span class="hljs-string">&#x27;&lt;div&gt;&lt;button click=&quot;goRegister&quot;&gt;跳转到注册页面&lt;/button&gt;&lt;/div&gt;&#x27;</span>，
+	methods: &#123;
+		goRegister: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-comment">//用编程的方式控制路由跳转</span>
+		<span class="hljs-built_in">this</span>.$router.push ( <span class="hljs-string">&#x27;/register&#x27;</span> );
+    &#125;
+	&#125;
+&#125;</code></pre>
+
+<h4 id="编程式导航参数规则"><a href="#编程式导航参数规则" class="headerlink" title="编程式导航参数规则"></a><strong>编程式导航参数规则</strong></h4><p><strong>router.push()方法的参数规则</strong></p>
+<pre><code class="hljs js"><span class="hljs-comment">// 字符串(路径名称)</span>
+router.push (<span class="hljs-string">&#x27;/home&#x27;</span>)
+<span class="hljs-comment">// 对象</span>
+router.push(&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/home&#x27;</span> &#125;)
+<span class="hljs-comment">// 命名的路由(传递参数)</span>
+router.push(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;/user&#x27;</span>, <span class="hljs-attr">params</span>: &#123; <span class="hljs-attr">userId</span>: <span class="hljs-number">123</span> &#125;&#125;)
+<span class="hljs-comment">// 带查询参数，变成/register?uname=lisi</span>
+router.push(&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/register&#x27;</span>, <span class="hljs-attr">query</span>: &#123; <span class="hljs-attr">uname</span>: <span class="hljs-string">&#x27;lisi&#x27;</span> &#125;&#125;)</code></pre>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Note/">Note</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/13/vuex/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vuex笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/13/Perfomance%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+                        <span class="hidden-mobile">Chrome DevTools 中 Performance的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

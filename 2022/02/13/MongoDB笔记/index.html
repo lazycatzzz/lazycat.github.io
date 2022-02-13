@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Chaomao Chen">
+  <meta name="keywords" content="">
+  <title>MongoDB笔记 - 阿猫的学习日记</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐱","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Chaom</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/wallhaven-nmy7o1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MongoDB笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-13 18:03" pubdate>
+        2022年2月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MongoDB笔记</h1>
+            
+            <div class="markdown-body">
+              <h1 id="数据库概述及环境搭建"><a href="#数据库概述及环境搭建" class="headerlink" title="数据库概述及环境搭建"></a>数据库概述及环境搭建</h1><h2 id="为什么要做数据库？"><a href="#为什么要做数据库？" class="headerlink" title="为什么要做数据库？"></a>为什么要做数据库？</h2><ul>
+<li><p>  动态网站中的数据都是存储在数据库中的</p>
+</li>
+<li><p>  数据库可以用来持久存储客户端通过表单收集的用户信息</p>
+</li>
+<li><p>  数据库软件本身可以对数据进行高效的管理</p>
+</li>
+</ul>
+<h2 id="什么是数据库？"><a href="#什么是数据库？" class="headerlink" title="什么是数据库？"></a>什么是数据库？</h2><p>数据库即存储数据的仓库，可以将数据进行有序的分门别类的存储。它是独立于语言之外的软件，可以通过API去操作它。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/mongo/4a8f128b0daeb3e088336a1c15c3b800.png" srcset="/img/loading.gif"></p>
+<h2 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h2><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/mongo/294589b78616cdfb4aa210b654afd461.png" srcset="/img/loading.gif"></p>
+<h2 id="Mongoose-第三方包"><a href="#Mongoose-第三方包" class="headerlink" title="Mongoose 第三方包"></a>Mongoose 第三方包</h2><p>使用Node.js操作MongoDB数据库需要依赖Node.js第三方包mongoose</p>
+<p>安装：npm install mongoose</p>
+<h2 id="启动MongoDB"><a href="#启动MongoDB" class="headerlink" title="启动MongoDB"></a>启动MongoDB</h2><p>在命令行工具中运行<strong>net start mongoDB</strong>即可启动MongoDB，否则MongoDB将无法连接。</p>
+<h2 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h2><p>使用mongoose提供的<strong>connect</strong>方法即可连接数据库。</p>
+<pre><code class="hljs js">mongoose.connect(<span class="hljs-string">&#x27;mongodb://localhost/playground&#x27;</span>)
+	.then(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;数据库连接成功&#x27;</span>))
+	.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;数据库连接失败&#x27;</span>, err))</code></pre>
+
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>在MongoDB中<strong>不需要显式创建数据库</strong>，如果正在使用的数据库不存在，<strong>MongoDB会自动创建</strong>。</p>
+<h1 id="MongoDB增删改查操作"><a href="#MongoDB增删改查操作" class="headerlink" title="MongoDB增删改查操作"></a>MongoDB增删改查操作</h1><h2 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h2><p>创建集合分为两布，一是<strong>对集合设定规则</strong>，二是<strong>创建集合</strong>，创建</p>
+<p>mongoose.Schema构造函数的实例即可创建集合。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 设定集合规则</span>
+<span class="hljs-keyword">const</span> courseSchema = <span class="hljs-keyword">new</span> mongoose.Schema(&#123;
+	name: <span class="hljs-built_in">String</span>,
+	author: <span class="hljs-built_in">String</span>,
+	isPublished: <span class="hljs-built_in">Boolean</span>
+&#125;)
+<span class="hljs-comment">// 创建集合并应用规则</span>
+<span class="hljs-keyword">const</span> Course = mongoose.model(<span class="hljs-string">&#x27;Course&#x27;</span>, courseSchema) <span class="hljs-comment">// courses</span></code></pre>
+
+<p><strong>model返回的是一个构造函数</strong></p>
+<p>注意：</p>
+<ol>
+<li><p>创建集合中，<strong>集合名首字母必须是大写</strong>，但是在数据库中集合名首字母会变成小写并且末尾加s。</p>
+</li>
+<li><p>创建的集合必须加入数据才能在mongoDB中显示。</p>
+</li>
+</ol>
+<h2 id="创建文档"><a href="#创建文档" class="headerlink" title="创建文档"></a>创建文档</h2><p>创建文档实际上就是<strong>向集合中插入数据。</strong></p>
+<p>分两步：</p>
+<ol>
+<li><p> 创建集合实例。</p>
+</li>
+<li><p> 调用实例对象下的save方法将数据保存到数据库中。</p>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> course = <span class="hljs-keyword">new</span> Course(&#123;
+	name: <span class="hljs-string">&#x27;hello&#x27;</span>,
+	author: <span class="hljs-string">&#x27;cat&#x27;</span>,
+	tags: [<span class="hljs-string">&#x27;node&#x27;</span>, <span class="hljs-string">&#x27;mongodb&#x27;</span>],
+	isPublished: <span class="hljs-literal">true</span>
+&#125;)
+course.save()</code></pre>
+
+<p><strong>另一种方法</strong></p>
+<p>运用集合下的create方法</p>
+<p>集合构造函数.create( { 数据 }, (err, doc) =&gt; { //err：错误对象，doc：当前文档 });</p>
+<pre><code class="hljs js">Course.create(&#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;javascript&#x27;</span>, <span class="hljs-attr">author</span>: <span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-attr">isPublish</span>: <span class="hljs-literal">true</span>&#125;, <span class="hljs-function">(<span class="hljs-params">err, doc</span>) =&gt;</span> &#123;
+  <span class="hljs-comment">// 错误对象</span>
+	<span class="hljs-built_in">console</span>.log(err)
+  <span class="hljs-comment">// 当前插入的文档</span>
+	<span class="hljs-built_in">console</span>.log(doc)
+&#125;)</code></pre>
+
+<p>create中有回调函数，说明是异步操作，同时它可以用then方法，也就是说它返回一个promise对象。</p>
+<pre><code class="hljs js">Course.create(&#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;javascript&#x27;</span>, <span class="hljs-attr">author</span>: <span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-attr">isPublish</span>: <span class="hljs-literal">true</span>&#125;)
+	.then(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(doc))
+	.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err))</code></pre>
+
+<h2 id="mongoDB数据库导入数据"><a href="#mongoDB数据库导入数据" class="headerlink" title="mongoDB数据库导入数据"></a>mongoDB数据库导入数据</h2><p>mongoimport -d 数据库名称 -c 集合名称 –file 要导入的数据文件</p>
+<p>找到mongodb数据库的安装目录，将安装目录下的bin目录放置在环境变量中。这也才可以使用mongoimport</p>
+<h2 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h2><ol>
+<li><p> <strong>集合名.find().then(result=&gt;{}) 返回数组，里面是文档的集合</strong></p>
+</li>
+<li><p> <strong>findOne（）方法返回当前集合的第一条文档，是一个对象。</strong></p>
+</li>
+</ol>
+<h3 id="查询条件"><a href="#查询条件" class="headerlink" title="查询条件"></a>查询条件</h3><ol>
+<li> 括号中加<strong>对象</strong>来做查找条件</li>
+</ol>
+<p>例（{_id : ‘5c09f1e5aeb04b22f8460965’}）</p>
+<ol start="2">
+<li>运用<strong>$gt(大于) $lt（小于）</strong>来做匹配查找，判断字段值是否在此区间</li>
+</ol>
+<p>例 ({age: {$gt: 20, $lt: 50} }).then()</p>
+<ol start="3">
+<li>运用<strong>$in(包含)</strong> 来做匹配查找，找出文档的数组中是否包含的某一项</li>
+</ol>
+<p>例 （{hobbies：{$in: [‘敲代码’] } }.then()</p>
+<ol start="4">
+<li>选择查询字段 <strong>运用select()方法</strong>，来显示查询字段数据 <strong>-字段名</strong>表示不查询</li>
+</ol>
+<p>例：find().select(‘name email’)</p>
+<ol start="5">
+<li>运用sort（）方法，对查收文档进行排序, <strong>-字段名</strong>表示降序</li>
+</ol>
+<p>例：find().sort(‘age’).then()</p>
+<ol start="6">
+<li>运用skip跳过多少条数据，limit限制查询数量</li>
+</ol>
+<p>例：find().skip(2).limit(2).then() // 跳过前两条数据，只查找两条数据</p>
+<h2 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h2><ol>
+<li> 删除单个 <strong>findOneAndDelete</strong></li>
+</ol>
+<p>例：集合名.findOneAndDelete({}).then() //返回删除文档</p>
+<ol start="2">
+<li>删除多个 <strong>delectMany</strong></li>
+</ol>
+<p>例：集合名.delectMany({}).then() //返回对象{ n: 2, ok: 1};<br>n代表受影响数量，ok代表成功。delectcount表示删除数</p>
+<h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2><ol>
+<li> 更新一条 <strong>updateOne</strong></li>
+</ol>
+<p>例：集合名.updateOne( {条件}, {更新数据} ).then() //返回对象n和ok等</p>
+<ol start="2">
+<li>更新多条 <strong>updateMany</strong></li>
+</ol>
+<p>例：集合名. updateMany( {条件}, {更新数据} ).then() //返回对象n 和ok等</p>
+<h2 id="mongoose验证"><a href="#mongoose验证" class="headerlink" title="mongoose验证"></a>mongoose验证</h2><p>在创建集合规则时，可以设置当前字段的验证规则，验证失败就则输入插入失败。</p>
+<ul>
+<li>  require: true 设置为true是<strong>必传字段</strong>，不传会报错 <strong>可自定义错误信息</strong></li>
+</ul>
+<p>例：require: [ true, ‘请输入数据’ ]</p>
+<ul>
+<li><p>  type: 类型</p>
+</li>
+<li><p>  minlength: <strong>字符串最小长度 可自定义错误信息</strong></p>
+</li>
+<li><p>  maxlength：<strong>字符串最大长度 可自定义错误信息</strong></p>
+</li>
+<li><p>  trim：true 去除头尾空格</p>
+</li>
+<li><p>  min：<strong>数值的最小值 可自定义错误信息</strong></p>
+</li>
+<li><p>  max：<strong>数值的最大值 可自定义错误信息</strong></p>
+</li>
+<li><p>  default：<strong>默认值</strong>，不传入值将用默认值</p>
+</li>
+<li><p>enum：<strong>枚举</strong> 列举出当前字段可以拥有的值，没有就报错 可自定义错误信息</p>
+<p>例：enum：[—-]</p>
+<p>或</p>
+<p> enum：{</p>
+<p>​    values: [—-],</p>
+<p>​    message: ‘自定义错误信息’</p>
+<p>}</p>
+</li>
+<li><p>  validate：自定义验证器</p>
+</li>
+</ul>
+<p>例：</p>
+<p>validate：{</p>
+<p>​            validator: v=&gt; {</p>
+<p>​                    //返回布尔值 v是要验证的值</p>
+<p>​                    return</p>
+<p>​                },</p>
+<p>​            //自定义错误信息message</p>
+<p>​            message: ‘传入的值不符合验证规则’</p>
+<p>}</p>
+<h2 id="集合关联"><a href="#集合关联" class="headerlink" title="集合关联"></a>集合关联</h2><p>通常<strong>不同集合的数据之间是有关系的</strong>，例如文章信息和用户信息存储在不同集合中，但文章是某个用户发表的，要查询文章的所有信息包括发表用户，就需要用到集合关联。</p>
+<p>调用某文档id：mongoose.Schema.Types.ObjectId, ref: ‘User’(对应的数据库)</p>
+<p><strong>populate方法：查询具体信息</strong></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Note/">Note</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MongoDB/">MongoDB</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/13/Node%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Node笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/13/JS%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">Javascript笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

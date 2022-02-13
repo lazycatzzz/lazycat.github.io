@@ -1,0 +1,933 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Chaomao Chen">
+  <meta name="keywords" content="">
+  <title>前端工程化笔记 - 阿猫的学习日记</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐱","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Chaom</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/wallhaven-nmy7o1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端工程化笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-13 18:03" pubdate>
+        2022年2月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      41
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端工程化笔记</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前端工程化"><a href="#前端工程化" class="headerlink" title="前端工程化"></a>前端工程化</h1><h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h3 id="模块化概述"><a href="#模块化概述" class="headerlink" title="模块化概述"></a>模块化概述</h3><p><strong>传统开发模式的主要问题：</strong>1. 命名冲突 2. 文件依赖</p>
+<p><strong>通过模块化解决上述问题</strong></p>
+<ul>
+<li><p>  <strong>模块化</strong>就是把单独的一个功能封装到一个模块（文件）中，模块之间相互隔离，但是可以通过特定的接口公开内部成员，也可以依赖别的模块</p>
+</li>
+<li><p>  模块化开发的好处：方便代码的重用，从而提升开发效率，并且方便后期的维护</p>
+</li>
+</ul>
+<h3 id="浏览器端的模块化（了解）"><a href="#浏览器端的模块化（了解）" class="headerlink" title="浏览器端的模块化（了解）"></a>浏览器端的模块化（了解）</h3><p>1).AMD(Asynchronous Module Definition,异步模块定义)</p>
+<p>代表产品为：Require.js</p>
+<p>2).CMD(Common Module Definition,通用模块定义)</p>
+<p>代表产品为：Sea.js</p>
+<h3 id="服务器端模块化规范"><a href="#服务器端模块化规范" class="headerlink" title="服务器端模块化规范"></a>服务器端模块化规范</h3><p><strong>1. CommonJS</strong></p>
+<ol>
+<li><p> 模块分为<strong>单文件模块</strong>与<strong>包</strong></p>
+</li>
+<li><p> 模块成员导出：<strong>module.exports</strong> 和 <strong>exports</strong></p>
+</li>
+<li><p> 模块成员导入：<strong>require（’模块标识符’）</strong></p>
+</li>
+</ol>
+<p><strong>2. ES6模块化</strong></p>
+<ol>
+<li><p> 每一个js文件都是独立的模块</p>
+</li>
+<li><p> <strong>导入模块成员</strong>使用<strong>import</strong>关键字</p>
+</li>
+<li><p> <strong>暴露模块成员</strong>使用<strong>export</strong>关键字</p>
+</li>
+</ol>
+<p>小结：推荐使用ES6模块化，因为AMD，CMD局限使用与浏览器端，而CommonJS在服务器端使用。<strong>ES6模块化是浏览器端和服务器端通用的规范。</strong></p>
+<p>使用</p>
+<p>Node.js中通过<strong>babel（语法转换工具）</strong>体验ES6模块化</p>
+<ol>
+<li><p>npm install –save-dev @babel/core @babel/cli @babel/preset-env<br> @babel/node</p>
+</li>
+<li><p> npm install –save @babel/polyfill</p>
+</li>
+<li><p> 项目根目录创建babel.config.js</p>
+</li>
+<li><p> babel.config.js文件内容如下</p>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> presets = [
+	[<span class="hljs-string">&quot;@babel/env&quot;</span>, &#123;
+		targets: &#123;
+			edge: <span class="hljs-string">&quot;17&quot;</span>,
+			firefox: <span class="hljs-string">&quot;60&quot;</span>,
+			chrome: <span class="hljs-string">&quot;67&quot;</span>,
+			safari: <span class="hljs-string">&quot;11.1&quot;</span>
+		&#125;
+	&#125;]
+]
+<span class="hljs-built_in">module</span>.exports = &#123; presets &#125;</code></pre>
+
+<ol>
+<li><p> 在项目目录中创建index.js文件作为入口文件，在index.js中输入需要执行的js代码</p>
+</li>
+<li><p> 通过npx babel-node ./index.js执行代码</p>
+</li>
+</ol>
+<h3 id="ES6模块化的基本用法"><a href="#ES6模块化的基本用法" class="headerlink" title="ES6模块化的基本用法"></a>ES6模块化的基本用法</h3><ol>
+<li> <strong>默认导入与导出</strong></li>
+</ol>
+<ul>
+<li><p>  默认导出语法<strong>export default</strong> 默认导出的成员</p>
+</li>
+<li><p>  默认导入语法 <strong>import</strong> 接收名称<strong>from</strong> ‘模块标识符’</p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">// 当前文件模块为m1.js</span>
+<span class="hljs-comment">// 定义私有成员a和c</span>
+<span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span>
+<span class="hljs-keyword">let</span> c = <span class="hljs-number">20</span>
+<span class="hljs-comment">// 外界访问不到变量d， 因为它没有被暴露出去</span>
+<span class="hljs-keyword">let</span> d = <span class="hljs-number">30</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">show</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+<span class="hljs-comment">// 将本模块中的私有成员暴露出去，供其他模块使用</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+	a,
+	c,
+	show
+&#125;
+==================
+<span class="hljs-comment">// 导入模块成员</span>
+<span class="hljs-keyword">import</span> m1 <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./m1.js&#x27;</span>
+<span class="hljs-built_in">console</span>.log(m1)
+<span class="hljs-comment">// 打印输出的结果为：</span>
+<span class="hljs-comment">// &#123; a: 10, c: 20, show: [Function: show] &#125;</span></code></pre>
+
+<p><strong>注意：</strong>每个模块中，只允许使用<strong>唯一的一次</strong> export default，否则会报错！</p>
+<p>导入空的模块不会报错</p>
+<ol start="2">
+<li><strong>按需导入与按需导出</strong></li>
+</ol>
+<p>按需导出语法 export let s1 = 10</p>
+<p>按需导入语法 import {s1} from ‘模块标识符’</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/9787491b049be2e68d06dd673a68f9e9.png" srcset="/img/loading.gif"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/c6a2aa45c45593ec077deb79c6fc1d4f.png" srcset="/img/loading.gif"></p>
+<p>注意：每个模块中，可以使用<strong>多次</strong>按需导出</p>
+<ol start="3">
+<li><strong>直接导入并执行模块代码</strong></li>
+</ol>
+<p>应用场景：<strong>只想单纯执行某个模块中的代码，并不需要得到模块中向外暴露的成员。</strong></p>
+<p>import “./test.js”</p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><strong>webpack</strong>是一个流行的<strong>前端项目构建工具（打包工具）</strong>，可以解决当前web开发中所面临的困境。</p>
+<p>webpack提供了<strong>友好的模块化支持</strong>，以及<strong>代码压缩混淆</strong>、<strong>处理js兼容问题</strong>、<strong>性能优化</strong>等强大的功能，从而让程序员把工作的重心放在具体的功能实现上，提高了开发的效率和项目的可维护性。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/dbad678564244ec4b2832eee8bdf1240.png" srcset="/img/loading.gif"></p>
+<h3 id="webpack的基本使用"><a href="#webpack的基本使用" class="headerlink" title="webpack的基本使用"></a>webpack的基本使用</h3><h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><ol>
+<li><p> 打开项目目录终端，输入命令:npm install <strong>webpack webpack-cli</strong> -D 安装</p>
+</li>
+<li><p> 然后在项目根目录中，创建一个 <strong>webpack.config.js</strong> 的配置文件用来配置webpack</p>
+</li>
+<li><p> 在 webpack.config.js 文件中编写代码进行webpack配置，如下：</p>
+</li>
+</ol>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/bd7c5006c7ed18a4c17fb029bf28ec47.png" srcset="/img/loading.gif"></p>
+<p>补充：<strong>mode设置的是项目的编译模式</strong>。</p>
+<p>如果设置为<strong>development</strong>则表示项目处于开发阶段，不会进行压缩和混淆，打包速度会快一些</p>
+<p>如果设置为<strong>production</strong>则表示项目处于上线发布阶段，会进行压缩和混淆，打包速度会慢一些</p>
+<ol start="4">
+<li>修改项目中的package.json文件添加运行脚本dev，如下：</li>
+</ol>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/698b0630a64e50b3443e4b84b5b1e43e.png" srcset="/img/loading.gif"></p>
+<ol start="5">
+<li><p>运行终端命令：<strong>npm run dev</strong>，将会启动webpack进行项目打包</p>
+</li>
+<li><p>等待webpack打包完毕之后，找到默认的dist路径中生成的main.js文件，将其引入到html页面中。</p>
+</li>
+</ol>
+<h4 id="配置打包入口与出口"><a href="#配置打包入口与出口" class="headerlink" title="配置打包入口与出口"></a>配置打包入口与出口</h4><p>webpack的4.x版本中默认约定：</p>
+<ul>
+<li><p>  打包的<strong>入口文件</strong>为src -&gt; index.js</p>
+</li>
+<li><p>  打包的<strong>输出文件</strong>为dist -&gt; main.js</p>
+</li>
+</ul>
+<p>如果要修改打包的入口与出口，可以在webpack.config.js中新增如下配置信息：</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/0849d34474bf0dfbb0b836d0d449efcc.png" srcset="/img/loading.gif"></p>
+<h4 id="配置webpack的自动打包功能"><a href="#配置webpack的自动打包功能" class="headerlink" title="配置webpack的自动打包功能"></a>配置webpack的自动打包功能</h4><p>默认情况下，我们更改入口js文件的代码，需要重新运行命令打包webpack，才能生成出口的js文件，那么每次都要重新执行命令打包，这是一个非常繁琐的事情，那么，自动打包可以解决这样繁琐的操作。</p>
+<p><strong>实现自动打包功能的步骤如下：</strong></p>
+<ol>
+<li> 安装自动打包功能的包:webpack-dev-server</li>
+</ol>
+<p><strong>npm install webpack-dev-server -D</strong></p>
+<ol start="2">
+<li>修改package.json中的dev指令如下：</li>
+</ol>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/5c5f2c2f8bf195e23e6a7da588d59728.png" srcset="/img/loading.gif"></p>
+<ol start="3">
+<li><p>将引入的js文件路径更改为：&lt;script src=”/bundle.js”&gt;&lt;/script&gt;</p>
+</li>
+<li><p>运行npm run dev，进行打包</p>
+</li>
+<li><p>打开网址查看效果：<a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
+</li>
+</ol>
+<p><strong>注意：</strong>webpack-dev-server自动打包的输出文件，默认放到了服务器的根目录中.</p>
+<p>补充：设置自定义服务器</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/f245c67f13cb3fdf4fd1fbd2ccf64fe8.png" srcset="/img/loading.gif"></p>
+<p><strong>配置html-webpack-plugin生成预览页面</strong></p>
+<p>因为当我们访问默认的<br><a target="_blank" rel="noopener" href="http://localhost:8080/%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E7%9C%8B%E5%88%B0%E7%9A%84%E6%98%AF%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E6%83%B3%E8%A6%81%E6%9F%A5%E7%9C%8B%E6%88%91%E4%BB%AC%E7%9A%84%E9%A1%B5%E9%9D%A2%E8%BF%98%E9%9C%80%E8%A6%81%E7%82%B9%E5%87%BB%E6%96%87%E4%BB%B6%E5%A4%B9%E7%82%B9%E5%87%BB%E6%96%87%E4%BB%B6%E6%89%8D%E8%83%BD%E6%9F%A5%E7%9C%8B%EF%BC%8C%E9%82%A3%E4%B9%88%E6%88%91%E4%BB%AC%E5%B8%8C%E6%9C%9B%E9%BB%98%E8%AE%A4%E5%B0%B1%E8%83%BD%E7%9C%8B%E5%88%B0%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E7%9C%8B%E5%88%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E6%88%96%E8%80%85%E7%9B%AE%E5%BD%95%E3%80%82">http://localhost:8080/的时候，看到的是一些文件和文件夹，想要查看我们的页面还需要点击文件夹点击文件才能查看，那么我们希望默认就能看到一个页面，而不是看到文件夹或者目录。</a></p>
+<ol>
+<li> 安装默认预览功能的包:html-webpack-plugin</li>
+</ol>
+<p><strong>npm install html-webpack-plugin -D</strong></p>
+<ol start="2">
+<li>修改webpack.config.js文件，如下：</li>
+</ol>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/1bbec5f75cf5427f66037b2670925be0.png" srcset="/img/loading.gif"></p>
+<ol start="3">
+<li>继续修改webpack.config.js文件，添加plugins信息：</li>
+</ol>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/c773c3c2916d862aced362da25bc638c.png" srcset="/img/loading.gif"></p>
+<h2 id="webpack中的加载器"><a href="#webpack中的加载器" class="headerlink" title="webpack中的加载器"></a>webpack中的加载器</h2><h3 id="通过loader打包非JS模块"><a href="#通过loader打包非JS模块" class="headerlink" title="通过loader打包非JS模块"></a>通过loader打包非JS模块</h3><p>默认情况下，webpack只能打包js文件，如果想要打包非js文件，<strong>需要调用loader加载器才能打包</strong></p>
+<p>loader加载器可以协助webpack打包处理特定的文件模块，比如：</p>
+<ol>
+<li><p> less-loader 可以打包处理 .less相关的文件</p>
+</li>
+<li><p> sass-loader 可以打包处理 .sass相关的文件</p>
+</li>
+<li><p> url-loader:打包处理css中与url路径有关的文件</p>
+</li>
+<li><p> babel-loader:处理高级js语法的加载器</p>
+</li>
+<li><p> postcss-loader</p>
+</li>
+<li><p> css-loader,style-loader 处理css文件</p>
+</li>
+</ol>
+<h3 id="loader的调用过程"><a href="#loader的调用过程" class="headerlink" title="loader的调用过程"></a>loader的调用过程</h3><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/a275d5731b8b8fabd6467931c46475e0.png" srcset="/img/loading.gif"></p>
+<h3 id="webpack中加载器的基本使用"><a href="#webpack中加载器的基本使用" class="headerlink" title="webpack中加载器的基本使用"></a>webpack中加载器的基本使用</h3><ol>
+<li><p><strong>打包处理css文件</strong></p>
+<ul>
+<li><p>运行<strong>npm i style-loader css-loader -D</strong>命令，安装处理css文件的loader</p>
+</li>
+<li><p>在webpack.config.js的<strong>module -&gt; rules</strong> 数组中，添加loader规则如下：</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-comment">//所有第三方文件模块的匹配规则</span>
+<span class="hljs-built_in">module</span>: &#123;
+	rules: [
+		&#123; <span class="hljs-attr">test</span>: <span class="hljs-regexp">/.css$/</span>, use: [ <span class="hljs-string">&#x27; style-loader&#x27;</span>, <span class="hljs-string">&#x27;css-loader&#x27;</span> ] &#125;
+	]
+&#125;</code></pre>
+
+<p>其中，<strong>test</strong>表示匹配的文件类型，<strong>use</strong>表示对应要调用的loader</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li><p>  use数组中指定的loader顺序是固定的</p>
+</li>
+<li><p>  多个loader的调用顺序是：从后往前调用</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>打包处理less文件</strong></li>
+</ol>
+<ul>
+<li><p>运行<strong>npm i less-loader less -D</strong> 命令</p>
+</li>
+<li><p>在webpack.config.js的module-&gt;rules 数组中，添加loader规则如下：</p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">//所有第三方文件模块的匹配规则</span>
+<span class="hljs-built_in">module</span>: &#123;
+	rules: [
+		&#123; <span class="hljs-attr">test</span>:<span class="hljs-regexp">/.less$/</span>,use: [<span class="hljs-string">&#x27;style-loader&#x27;</span>,<span class="hljs-string">&#x27;css-loader&#x27;</span>， <span class="hljs-string">&#x27;less-loader&#x27;</span> ]&#125;
+	]
+&#125;</code></pre>
+
+<ol start="3">
+<li><strong>打包处理sc ss文件</strong></li>
+</ol>
+<ul>
+<li><p>运行<strong>npm i sass-loader node-sass -D</strong>命令</p>
+</li>
+<li><p>在webpack.config.js的<strong>module</strong>-&gt;<strong>rules</strong>数组中，添加loader规则如下：</p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">//所有第三方文件模块的匹配规则</span>
+<span class="hljs-built_in">module</span>: &#123;
+	rules: [
+		&#123; 
+			test: <span class="hljs-regexp">/\.scss$/</span>,
+			use: [<span class="hljs-string">&#x27;style-loader&#x27;</span>,<span class="hljs-string">&#x27;css-loader&#x27;</span>, <span class="hljs-string">&#x27;sass-loader&#x27;</span>]
+		&#125;
+	]
+&#125;</code></pre>
+
+<ol start="4">
+<li><strong>配置postCSS自动添加css的兼容前缀</strong></li>
+</ol>
+<ul>
+<li><p>运行<strong>npm i postcss-loader autoprefixer -D</strong> 命令</p>
+</li>
+<li><p>在项目根目录中创建postcss的配置文件postcss.config.js，并初始化如下配置：</p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> autoprefixer = <span class="hljs-built_in">require</span> ( <span class="hljs-string">&#x27;autoprefixer&#x27;</span>) <span class="hljs-comment">//导入自动添加前缀的插件</span>
+<span class="hljs-built_in">module</span>.exports = &#123;
+	plugins: [ autoprefixer ] <span class="hljs-comment">//挂载插件</span>
+&#125;</code></pre>
+
+<ul>
+<li>在webpack.config.js的<strong>module-&gt;rules</strong>数组中，修改css的loader规则如下：</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-built_in">module</span>: &#123;
+	rules: [
+		&#123; 
+			test: <span class="hljs-regexp">/\.css$/</span>,
+			use: [<span class="hljs-string">&#x27;style-loader&#x27;</span>, <span class="hljs-string">&#x27;css-loader&#x27;</span>, <span class="hljs-string">&#x27;postcss-loader&#x27;</span>]
+		&#125;
+	]
+&#125;</code></pre>
+
+<ol start="5">
+<li><strong>打包样式表中的图片和字体文件</strong><ul>
+<li>运行<strong>npm i url-loader file-loader -D</strong>命令</li>
+<li>在webpack.config.js的<strong>module-&gt;rules</strong>数组中，添加loader规则如下：</li>
+</ul>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-built_in">module</span>: &#123;
+	rules: [
+		&#123;
+			test: <span class="hljs-regexp">/\.jpg|png|gif|bmp|ttf|eot|svg|woff|woff2$/</span>,
+			use: <span class="hljs-string">&quot;url-loader?limit=16940&quot;</span>
+		&#125;
+	]
+&#125;</code></pre>
+
+<p>其中?之后的是loader的<strong>参数项</strong></p>
+<p>limit用来指定图片的大小，单位是字节（byte），只有小于limit大小的图片，才会被转为base64图片</p>
+<ol start="6">
+<li><strong>打包处理js文件中的高级语法</strong></li>
+</ol>
+<ul>
+<li>安装babel转换器</li>
+</ul>
+<p>npm install babel-loader @babel/core @babel/runtime -D</p>
+<ul>
+<li>安装babel语法插件包</li>
+</ul>
+<p>npm install @babel/preset-env @babel/plugin-transform-runtime<br>@babel/plugin-proposal-class-properties -D</p>
+<ul>
+<li>在项目根目录创建并配置babel.config.js文件</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;
+	presets: [ <span class="hljs-string">&#x27;@babel/preset-env&#x27;</span> ],
+	plugins: [ <span class="hljs-string">&#x27; babel/plugin-transform-runtime&#x27;</span>, <span class="hljs-string">&#x27;@babel/plugin-proposal-</span>
+<span class="hljs-string">class-properties&#x27;</span>]
+&#125;</code></pre>
+
+<ul>
+<li>在webpack.config.js的module-&gt;rules数组中，添加loader规则如下：</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">// exclude为排除项，表示babel-loader不需要处理node_modules中的js 文件</span>
+&#123; <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>, use: <span class="hljs-string">&#x27;babel-loader&#x27;</span>, <span class="hljs-attr">exclude</span>: /node_modulesl &#125;</code></pre>
+
+<h2 id="Vue单文件组件"><a href="#Vue单文件组件" class="headerlink" title="Vue单文件组件"></a>Vue单文件组件</h2><h3 id="传统组件的问题和解决方案"><a href="#传统组件的问题和解决方案" class="headerlink" title="传统组件的问题和解决方案"></a>传统组件的问题和解决方案</h3><ul>
+<li>  <strong>传统Vue组件的缺陷：</strong></li>
+</ul>
+<ol>
+<li><p> 全局定义的组件不能重名</p>
+</li>
+<li><p> 字符串模板缺乏语法高亮</p>
+</li>
+<li><p> 不支持css(当html和js组件化时，css没有参与其中)</p>
+</li>
+<li><p> 没有构建步骤限制，只能使用H5和ES5，不能使用预处理器（babel）</p>
+</li>
+</ol>
+<ul>
+<li>  <strong>解决方案：</strong></li>
+</ul>
+<p>使用Vue单文件组件，每个单文件组件的后缀名都是.vue</p>
+<h3 id="Vue单文件组件的基本用法"><a href="#Vue单文件组件的基本用法" class="headerlink" title="Vue单文件组件的基本用法"></a>Vue单文件组件的基本用法</h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+	这里用于定义vue组件的模板内容
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript"> <span class="hljs-comment">// 这里用于定义vue组件的业务逻辑</span></span>
+<span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="javascript">	data:  &#123; <span class="hljs-keyword">return</span> &#123;&#125; &#125;,<span class="hljs-comment">//私有数据</span></span>
+<span class="javascript">	methods: &#123;&#125; <span class="hljs-comment">//处理函数</span></span>
+<span class="javascript">	<span class="hljs-comment">// ...其它业务逻辑</span></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span>
+<span class="css"><span class="hljs-comment">/*这里用于定义组件的样式*/</span></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre>
+
+<h3 id="单文件组件的组成结构"><a href="#单文件组件的组成结构" class="headerlink" title="单文件组件的组成结构"></a>单文件组件的组成结构</h3><ul>
+<li><p>  <strong>template</strong> 组件的模板区域</p>
+</li>
+<li><p>  <strong>script</strong> 业务逻辑区域</p>
+</li>
+<li><p>  <strong>style</strong> 样式区域（scoped防止样式冲突）</p>
+</li>
+</ul>
+<h3 id="webpack中配置vue组件的加载器"><a href="#webpack中配置vue组件的加载器" class="headerlink" title="webpack中配置vue组件的加载器"></a>webpack中配置vue组件的加载器</h3><ol>
+<li><p> 运行<strong>npm i vue-loader vue-template-compiler -D</strong>命令</p>
+</li>
+<li><p> 在webpack.config.js配置文件中，添加vue-loader的配置项如下：</p>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> VueLoaderPlugin = <span class="hljs-built_in">require</span> ( <span class="hljs-string">&#x27;vue-loader/lib/plugin&#x27;</span>)
+<span class="hljs-built_in">module</span>.exports = &#123;
+	<span class="hljs-built_in">module</span>: &#123;
+		rules: [
+		<span class="hljs-comment">// ...其它规则</span>
+		&#123; <span class="hljs-attr">test</span>: l.vue$l , <span class="hljs-attr">loader</span>: <span class="hljs-string">&#x27;vue-loader&#x27;</span>&#125;
+	&#125;,
+plugins: [
+	<span class="hljs-comment">// ...其它插件</span>
+	<span class="hljs-keyword">new</span> vueLoaderPlugin() <span class="hljs-comment">// 请确保引入这个插件!</span>
+  ]
+&#125;</code></pre>
+
+
+
+<h3 id="在webpack项目中使用vue"><a href="#在webpack项目中使用vue" class="headerlink" title="在webpack项目中使用vue"></a><strong>在webpack项目中使用vue</strong></h3><ol>
+<li><p> 运行npm i vue -S 安装vue</p>
+</li>
+<li><p> 在src-&gt;index.js入口文件中，通过<strong>import Vue from ‘vue’</strong> 来导入vue构造函数</p>
+</li>
+<li><p> 创建vue的实例对象，并指定要控制的el区域</p>
+</li>
+<li><p> 通过render函数渲染App根组件</p>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-comment">// 1．导入vue 构造函数</span>
+<span class="hljs-keyword">import</span> vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-comment">// 2．导入App根组件</span>
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/App.vue&#x27;</span>
+<span class="hljs-keyword">const</span> vm = <span class="hljs-keyword">new</span> vue (&#123;
+	<span class="hljs-comment">// 3．指定vm实例要控制的页面区域</span>
+	el: <span class="hljs-string">&#x27;#app&#x27;</span>,
+	<span class="hljs-comment">// 4．通过render函数，把指定的组件渲染到el区域中</span>
+	render: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h (App)
+&#125;)</code></pre>
+
+<h3 id="webpack打包发布"><a href="#webpack打包发布" class="headerlink" title="webpack打包发布"></a><strong>webpack打包发布</strong></h3><p>上线之前需要通过webpack将应用进行整体打包，可以通过package.json文件配置打包命令：（在项目打包之前，可以将dist目录删除，生成全新的dist目录）</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 在package.json文件中配置webpack打包命令</span>
+<span class="hljs-comment">// 该命令默认加载项目根目录中的webpack.config.js配置文件</span>
+<span class="hljs-string">&quot;scripts&quot;</span> : &#123;
+	<span class="hljs-comment">// 用于打包的命令</span>
+	<span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;webpack -p&quot;</span>,
+	<span class="hljs-comment">// 用于开发调试的命令</span>
+	<span class="hljs-string">&quot;dev&quot;</span>: <span class="hljs-string">&quot;webpack-dev-server --open --host 127.0.0.1 --port 3000&quot;</span>,
+&#125;</code></pre>
+
+<h2 id="Vue脚手架"><a href="#Vue脚手架" class="headerlink" title="Vue脚手架"></a><strong>Vue脚手架</strong></h2><h3 id="Vue脚手架的基本用法"><a href="#Vue脚手架的基本用法" class="headerlink" title="Vue脚手架的基本用法"></a><strong>Vue脚手架的基本用法</strong></h3><p>Vue脚手架可以<strong>快速生成Vue项目基础的架构</strong>。</p>
+<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a><strong>使用步骤</strong></h3><ol>
+<li><p> 安装2.x版本的Vue脚手架：</p>
+</li>
+<li><p> <strong>npm install -g @vue/cli</strong></p>
+</li>
+<li><p> <strong>基于2.x版本的脚手架创建vue项目</strong></p>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-comment">// 1．基于交互式命令行的方式，创建新版vue项目</span>
+vue create my-project
+<span class="hljs-comment">// 2．基于图形化界面的方式，创建新版vue项目</span>
+vue ui
+<span class="hljs-comment">// 3．基于2.x的旧模板，创建旧版vue项目</span>
+npm install -g @vue/cli-init
+vue init webpack my-project</code></pre>
+
+<h3 id="Vue脚手架生成项目的结构分析"><a href="#Vue脚手架生成项目的结构分析" class="headerlink" title="Vue脚手架生成项目的结构分析"></a><strong>Vue脚手架生成项目的结构分析</strong></h3><p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/webpack/9472017747775edca8c69d165d4f2b60.png" srcset="/img/loading.gif"></p>
+<h3 id="Vue脚手架自定义配置"><a href="#Vue脚手架自定义配置" class="headerlink" title="Vue脚手架自定义配置"></a><strong>Vue脚手架自定义配置</strong></h3><ol>
+<li> <strong>通过package.json配置项目（不推荐使用）</strong></li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-comment">// 必须是符合规范的json语法</span>
+<span class="hljs-string">&quot;vue&quot;</span>: &#123;
+	<span class="hljs-string">&quot;devserver&quot;</span> : &#123;
+	<span class="hljs-string">&quot;port&quot;</span>: <span class="hljs-string">&quot;8888&quot;</span>,
+	<span class="hljs-string">&quot;open&quot;</span> : <span class="hljs-literal">true</span>
+&#125;</code></pre>
+
+<p>post：端口号 open：打包成功后自动打开浏览器</p>
+<ol>
+<li><p> <strong>通过单独的配置文件配置项目</strong></p>
+</li>
+<li><p> 在项目的根目录创建文件<strong>vue.config.js</strong></p>
+</li>
+<li><p> 在该文件中进行相关配置，从而覆盖默认配置</p>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-comment">// vue.config.js</span>
+<span class="hljs-built_in">module</span>.exports = &#123;
+	devserver: &#123;
+		port: <span class="hljs-number">8888</span>
+  &#125;
+&#125;</code></pre>
+
+<h2 id="Element-UI"><a href="#Element-UI" class="headerlink" title="Element-UI"></a><strong>Element-UI</strong></h2><p><strong>Element-UI</strong>:一套基于2.0的<strong>桌面端组件库</strong></p>
+<ol>
+<li><p><strong>基于命令行方式手动安装</strong></p>
+<ul>
+<li><p>安装依赖包 <strong>npm i element-ui -S</strong></p>
+</li>
+<li><p>导入Element-UI相关资源</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code class="hljs js"><span class="hljs-comment">// 导入组件库</span>
+<span class="hljs-keyword">import</span> ElementuI <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui&#x27;</span>;
+<span class="hljs-comment">// 导入组件相关样式</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;
+<span class="hljs-comment">// 配置Vue插件</span>
+Vue.use(ElementUI);</code></pre>
+
+<p><strong>2. 基于图形化界面自动安装</strong></p>
+<ul>
+<li><p>运行<strong>vue ui</strong>命令，打开图形化界面</p>
+</li>
+<li><p>通过<strong>Vue项目管理器</strong>，进入具体的项目配置面板</p>
+</li>
+<li><p>点击<strong>插件-》添加插件</strong>，进入插件查询面板</p>
+</li>
+<li><p>搜索<strong>vue-cli-plugin-element</strong>并安装</p>
+</li>
+<li><p>配置插件，实现按需导入，从而减少打包后项目的体积</p>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Note/">Note</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/">前端工程化</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/13/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%82%AC%E5%81%9C%E6%A0%B7%E5%BC%8F%E7%A6%81%E7%94%A8%E2%80%94%E2%80%94any-hover%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">移动端悬停样式禁用——any-hover的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/13/vue%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E2%80%94%E2%80%94%E5%93%8D%E5%BA%94%E5%BC%8F/">
+                        <span class="hidden-mobile">Vue—理解响应式的初步尝试</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

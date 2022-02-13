@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Chaomao Chen">
+  <meta name="keywords" content="">
+  <title>JavaScript内存管理（二）——垃圾回收及内存泄漏 - 阿猫的学习日记</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐱","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Chaom</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/wallhaven-nmy7o1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JavaScript内存管理（二）——垃圾回收及内存泄漏">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-13 18:03" pubdate>
+        2022年2月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaScript内存管理（二）——垃圾回收及内存泄漏</h1>
+            
+            <div class="markdown-body">
+              <p>上一次我们已经探讨了内存的存放，它是通过什么样的方式存放的。存和用已经讲了，这次我们来重点探讨一下它的垃圾回收以及它的内存泄漏。</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>在内存使用完毕之后，就会有最后一步——内存释放。就像分配内存一样，JavaScript引擎也帮我们处理这个步骤，具体的讲，JavaScript不像C/C++，它有自己的一套垃圾回收机制。</p>
+<p>一旦JS引擎识别到变量或者函数已经不被需要时，就会释放它所占用的内存</p>
+<p>这样做的主要问题是，是否还需要一些内存是一个不可判定的问题，这意味着不可能有一种算法能够在内存过时的那一刻收集所有不再需要的内存。</p>
+<p>一些算法可以很好解决这个问题。<strong>垃圾回收算法主要依赖于引用的概念。</strong>在内存管理的环境中，如果一个对象可以访问到另一个对象，叫做一个对象引用另一个对象。例如，一个JavaScript对象具有对它原型的引用（隐式引用）和对它属性的引用（显式引用）。当然这里的“对象”概念并不特指JavaScript对象，还包括函数作用域（或者全局词法作用域）。</p>
+<p>下面我主要探讨最常用的方法：<strong>引用计数</strong>和<strong>标记清除算法</strong></p>
+<h3 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>这是最初级的垃圾收集算法。此算法通过计数来判断一个变量是否还被引用。</p>
+<p>举个例子。当声明了一个变量并将一个引用类型值赋值该变量时，则这个值的引用次数就是1。如果同一个值又被赋给另外一个变量，则该值引用次数加1，反之，如果包含这个值的引用的变量又获取别的值替代该值，则这个值的引用次数减1。</p>
+<p>当这个值的引用次数变成0时，代表没有办法再访问这个值，即这个值已经没有用了。因此可以把这个值占用的内存空间收回来。这样，当垃圾回收运行时，它就会释放那些引用次数为零的值所占用的内存。</p>
+<p>举个例子</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> person = &#123;
+	name: <span class="hljs-string">&#x27;John&#x27;</span>,
+	age: <span class="hljs-number">22</span>,
+	hobbies: [<span class="hljs-string">&#x27;hiking&#x27;</span>, <span class="hljs-string">&#x27;reading&#x27;</span>]
+&#125; <span class="hljs-comment">// 新建一个对象，计数1，引用数组，数组对象+1</span>
+
+<span class="hljs-keyword">let</span> newPerson = person <span class="hljs-comment">// 对象 +1</span>
+
+<span class="hljs-keyword">let</span> hobbies = newPerson.hobbies <span class="hljs-comment">// 数组 +1</span>
+
+person = <span class="hljs-literal">null</span> <span class="hljs-comment">// 对象 -1</span>
+
+newPerson = <span class="hljs-literal">null</span> <span class="hljs-comment">// 对象 -1</span></code></pre>
+
+<img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/引用计数.gif" srcset="/img/loading.gif" />
+
+<p>可以看到，对象是零引用，可以被垃圾回收了。但是属性hobbies还被hobbies引用，所以数组对象还不能回收。</p>
+<h4 id="缺陷——循环引用"><a href="#缺陷——循环引用" class="headerlink" title="缺陷——循环引用"></a>缺陷——循环引用</h4><p>引用计数有一个缺陷，就是当如果两个对象互相引用时（循环），其引用计数值不为0，即使后面没有对这两个后面的引用。</p>
+<p>举个例子</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> son = &#123;
+  name: <span class="hljs-string">&#x27;John&#x27;</span>
+&#125;
+
+<span class="hljs-keyword">let</span> dad = &#123;
+  name: <span class="hljs-string">&#x27;Jason&#x27;</span>
+&#125;
+
+son.dad = dad
+dad.son = son
+
+son = <span class="hljs-literal">null</span>
+dad = <span class="hljs-literal">null</span></code></pre>
+
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/reference-cycle.png" srcset="/img/loading.gif"></p>
+<p>我们可以看到，两个对象被创建，并且互相引用，形成了一个循环。它们即使最后设置为null，判定它们已经没有用了，可以被回收了。但是，引用计数算法考虑到它们互响还有一次引用，所以它们不会被回收。</p>
+<h4 id="实际例子"><a href="#实际例子" class="headerlink" title="实际例子"></a>实际例子</h4><p>IE6，7使用引用计数方式对DOM对象进行垃圾回收。该方式常常造成对象被循环引用时内存发生泄漏：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> div
+<span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  div = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;myDivElement&quot;</span>)
+  div.circularReference = div
+  div.lotsOfData = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">10000</span>).join(<span class="hljs-string">&quot;*&quot;</span>)
+&#125;</code></pre>
+
+<p>在上面的例子中，myDivElement这个DOM元素里的circularReference属性循环引用了myDivElement，这样引用计数就会始终认为这里至少有一个引用。即使其从DOM树中删去了。如果这个DOM元素有大量的数据，那么这个数据会一直占用内存永远不会被释放。</p>
+<h3 id="标记-清除"><a href="#标记-清除" class="headerlink" title="标记-清除"></a>标记-清除</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>这个算法的思想是将是否需要对象转化为确定该对象是否可到达。</p>
+<p>标签清除的算法步骤如下</p>
+<ol>
+<li><strong>根是关键</strong>。所谓的根就是代码中引用的全局变量。例如，在JavaScript中，可以充当根的全局变量就是window对象。在Node.js的全局变量就是global。垃圾回收将构建所有根的完整列表。</li>
+<li>然后，该算法会检查所有根及其子代，并将其标记为活动状态，这意味着它们还有用，不会被清除。而根无法达到的任何内容都将被标记为垃圾。</li>
+<li>最后，垃圾回收会释放所有未标记为活动的内存，并将该内存返回给OS（Operating System，操作系统）。</li>
+</ol>
+<img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/标记清除.gif" srcset="/img/loading.gif" />
+
+<p>这个算法比引用计数法好，优势就在于它可以解决循环引用的问题。因为根无法访问到循环引用的对象，所以算法会将其标记为垃圾然后清除。</p>
+<p>从2012年起，所有现代浏览器都使用标记-清除垃圾回收算法。所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进，并没有改进标记-清除算法本身和它对“对象是否不再需要”的简化定义。</p>
+<h4 id="缺陷——无法从根对象查询到的对象都将被清除"><a href="#缺陷——无法从根对象查询到的对象都将被清除" class="headerlink" title="缺陷——无法从根对象查询到的对象都将被清除"></a>缺陷——无法从根对象查询到的对象都将被清除</h4><p>尽管这是一个限制，但实践中我们很少会碰到类似的情况，所以开发者不太会去关心垃圾回收机制。</p>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>在了解完垃圾回收之后，我们就要开始探讨内存泄漏咯。之前在与师兄的讨论以及一次面试时被面试官重复反问内存泄漏之后，我现在对内存泄漏的定义非常敏感。所以我们首先回答第一个问题。</p>
+<p>什么是内存泄漏？根据维基百科的回答，<strong>内存泄漏是计算机科学中，由于疏忽或错误造成程序未能释放已经不再使用的内存。</strong>内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，导致在释放该内存之前就失去了对该段内存的控制，从而造成了内存的浪费。</p>
+<p>那么就很明了了，就是在内存已经没有用可以释放的时候，JS垃圾回收机制因为某种原因导致判断它还有用，导致它一直占用内存。</p>
+<p>那么什么情况下就是内存泄漏？</p>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>在JS中，如果省略var，const或let去定义一个变量，那么这个变量就会添加到全局对象上。</p>
+<pre><code class="hljs js">user = getUser()
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUser</span>(<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;user&#x27;</span>
+&#125;</code></pre>
+
+<p>了解过垃圾回收我们都知道，从根可以范围到的变量是不会被清除的，所以users会一直都在。</p>
+<p>当然，在严格模式下可以避免这种情况。</p>
+<p>除了意外的将变量添加到全局对象，我们有时候需要主动想全局对象添加属性，这时候，一旦该属性不需要了，要记得手动将它释放掉。</p>
+<pre><code class="hljs js"><span class="hljs-built_in">window</span>.users = <span class="hljs-literal">null</span></code></pre>
+
+<h3 id="计时器和回调"><a href="#计时器和回调" class="headerlink" title="计时器和回调"></a>计时器和回调</h3><p>忘记计时器和回调会使应用程序的内存使用率上升。特别是在单页应用程序（spa）中，动态添加事件侦听器和回调时，必须要小心！</p>
+<h4 id="Interval计时器"><a href="#Interval计时器" class="headerlink" title="Interval计时器"></a>Interval计时器</h4><pre><code class="hljs js"><span class="hljs-keyword">const</span> intervalId = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;hello&#x27;</span>)
+&#125;, <span class="hljs-number">2000</span>)</code></pre>
+
+<p>只要setInterval没有被取消，则其中的引用对象就不会被垃圾回收。</p>
+<p>确保在不再需要时清除它。</p>
+<pre><code class="hljs js"><span class="hljs-built_in">clearInterval</span>(intervalId)</code></pre>
+
+<p>那setTimeout是否要手动清除？要看自己的需求，如果要在执行前清除则需手动，如果是执行后，可以不用管。</p>
+<h4 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h4><p>如果我们向按钮添加了onclick侦听器，之后将该按钮删除。如果是旧的浏览器，它无法收集侦听器，当然在如今，这不是问题。</p>
+<p>不过，如果在单页面应用，在页面内容发生变化时，即使没有绑定侦听器的元素在页面上，侦听器依旧还会响应，这说明它们没有被清理掉。所以，在不需要事件侦听器时，删除它们仍然是一个好的做法。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;button&#x27;</span>)
+<span class="hljs-keyword">const</span> onClick = <span class="hljs-function">() =&gt;</span> alert(<span class="hljs-string">&#x27;hi&#x27;</span>)
+
+btn.addEventListerner(<span class="hljs-string">&#x27;click&#x27;</span>, onClick)
+
+btn.removeEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, onClick)
+btn.parentNode.removeChild(btn)</code></pre>
+
+<h3 id="脱离DOM引用"><a href="#脱离DOM引用" class="headerlink" title="脱离DOM引用"></a>脱离DOM引用</h3><pre><code class="hljs js"><span class="hljs-keyword">const</span> elements = []
+<span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;button&#x27;</span>)
+elements.push(element)
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeAllElements</span>(<span class="hljs-params"></span>) </span>&#123;
+  elements.forEach(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;
+    <span class="hljs-built_in">document</span>.body.removeChild(<span class="hljs-built_in">document</span>.getElementById(item.id))
+  &#125;)
+&#125;</code></pre>
+
+<p>我们通过删除DOM元素的方式删除了这个DOM，但是这并不代表删除了这个引用。我们需要同时删除数组中的引用。因为每个DOM元素也保留了对其父节点的引用，因此可以防止垃圾回收收集元素的父元素和子元素。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> elements = []
+<span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;button&#x27;</span>)
+elements.push(element)
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeAllElements</span>(<span class="hljs-params"></span>) </span>&#123;
+  elements.forEach(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;
+    <span class="hljs-built_in">document</span>.body.removeChild(<span class="hljs-built_in">document</span>.getElementById(item.id))
+    element.splice(index, <span class="hljs-number">1</span>)
+  &#125;)
+&#125;</code></pre>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次我们主要探讨了JavaScript的垃圾回收和内存泄漏，通过了解垃圾回收的机制，进一步理解内存泄漏发生的原因以及解决的方法。在理解好这些细节之后，相信以后设计程序时，就可以少一点bug了。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Note/">Note</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Javascript/">Javascript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/13/JavaScript%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E2%80%94%E2%80%94this/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaScript深入理解——this</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/13/JavaScript%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E7%9A%84%E5%AD%98%E6%94%BE/">
+                        <span class="hidden-mobile">JavaScript内存管理（一）——内存的存放</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

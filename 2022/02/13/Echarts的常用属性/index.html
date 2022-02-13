@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Chaomao Chen">
+  <meta name="keywords" content="">
+  <title>Echarts的常用属性 - 阿猫的学习日记</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐱","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Chaom</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/wallhaven-nmy7o1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Echarts的常用属性">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-13 18:03" pubdate>
+        2022年2月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      814 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Echarts的常用属性</h1>
+            
+            <div class="markdown-body">
+              <p>Echarts是一个功能非常强大的图表插件，能将数据转化成各种图表然后展示在页面上。而且配置的属性非常的齐全，可以说自由度非常高。也同样因为配置属性齐全而让刚接触的我感到这东西很难搞。但其实只要了解几个主要属性就可以做出简单的图表来。</p>
+<p>要渲染一个图表首先我们需要一个对象数据类型，然后setOption函数会将我们对象中的属性解析成图表上的元素并绘制出来。下面我就讲讲几个常用的属性。</p>
+<p>用一个简单的表格来说明一下各个属性</p>
+<p><strong>语法</strong>：</p>
+<pre><code class="hljs js">option = &#123;
+  title: &#123;
+    text: <span class="hljs-string">&#x27;这是标题&#x27;</span>,
+    subtext: <span class="hljs-string">&#x27;这是副标题&#x27;</span>
+  &#125;,
+  legend: &#123;
+    data: [<span class="hljs-string">&#x27;折线一&#x27;</span>, <span class="hljs-string">&#x27;折线二&#x27;</span>]
+  &#125;,
+  tooltip: &#123;
+    trigger: <span class="hljs-string">&#x27;axis&#x27;</span>,
+    axisPointer: &#123;
+      type: <span class="hljs-string">&#x27;cross&#x27;</span>
+  	&#125;
+  &#125;,
+  grid: &#123;
+		left: <span class="hljs-string">&#x27;3%&#x27;</span>,
+    right: <span class="hljs-string">&#x27;4%&#x27;</span>,
+    bottom: <span class="hljs-string">&#x27;3%&#x27;</span>,
+    containLabel: <span class="hljs-literal">true</span>
+  &#125;,
+  xAxis: &#123;
+    type: <span class="hljs-string">&#x27;category&#x27;</span>,
+    data: [<span class="hljs-string">&#x27;周一&#x27;</span>, <span class="hljs-string">&#x27;周二&#x27;</span>, <span class="hljs-string">&#x27;周三&#x27;</span>, <span class="hljs-string">&#x27;周四&#x27;</span>, <span class="hljs-string">&#x27;周五&#x27;</span>, <span class="hljs-string">&#x27;周六&#x27;</span>, <span class="hljs-string">&#x27;周日&#x27;</span>]
+  &#125;,
+  yAxis: &#123;
+    type: <span class="hljs-string">&#x27;value&#x27;</span>
+  &#125;,
+  series: [
+    &#123;
+      name: <span class="hljs-string">&#x27;折线一&#x27;</span>,
+      type: <span class="hljs-string">&#x27;line&#x27;</span>,
+      data: [<span class="hljs-number">120</span>, <span class="hljs-number">132</span>, <span class="hljs-number">101</span>, <span class="hljs-number">134</span>, <span class="hljs-number">90</span>, <span class="hljs-number">230</span>, <span class="hljs-number">210</span>]
+    &#125;,
+    &#123;
+      name: <span class="hljs-string">&#x27;折线二&#x27;</span>,
+      type: <span class="hljs-string">&#x27;line&#x27;</span>,
+      data: [<span class="hljs-number">220</span>, <span class="hljs-number">182</span>, <span class="hljs-number">191</span>, <span class="hljs-number">234</span>, <span class="hljs-number">290</span>, <span class="hljs-number">330</span>, <span class="hljs-number">310</span>]
+     &#125;
+  ]
+&#125;</code></pre>
+
+<p>效果图</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/image-20210104174121585.png" srcset="/img/loading.gif" alt="image-20210104174121585"></p>
+<h2 id="title"><a href="#title" class="headerlink" title="title"></a>title</h2><p>图表的标题</p>
+<p><strong>title.text</strong>: 标题的内容</p>
+<p><strong>title.subtext</strong>: 副标题内容</p>
+<h2 id="legend"><a href="#legend" class="headerlink" title="legend"></a>legend</h2><p>图例组件，就是一个图标，点选可以显示隐藏线</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/image-20201225115542561.png" srcset="/img/loading.gif" alt="image-20201225114256100"></p>
+<p>legend.data: 图例的数据，里面的数据要与series(下面会讲)的name属性一一对应，才能显示出来</p>
+<h2 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h2><p>图表的坐标轴，控制它的位置以及一些显示</p>
+<p><strong>grid.top || left || bottom || right</strong>: 控制图表坐标轴与容器的偏移量</p>
+<p><strong>containLabel</strong>: grid 区域是否包含坐标轴的刻度标签，这常用于<strong>防止标签溢出</strong>的场景</p>
+<h2 id="xAxis"><a href="#xAxis" class="headerlink" title="xAxis"></a>xAxis</h2><p>x轴、横轴</p>
+<p>xAxis.type: 常用的两个值：<strong>value，category</strong>。category是x轴作为数据的标明，要设置data，value是x轴作为展示的刻度，刻度依赖series中data的值。</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/image-20201225115643719.png" srcset="/img/loading.gif" alt="image-20201225115542561"></p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/image-20201225141335276.png" srcset="/img/loading.gif" alt="image-20201225115643719"></p>
+<h2 id="yAxis"><a href="#yAxis" class="headerlink" title="yAxis"></a>yAxis</h2><p>y轴、纵轴</p>
+<p>yAxis.type: 与xAxis一样。但它们是互斥的，一般x轴category，y轴就value、x轴value，y轴就category。</p>
+<h2 id="tooltip"><a href="#tooltip" class="headerlink" title="tooltip"></a>tooltip</h2><p>提示框组件</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/image-20201225141634780.png" srcset="/img/loading.gif" alt="image-20201225141634780"></p>
+<p><strong>trigger</strong>: 触发类型，常用axis坐标轴触发</p>
+<p><strong>axisPointer</strong>: 指示器的配置，可设置类型type, 以及一些样式等等。</p>
+<h2 id="series"><a href="#series" class="headerlink" title="series"></a>series</h2><p>最关键的属性，控制图表数据的绘制。series是个数组，数组长度决定会绘制几种数据（长度3就画三条线）</p>
+<p><strong>type</strong>: 图表类型，line是折线图，bar是柱状图，其他的查阅官网</p>
+<p><strong>data</strong>: 图表的数据，也就是线的数据</p>
+<h3 id="line中的一些属性"><a href="#line中的一些属性" class="headerlink" title="line中的一些属性"></a>line中的一些属性</h3><p><strong>symbol</strong>: 控制折线点样式</p>
+<p><strong>areaStyle</strong>: 折线图区域内样式</p>
+<p><img src="https://pic-1304376225.cos.ap-guangzhou.myqcloud.com/img/image-20201225114256100.png" srcset="/img/loading.gif" alt="image-20201225141335276"></p>
+<p><strong>itemStyle</strong>: 折线的样式</p>
+<h3 id="bar中的一些属性"><a href="#bar中的一些属性" class="headerlink" title="bar中的一些属性"></a>bar中的一些属性</h3><p><strong>barCategoryGap</strong>: 同一系列的柱间距离，默认20%</p>
+<p><strong>itemStyle</strong>: 柱子的样式</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>因为不同类型的图表，属性各有不同，我就不一一解释了。但是用以上的属性就可以做出简单的折线图或曲线图。如果有其他的需求，还是要翻阅官方文档，按需求根据配置项设计图表。</p>
+<p>（以上图片均来源于echarts官网）</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Note/">Note</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Echarts/">Echarts</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/13/ElementUI%E4%B8%AD%E7%9A%84Pagination%E5%88%86%E9%A1%B5%E5%99%A8%E9%A1%B5%E7%A0%81%E4%B8%8D%E5%AF%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ElementUI中的Pagination分页器页码不对</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

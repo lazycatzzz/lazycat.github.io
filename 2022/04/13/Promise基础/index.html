@@ -243,11 +243,11 @@
 &#125;</code></pre>
 
 <p>我们编写了一个读取文件的异步函数，它返回一个 Promise 对象。这样我们可以在异步操作完成时对它进行一些操作。其中，resolve 是我们定义成功时执行的操作，reject 则是失败时执行的操作。</p>
-<p>Promise有三种状态，<strong>pending</strong>（处理中） <strong>Fulfilled</strong>（已完成） <strong>Rejected</strong>（出错），状态只会从处理中到完成，一个不可逆的过程。而当Promise状态发生变化后，我们就可以调用内置函数 then() 进行下一步操作。</p>
+<p>Promise 有三种状态，<strong>pending</strong>（处理中） <strong>Fulfilled</strong>（已完成） <strong>Rejected</strong>（出错），状态只会从处理中到完成，一个不可逆的过程。而当Promise状态发生变化后，我们就可以调用内置函数 then() 进行下一步操作。</p>
 <h2 id="then"><a href="#then" class="headerlink" title="then()"></a>then()</h2><blockquote>
 <p><em>p.then(onFulfilled[, onRejected]);</em></p>
 </blockquote>
-<p>then() 接收两个参数，两个参数都是可选的。第一个参数是当Promise的状态变为fulfilled时调用的函数，第二个参数的当Promise的状态变为rejected时调用的函数。</p>
+<p>then() 接收两个参数，两个参数都是可选的。第一个参数是当 Promise 的状态变为 fulfilled 时调用的函数，第二个参数的当 Promise 的状态变为 rejected 时调用的函数。</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">let</span> promise = readfile(<span class="hljs-string">&#x27;text.txt&#x27;</span>);
 
 promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">contents</span>) </span>&#123;
@@ -275,7 +275,7 @@ promise.catch(<span class="hljs-function"><span class="hljs-keyword">function</s
     <span class="hljs-built_in">console</span>.log(err.message);
 &#125;)</code></pre>
 
-<h1 id="串联Promise"><a href="#串联Promise" class="headerlink" title="串联Promise"></a>串联Promise</h1><p>其实，每次调用 then() 方法或 catch() 方法时，实际上创建并返回了另一个Promise。也就是说，函数的返回值是一个 Promise 对象，我们可以继续接着使用 then() 或 catch() 方法，做更多操作。</p>
+<h1 id="串联Promise"><a href="#串联Promise" class="headerlink" title="串联Promise"></a>串联Promise</h1><p>其实，每次调用 then() 方法或 catch() 方法时，实际上创建并返回了另一个 Promise。也就是说，函数的返回值是一个 Promise 对象，我们可以继续接着使用 then() 或 catch() 方法，做更多操作。</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
     resolve(<span class="hljs-number">42</span>);
 &#125;)
@@ -290,10 +290,10 @@ p1.then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;
 <span class="hljs-comment">// 42 </span>
 <span class="hljs-comment">// finished</span></code></pre>
 
-<p>当第一个then()函数完成时，会返回一个新的Promise对象。接着我们根据新的Promise对象再次调用then()函数，输出 ‘finished’。</p>
-<p>我们可以在then()函数后串联catch()来做失败事件处理，更加的简洁。</p>
+<p>当第一个 then() 函数完成时，会返回一个新的 Promise 对象。接着我们根据新的 Promise 对象再次调用then() 函数，输出 ‘finished’。</p>
+<p>我们可以在 then() 函数后串联 catch() 来做失败状态处理，更加的简洁。</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
-    reject(<span class="hljs-string">&#x27;errpr&#x27;</span>);
+    reject(<span class="hljs-string">&#x27;error&#x27;</span>);
 &#125;)
 
 p1.then(<span class="hljs-function">() =&gt;</span> &#123;
@@ -315,7 +315,7 @@ p1.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
     <span class="hljs-built_in">console</span>.log(value); <span class="hljs-comment">// 43</span>
 &#125;)</code></pre>
 
-<p>即使是catch这样依然成立。</p>
+<p>即使是 catch() 这样依然成立。</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p1 = <span class="hljs-keyword">new</span> Promsie(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
     reject(<span class="hljs-number">42</span>);
 &#125;);
@@ -393,7 +393,7 @@ p4.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
     <span class="hljs-built_in">console</span>.log(value); <span class="hljs-comment">// 42</span>
 &#125;);</code></pre>
 
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是一些Promise的知识，在我们日常的使用中都会触及到。使用过程也有些细节，比如then函数、catch函数返回的也是Promise对象，链式调用可以将值传递下去等等。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是一些 Promise 的知识，在我们日常的使用中都会触及到。使用过程也有些细节值得我们注意，比如 then 函数、catch 函数返回的是一个新的 Promise 对象，链式调用可以将值传递下去等等。</p>
 
             </div>
             <hr>

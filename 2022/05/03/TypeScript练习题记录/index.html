@@ -257,7 +257,7 @@
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Users:&#x27;</span>);
 users.forEach(logPerson);</code></pre>
 
-<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220508212515019.png" srcset="/img/loading.gif" alt="image-20220508212515019"></p>
+<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="image-20220508212515019.png" srcset="/img/loading.gif" alt="image-20220508212515019"></p>
 <h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>题意是希望我们声明一个 Person 类型，用来解释 persons 数组项的类型，也就是说，Person 既是 User 又是 Admin。</p>
 <h2 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     name: <span class="hljs-built_in">string</span>;
@@ -302,7 +302,7 @@ users.forEach(logPerson);</code></pre>
 
 persons.forEach(logPerson);</code></pre>
 
-<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220508213002393.png" srcset="/img/loading.gif" alt="image-20220508213002393"></p>
+<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><img src="image-20220508213002393.png" srcset="/img/loading.gif" alt="image-20220508213002393"></p>
 <h2 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h2><p>看错误信息，因为 person 有两种可能，要么是 User，要么是 Admin。但是 Typescript 并不知道你当前项是哪一个，所以这里我们要类型断言当前项的具体类型。</p>
 <h2 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     name: <span class="hljs-built_in">string</span>;
@@ -353,7 +353,7 @@ persons.forEach(logPerson);</code></pre>
 
 persons.forEach(logPerson);</code></pre>
 
-<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220508213443961.png" srcset="/img/loading.gif" alt="image-20220508213443961"></p>
+<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p><img src="image-20220508213443961.png" srcset="/img/loading.gif" alt="image-20220508213443961"></p>
 <h2 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h2><p>这里通过isAdmin和isUser两个函数来判断person的类型，但是person始终还是Person类型。这里我对两个函数的返回值做了类型断言。</p>
 <h2 id="解答-3"><a href="#解答-3" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;user&#x27;</span>;
@@ -405,7 +405,7 @@ persons.filter(isAdmin).forEach(logPerson);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Users:&#x27;</span>);
 persons.filter(isUser).forEach(logPerson);</code></pre>
 
-<h1 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220509002910401.png" srcset="/img/loading.gif" alt="image-20220509002910401"></p>
+<h1 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h1><p><img src="image-20220509002910401.png" srcset="/img/loading.gif" alt="image-20220509002910401"></p>
 <h2 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h2><p>看报错，filterUsers函数报错了，因为传参2是User类型，我们只传了age，但其他项都是必填的。而我们如果只想填age，其他项不填，可以用关键字 <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/utility-types.html">Partial</a>，将User中的所有属性都设为可选。</p>
 <h2 id="解答-4"><a href="#解答-4" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;user&#x27;</span>;
@@ -489,7 +489,7 @@ filterUsers(
     &#125;
 ).forEach(logPerson);</code></pre>
 
-<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220509004013310.png" srcset="/img/loading.gif" alt="image-20220509004013310"></p>
+<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><img src="image-20220509004013310.png" srcset="/img/loading.gif" alt="image-20220509004013310"></p>
 <h2 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题考察的是函数的重载，意思就是说我们通过函数重载的方式，使这个函数达到可以通过不同的方式调用的目的。所以这道题需要我们<em>编写重载签名</em>来指定一个可以以不同方式调用的函数filterPersons。</p>
 <h2 id="解答-5"><a href="#解答-5" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;user&#x27;</span>;
@@ -546,7 +546,7 @@ usersOfAge23.forEach(logPerson);
 adminsOfAge23.forEach(logPerson);
 </code></pre>
 
-<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220515225334368.png" srcset="/img/loading.gif" alt="image-20220515225334368"></p>
+<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><img src="image-20220515225334368.png" srcset="/img/loading.gif" alt="image-20220515225334368"></p>
 <h2 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h2><p>补充一下swap函数的类型，这里用泛型变量就可以轻松解决。</p>
 <h2 id="解答-6"><a href="#解答-6" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;user&#x27;</span>;
@@ -643,7 +643,7 @@ adminsOfAge23.forEach(logPerson);
 
 [test1, test2, test3, test4, test5].forEach(<span class="hljs-function">(<span class="hljs-params">test</span>) =&gt;</span> test());</code></pre>
 
-<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220515225657568.png" srcset="/img/loading.gif" alt="image-20220515225657568"></p>
+<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><img src="image-20220515225657568.png" srcset="/img/loading.gif" alt="image-20220515225657568"></p>
 <h2 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h2><p>题意是让我们定义一个PowerUser类型，它拥有User和Admin的所有属性，但是type值是powerUser。所以我们可以使用&amp;结合两个类型，并且使用Omit关键字去掉type类型，重新指定一个。</p>
 <h2 id="解答-7"><a href="#解答-7" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;user&#x27;</span>;
@@ -716,8 +716,8 @@ persons.filter(isUser).forEach(logPerson);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Power users:&#x27;</span>);
 persons.filter(isPowerUser).forEach(logPerson);</code></pre>
 
-<h1 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220515232008303.png" srcset="/img/loading.gif" alt="image-20220515232008303"></p>
-<h2 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h2><p>题意是让我们写一个ApiResponse，它能推断出AdminApiResponse和UserApiResponse甚至其他任何类型。所以我们分析得到，不同的ApiResponse中data的类型是不同的，其他都是相同的。所以我们使用泛型变量来解决这个问题。</p>
+<h1 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h1><p><img src="image-20220515232008303.png" srcset="/img/loading.gif" alt="image-20220515232008303"></p>
+<h2 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h2><p>题意是让我们写一个 ApiResponse，它能推断出AdminApiResponse 和 UserApiResponse 甚至其他任何类型。所以我们分析得到，不同的 ApiResponse 中 data 的类型是不同的，其他都是相同的。所以我们使用泛型变量来解决这个问题。</p>
 <h2 id="解答-8"><a href="#解答-8" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;user&#x27;</span>;
     name: <span class="hljs-built_in">string</span>;
@@ -848,8 +848,8 @@ startTheApp(<span class="hljs-function">(<span class="hljs-params">e: <span clas
     &#125;
 &#125;);</code></pre>
 
-<h1 id="第十题"><a href="#第十题" class="headerlink" title="第十题"></a>第十题</h1><p><img src="..%5Clocal-image%5Ctypescript%E7%BB%83%E4%B9%A0%E9%A2%98%E8%AE%B0%E5%BD%95%5Cimage-20220515232811853.png" srcset="/img/loading.gif" alt="image-20220515232811853"></p>
-<h2 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h2><p>题意是让我们实现一个promisify函数，满足一系列操作。（从单纯写类型到实现函数了。。。）参考题意和函数上下文推断一下，然后用泛型解决。</p>
+<h1 id="第十题"><a href="#第十题" class="headerlink" title="第十题"></a>第十题</h1><p><img src="image-20220515232811853.png" srcset="/img/loading.gif" alt="image-20220515232811853"></p>
+<h2 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h2><p>题意是让我们实现一个 promisify 函数，满足一系列操作。（从单纯写类型到实现函数了。。。）参考题意和函数上下文推断一下，然后用泛型解决。</p>
 <h2 id="解答-9"><a href="#解答-9" class="headerlink" title="解答"></a>解答</h2><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> User &#123;
     <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;user&#x27;</span>;
     name: <span class="hljs-built_in">string</span>;

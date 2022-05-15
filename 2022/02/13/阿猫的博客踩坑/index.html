@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      401 字
+      703 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      7
        分钟
     </span>
   
@@ -227,14 +227,19 @@
             <h1 style="display: none">阿猫的博客踩坑</h1>
             
             <div class="markdown-body">
-              <h1 id="阿猫的博客踩坑"><a href="#阿猫的博客踩坑" class="headerlink" title="阿猫的博客踩坑"></a>阿猫的博客踩坑</h1><h2 id="CNAME文件"><a href="#CNAME文件" class="headerlink" title="CNAME文件"></a>CNAME文件</h2><p>为了让github能记住我们的域名，我们要在setting中将我们的域名save在<strong>GitHub Pages</strong>的<strong>custom domain</strong>中。这实际上在本地的public文件夹中创建了一个<strong>CNAME文件</strong>。但是我们使用hexo上传文章都要清一次缓存，将pubilc文件删除，再新建，这时候CNAME文件就没了（再到Setting里设置一次）。</p>
+              <h1 id="CNAME文件"><a href="#CNAME文件" class="headerlink" title="CNAME文件"></a>CNAME文件</h1><p>为了让github能记住我们的域名，我们要在setting中将我们的域名save在<strong>GitHub Pages</strong>的<strong>custom domain</strong>中。这实际上在本地的public文件夹中创建了一个<strong>CNAME文件</strong>。但是我们使用hexo上传文章都要清一次缓存，将pubilc文件删除，再新建，这时候CNAME文件就没了（再到Setting里设置一次）。</p>
 <p>为了解决这个问题，我们在source文件夹中创建一个CNAME文件<strong>（就叫CNAME，不要加任何后缀！）</strong>里面放我们的域名，这样，每次更新的时候，也能保存我们的域名。</p>
-<h2 id="Hexo的双大括号"><a href="#Hexo的双大括号" class="headerlink" title="Hexo的双大括号"></a>Hexo的双大括号</h2><p>一次提交文件，发现Vue笔记一直提交不上去，报“Nunjucks Error”的错误。百度了一下，发现原因。</p>
+<h1 id="Hexo的双大括号"><a href="#Hexo的双大括号" class="headerlink" title="Hexo的双大括号"></a>Hexo的双大括号</h1><p>一次提交文件，发现Vue笔记一直提交不上去，报“Nunjucks Error”的错误。百度了一下，发现原因。</p>
 <p>因为hexo的文章是使用Nunjucks渲染的，它会将大括号识别为自己的语法。然后我写的笔记中有一些模板语法，所以就报错了。解决方法是在报错地方的前后加不编译(在代码块里）。不过我更直接，把模板语法放进了代码块。</p>
 <pre><code class="hljs html">不编译：&#123;% raw %&#125;&#123;% endraw %&#125;
 &#123;&#123;&#125;&#125;</code></pre>
 
-<h2 id="typora的图片上传失败"><a href="#typora的图片上传失败" class="headerlink" title="typora的图片上传失败"></a>typora的图片上传失败</h2><p>一次，我上传图片时，发现老是上传失败。报fail fetch的错误。做不到原因，明明前一秒还可以，这会就不行了。原因是：<strong>typora上传图片的端口跟图床picgo监听的端口不一致</strong>导致的，picgo也是莫名其妙给我换了个端口号，只要把他们改为一致的就可以了。</p>
+<h1 id="typora的图片上传失败"><a href="#typora的图片上传失败" class="headerlink" title="typora的图片上传失败"></a>typora的图片上传失败</h1><p>一次，我上传图片时，发现老是上传失败。报fail fetch的错误。做不到原因，明明前一秒还可以，这会就不行了。原因是：<strong>typora上传图片的端口跟图床picgo监听的端口不一致</strong>导致的，picgo也是莫名其妙给我换了个端口号，只要把他们改为一致的就可以了。</p>
+<h1 id="图片本地化"><a href="#图片本地化" class="headerlink" title="图片本地化"></a>图片本地化</h1><p>每次把图片贴到博客上，都要先上传图床上，然后拿到url再贴到文章里。虽然图床的钱不多，但是我还是想省一下这笔钱。一来是随着博客的增多，图片会越来越多。而且在文章编辑的时候引用链接，也是在收费的。再加上现在博客没啥人看，这成本花的有点不值。用图床方便多人访问时的浏览体验，一两个人看问题还是不大的（起码负载均衡应该不会被打爆）。</p>
+<p>所以我搜索了方法，把图片存放在本地，在发布时把图片上传到项目里，通过hexo的能力将图片渲染到文章中。</p>
+<p>首先在_config.yml里，找到post_asset_folder设置并设为true。然后我们在 _post文件夹下新建博客时，同时新建一个与博客同名的文件夹，用来存放博客的图片。</p>
+<p>在文章中的引用就是 <code>![](图片名)</code></p>
+<p>当然这样引用在typora编辑器里是渲染不出来图片的。所以要在配置里设置 <code>typora-root-url:图片文件夹名</code>。就可以正常看到图片了。</p>
 
             </div>
             <hr>
